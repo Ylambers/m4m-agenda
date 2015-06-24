@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Maak een nieuwe reservering aan</h1>
+    {{ form_start(formBooking) }}
+    {{ form_widget(formBooking) }}
+    {{ form_end(formBooking) }}
+
+    {#{{ message }}#}
+{% endblock %}

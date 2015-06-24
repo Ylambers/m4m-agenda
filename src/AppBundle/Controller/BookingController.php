@@ -8,8 +8,11 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
 
 use AppBundle\Entity\Applicant;
 
@@ -18,18 +21,50 @@ class BookingController extends Controller
     /**
      * @Route("/booking", name="Booking")
      */
-    public function Booking()
+    public function Booking(request $request)
     {
-        $booking = new Book;
+        $book = new Applicant();
 
-        $formBooking = $this->createFormBuilder($booking)
-            ->add('text', 'textarea', array('label' => 'Naam ', array("class" => "btn"), 'required' => false))
-            ->add('save', 'submit', array('label' => "Verzenden", 'attr' => array("class" => "canBeDisabled")))
+        $formBooking = $this->createFormBuilder($book)
+            ->add('room', 'entity', array('required' => true, 'class' => "AppBundle:Room",
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.name', 'ASC');
+                }, 'property' => 'name', 'label' => 'Ruimte'))
+
+            ->add('name', 'text', array('label' => 'Voornaam'))
+            ->add('lastName', 'text', array('label' => 'AchterNaam'))
+            ->add('date', 'date', array('label' => 'Datum', 'placeholder' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
+            ->add('timeStart', 'time', array(
+                'input'  => 'datetime',
+                'widget' => 'choice',
+                'placeholder' => false
+            ))
+            ->add('timeEnd', 'time', array(
+                'input'  => 'datetime',
+                'widget' => 'choice',
+                'placeholder' => false
+            ))
+            ->add('participants', 'text', array('label' => 'Deelnemers'))
+            ->add('reason', 'text', array('label' => 'Reden'))
+            ->add('save', 'submit', array('label' => "Verzenden"))
             ->getForm();
 
-        return $this->render('default/book.html.twig',
-            array(
-                "formBook" => $booking
-            ));
+        $formBooking->handleRequest($request);
+
+        if ($formBooking->isValid()) {
+            /* post in database */
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($formBooking);
+            $em->flush();
+
+//           $text = "Uw aanvraag is aangekomen";
+        }
+
+    return $this->render('default/book.html.twig',
+        array(
+            'formBooking' => $formBooking->createView(),
+//            "message" => $text
+        ));
     }
 }
