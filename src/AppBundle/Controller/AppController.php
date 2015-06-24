@@ -21,14 +21,14 @@ class AppController extends Controller
      */
     public function indexAction($type)
     {
+        $response = new Response();
+        $page = array();
         if($type == "rooms"){
 
             $bookings = $this->getDoctrine()
                 ->getRepository('AppBundle:Room')
                 ->findAll();
 
-            $response = new Response();
-            $page = array();
             foreach($bookings as $booking){
                 $page[$booking->getId()] = array();
                 $page[$booking->getId()]['name'] = $booking->getName();
@@ -41,8 +41,6 @@ class AppController extends Controller
                 ->getRepository('AppBundle:Applicant')
                 ->findAll();
 
-            $response = new Response();
-            $page = array();
             foreach($bookings as $booking){
                 $page[$booking->getId()] = array();
                 $page[$booking->getId()]['name'] = $booking->getName();
@@ -58,6 +56,8 @@ class AppController extends Controller
                 $page[$booking->getId()]['room']['seats'] = $booking->getRoom()->getSeats();
             }
         }elseif($type == "reservation"){
+
+        }else{
 
         }
 
