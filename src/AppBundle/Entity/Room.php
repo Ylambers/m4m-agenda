@@ -57,7 +57,7 @@ class Room{
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -80,7 +80,7 @@ class Room{
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -103,7 +103,7 @@ class Room{
     /**
      * Get seats
      *
-     * @return integer 
+     * @return integer
      */
     public function getSeats()
     {
@@ -136,7 +136,7 @@ class Room{
     /**
      * Get applicants
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getApplicants()
     {

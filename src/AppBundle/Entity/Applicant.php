@@ -82,7 +82,7 @@ class Applicant{
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -105,7 +105,7 @@ class Applicant{
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -128,7 +128,7 @@ class Applicant{
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -151,7 +151,7 @@ class Applicant{
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -174,7 +174,7 @@ class Applicant{
     /**
      * Get timeStart
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimeStart()
     {
@@ -197,7 +197,7 @@ class Applicant{
     /**
      * Get timeEnd
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimeEnd()
     {
@@ -220,7 +220,7 @@ class Applicant{
     /**
      * Get participants
      *
-     * @return string 
+     * @return string
      */
     public function getParticipants()
     {
@@ -243,7 +243,7 @@ class Applicant{
     /**
      * Get reason
      *
-     * @return string 
+     * @return string
      */
     public function getReason()
     {
@@ -266,7 +266,7 @@ class Applicant{
     /**
      * Get room
      *
-     * @return \AppBundle\Entity\Room 
+     * @return \AppBundle\Entity\Room
      */
     public function getRoom()
     {
