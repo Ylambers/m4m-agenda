@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Room;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class AppController extends Controller
 {
@@ -23,24 +24,14 @@ class AppController extends Controller
     {
         $response = new Response();
         $page = array();
-        if($type == "rooms"){
-
-            $bookings = $this->getDoctrine()
-                ->getRepository('AppBundle:Room')
-                ->findAll();
-
-            foreach($bookings as $booking){
-                $page[$booking->getId()] = array();
-                $page[$booking->getId()]['name'] = $booking->getName();
-                $page[$booking->getId()]['seats'] = $booking->getSeats();
-            }
-
-        }elseif($type == "reservations"){
+        if($type == "reservations"){
             if($extra != ""){
-
+                $date = new \DateTime($extra);
+                //$year = Date("Y",strtotime($extra));
                 $bookings = $this->getDoctrine()
                     ->getRepository('AppBundle:Applicant')
-                    ->findBy(array("date" => $extra));
+                    ->findBy(array("date" => $date));
+                //echo $extra;
             }else{
                 $bookings = $this->getDoctrine()
                     ->getRepository('AppBundle:Applicant')
@@ -65,6 +56,15 @@ class AppController extends Controller
 
         }else{
 
+            $bookings = $this->getDoctrine()
+                ->getRepository('AppBundle:Room')
+                ->findAll();
+
+            foreach($bookings as $booking){
+                $page[$booking->getId()] = array();
+                $page[$booking->getId()]['name'] = $booking->getName();
+                $page[$booking->getId()]['seats'] = $booking->getSeats();
+            }
         }
 
 
