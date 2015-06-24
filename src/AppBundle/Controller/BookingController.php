@@ -81,16 +81,15 @@ class BookingController extends Controller
             $em->persist($booking);
             $em->flush();
 
-            if ($em->isValid()){
+
                 $message['response'] =  'bedankt voor het versturen van uw aanvraag';
                 $message['alert'] = 'succes';
-            } else{
-                $message['response'] = 'Sorry, er is een fout opgetreden, probeer het later nog eens.';
-                $message['alert'] = 'danger';
-            }
 
+
+            }else{
+            $message['response'] = 'Sorry, er is een fout opgetreden, probeer het later nog eens.';
+            $message['alert'] = 'danger';
         }
-
     return $this->render('default/book.html.twig',
         array(
             'formBooking' => $formBooking->createView(),
