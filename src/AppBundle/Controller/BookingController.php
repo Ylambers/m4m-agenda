@@ -93,7 +93,7 @@ class BookingController extends Controller
     return $this->render('default/book.html.twig',
         array(
             'formBooking' => $formBooking->createView(),
-
+            'message' =>  $message
         ));
     }
 }
