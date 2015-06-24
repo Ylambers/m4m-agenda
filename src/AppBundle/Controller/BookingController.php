@@ -52,8 +52,6 @@ class BookingController extends Controller
                 'widget' => 'choice',
                 'placeholder' => false))
 
-            ->add('participants', 'text', array('label' => 'Deelnemers'))
-            ->add('reason', 'text', array('label' => 'Reden'))
             ->add('save', 'submit', array('label' => "Verzenden"))
             ->getForm();
 
