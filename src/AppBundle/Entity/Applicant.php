@@ -11,6 +11,7 @@ namespace AppBundle\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\Time;
 
 
@@ -43,8 +44,8 @@ class Applicant{
     private $lastName;
 
     /**
-     * @var datetime
-     * @ORM\Column(name="date", type="datetime", nullable=true)
+     * @var date
+     * @ORM\Column(name="date", type="date", nullable=true)
      */
     private $date;
 
@@ -82,7 +83,7 @@ class Applicant{
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -105,7 +106,7 @@ class Applicant{
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
@@ -128,7 +129,7 @@ class Applicant{
     /**
      * Get lastName
      *
-     * @return string
+     * @return string 
      */
     public function getLastName()
     {
@@ -151,7 +152,7 @@ class Applicant{
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDate()
     {
@@ -174,7 +175,7 @@ class Applicant{
     /**
      * Get timeStart
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getTimeStart()
     {
@@ -197,7 +198,7 @@ class Applicant{
     /**
      * Get timeEnd
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getTimeEnd()
     {
@@ -220,7 +221,7 @@ class Applicant{
     /**
      * Get participants
      *
-     * @return string
+     * @return string 
      */
     public function getParticipants()
     {
@@ -243,7 +244,7 @@ class Applicant{
     /**
      * Get reason
      *
-     * @return string
+     * @return string 
      */
     public function getReason()
     {
@@ -266,7 +267,7 @@ class Applicant{
     /**
      * Get room
      *
-     * @return \AppBundle\Entity\Room
+     * @return \AppBundle\Entity\Room 
      */
     public function getRoom()
     {
