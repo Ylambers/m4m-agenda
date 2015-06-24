@@ -23,6 +23,7 @@ class BookingController extends Controller
      */
     public function Booking(request $request)
     {
+        $message = array();
         $booking = new Applicant();
 
         $formBooking = $this->createFormBuilder($booking)
@@ -80,13 +81,20 @@ class BookingController extends Controller
             $em->persist($booking);
             $em->flush();
 
-//           $text = "Uw aanvraag is aangekomen";
+            if ($em->isValid()){
+                $message['response'] =  'bedankt voor het versturen van uw aanvraag';
+                $message['alert'] = 'succes';
+            } else{
+                $message['response'] = 'Sorry, er is een fout opgetreden, probeer het later nog eens.';
+                $message['alert'] = 'danger';
+            }
+
         }
 
     return $this->render('default/book.html.twig',
         array(
             'formBooking' => $formBooking->createView(),
-//            "message" => $text
+
         ));
     }
 }
