@@ -62,22 +62,9 @@ class Applicant{
     private $timeEnd;
 
     /**
-     * @var string
-     * @ORM\Column(name="participants", type="string", length=255)
-     */
-    private $participants;
-
-    /**
-     * @var string
-     * @ORM\Column(name="reason", type="string", length=255)
-     */
-    private $reason;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Room")
      */
     private $room;
-
 
 
     /**
@@ -203,52 +190,6 @@ class Applicant{
     public function getTimeEnd()
     {
         return $this->timeEnd;
-    }
-
-    /**
-     * Set participants
-     *
-     * @param string $participants
-     * @return Applicant
-     */
-    public function setParticipants($participants)
-    {
-        $this->participants = $participants;
-
-        return $this;
-    }
-
-    /**
-     * Get participants
-     *
-     * @return string 
-     */
-    public function getParticipants()
-    {
-        return $this->participants;
-    }
-
-    /**
-     * Set reason
-     *
-     * @param string $reason
-     * @return Applicant
-     */
-    public function setReason($reason)
-    {
-        $this->reason = $reason;
-
-        return $this;
-    }
-
-    /**
-     * Get reason
-     *
-     * @return string 
-     */
-    public function getReason()
-    {
-        return $this->reason;
     }
 
     /**
