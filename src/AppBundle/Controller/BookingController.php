@@ -26,6 +26,7 @@ class BookingController extends Controller
         $book = new Applicant();
 
         $formBooking = $this->createFormBuilder($book)
+
             ->add('room', 'entity', array('required' => true, 'class' => "AppBundle:Room",
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
@@ -33,18 +34,24 @@ class BookingController extends Controller
                 }, 'property' => 'name', 'label' => 'Ruimte'))
 
             ->add('name', 'text', array('label' => 'Voornaam'))
-            ->add('lastName', 'text', array('label' => 'AchterNaam'))
-            ->add('date', 'date', array('label' => 'Datum', 'placeholder' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
+
+            ->add('lastName', 'text', array('label' => 'Achter naam'))
+
+            ->add('date', 'date', array('label' => 'Datum', 'placeholder' => array
+            ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
+                'years' => range(Date('Y'), Date('Y',strtotime('+3 year')))))
+
+
             ->add('timeStart', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'placeholder' => false
-            ))
+                'placeholder' => false))
+
             ->add('timeEnd', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'placeholder' => false
-            ))
+                'placeholder' => false))
+
             ->add('participants', 'text', array('label' => 'Deelnemers'))
             ->add('reason', 'text', array('label' => 'Reden'))
             ->add('save', 'submit', array('label' => "Verzenden"))
@@ -55,6 +62,13 @@ class BookingController extends Controller
         if ($formBooking->isValid()) {
             /* post in database */
             $em = $this->getDoctrine()->getManager();
+//            var_dump(count($formBooking->get('room')->getData()));
+//            foreach ($formBooking->get('room')->getData() as $val) {
+//                var_dump($val);
+//                //$formBooking->addRoom($val);
+//            }
+
+
             $em->persist($formBooking);
             $em->flush();
 

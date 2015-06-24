@@ -42,9 +42,10 @@ class Room{
     private  $seats;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Applicant", inversedBy="applicants")
+     * @ORM\OneToMany(targetEntity="Applicant", mappedBy="Room")
      */
     private $applicants;
+
     /**
      * Constructor
      */

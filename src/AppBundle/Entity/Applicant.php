@@ -71,16 +71,11 @@ class Applicant{
     private $reason;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Room", mappedBy="applicants")
+     * @ORM\ManyToOne(targetEntity="Room")
      */
-    private $room;
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->room = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    protected $room;
+
+
 
     /**
      * Get id
@@ -254,32 +249,22 @@ class Applicant{
     }
 
     /**
-     * Add room
+     * Set room
      *
      * @param \AppBundle\Entity\Room $room
      * @return Applicant
      */
-    public function addRoom(\AppBundle\Entity\Room $room)
+    public function setRoom(\AppBundle\Entity\Room $room = null)
     {
-        $this->room[] = $room;
+        $this->room = $room;
 
         return $this;
     }
 
     /**
-     * Remove room
-     *
-     * @param \AppBundle\Entity\Room $room
-     */
-    public function removeRoom(\AppBundle\Entity\Room $room)
-    {
-        $this->room->removeElement($room);
-    }
-
-    /**
      * Get room
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \AppBundle\Entity\Room 
      */
     public function getRoom()
     {
