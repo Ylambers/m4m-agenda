@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% for booking in bookings  %}
-        <li>
-            {{ bookings.id }}
-        </li>
-    {% endfor %}
+    {% if available_room is defined %}
+        <h1>Beschikbare kamers</h1>
+        {% for book in available_room  %}
+            <ul>
+                <li>
+                  <label>ID: </label>  {{ book.id }}
+                  <label>NAAM: </label> {{ book.name }}
+                  <label>ZITPLEKKEN: </label>{{ book.seats}}
+                </li>
+            </ul>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

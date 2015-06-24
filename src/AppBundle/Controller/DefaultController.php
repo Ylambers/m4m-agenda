@@ -14,13 +14,13 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $bookings = $this->getDoctrine()
+        $booking = $this->getDoctrine()
             ->getRepository('AppBundle:Room')
             ->findAll();
 
         return $this->render('default/index.html.twig',
             array(
-                "bookings" => $bookings
+                "available_room" => $booking
             ));
     }
 }

@@ -74,4 +74,215 @@ class Applicant{
      * @ORM\ManyToMany(targetEntity="Room", mappedBy="applicants")
      */
     private $room;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->room = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Applicant
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     * @return Applicant
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Applicant
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set timeStart
+     *
+     * @param \DateTime $timeStart
+     * @return Applicant
+     */
+    public function setTimeStart($timeStart)
+    {
+        $this->timeStart = $timeStart;
+
+        return $this;
+    }
+
+    /**
+     * Get timeStart
+     *
+     * @return \DateTime 
+     */
+    public function getTimeStart()
+    {
+        return $this->timeStart;
+    }
+
+    /**
+     * Set timeEnd
+     *
+     * @param \DateTime $timeEnd
+     * @return Applicant
+     */
+    public function setTimeEnd($timeEnd)
+    {
+        $this->timeEnd = $timeEnd;
+
+        return $this;
+    }
+
+    /**
+     * Get timeEnd
+     *
+     * @return \DateTime 
+     */
+    public function getTimeEnd()
+    {
+        return $this->timeEnd;
+    }
+
+    /**
+     * Set participants
+     *
+     * @param string $participants
+     * @return Applicant
+     */
+    public function setParticipants($participants)
+    {
+        $this->participants = $participants;
+
+        return $this;
+    }
+
+    /**
+     * Get participants
+     *
+     * @return string 
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
+    }
+
+    /**
+     * Set reason
+     *
+     * @param string $reason
+     * @return Applicant
+     */
+    public function setReason($reason)
+    {
+        $this->reason = $reason;
+
+        return $this;
+    }
+
+    /**
+     * Get reason
+     *
+     * @return string 
+     */
+    public function getReason()
+    {
+        return $this->reason;
+    }
+
+    /**
+     * Add room
+     *
+     * @param \AppBundle\Entity\Room $room
+     * @return Applicant
+     */
+    public function addRoom(\AppBundle\Entity\Room $room)
+    {
+        $this->room[] = $room;
+
+        return $this;
+    }
+
+    /**
+     * Remove room
+     *
+     * @param \AppBundle\Entity\Room $room
+     */
+    public function removeRoom(\AppBundle\Entity\Room $room)
+    {
+        $this->room->removeElement($room);
+    }
+
+    /**
+     * Get room
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRoom()
+    {
+        return $this->room;
+    }
 }
