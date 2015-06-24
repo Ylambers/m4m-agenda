@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+
 
 use AppBundle\Entity\Applicant;
 
@@ -41,6 +41,7 @@ class BookingController extends Controller
             ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
                 'years' => range(Date('Y'), Date('Y',strtotime('+3 year')))))
 
+
             ->add('timeStart', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
@@ -66,9 +67,19 @@ class BookingController extends Controller
 //                var_dump($val);
 //                //$formBooking->addRoom($val);
 //            }
-            $book->setRoom($formBooking->get("room")->getData());
+            $booking = new Applicant();
+            $booking->setName($formBooking->get("name")->getData());
+            $booking->setLastName($formBooking->get("lastName")->getData());
+            $booking->setDate($formBooking->get("date")->getData());
 
-            $em->persist($book);
+            $booking->setTimeStart($formBooking->get("timeStart")->getData());
+            $booking->setTimeEnd($formBooking->get("timeEnd")->getData());
+            $booking->setParticipants($formBooking->get("participants")->getData());
+            $booking->setReason($formBooking->get("reason")->getData());
+            $booking->setRoom($formBooking->get("room")->getData());
+            //$booking->setRoom($formBooking->get("reason")->getData());
+            //var_dump($formBooking->get("room")->getData());
+            $em->persist($booking);
             $em->flush();
 
 //           $text = "Uw aanvraag is aangekomen";
