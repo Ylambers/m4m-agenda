@@ -23,9 +23,9 @@ class BookingController extends Controller
      */
     public function Booking(request $request)
     {
-        $book = new Applicant();
+        $booking = new Applicant();
 
-        $formBooking = $this->createFormBuilder($book)
+        $formBooking = $this->createFormBuilder($booking)
 
             ->add('room', 'entity', array('required' => true, 'class' => "AppBundle:Room",
                 'query_builder' => function (EntityRepository $er) {
@@ -66,16 +66,16 @@ class BookingController extends Controller
 //            foreach ($formBooking->get('room')->getData() as $val) {
 //                var_dump($val);
 //                //$formBooking->addRoom($val);
-//            }
-            $booking = new Applicant();
-            $booking->setName($formBooking->get("name")->getData());
-            $booking->setLastName($formBooking->get("lastName")->getData());
-            $booking->setDate($formBooking->get("date")->getData());
-
-            $booking->setTimeStart($formBooking->get("timeStart")->getData());
-            $booking->setTimeEnd($formBooking->get("timeEnd")->getData());
-            $booking->setParticipants($formBooking->get("participants")->getData());
-            $booking->setReason($formBooking->get("reason")->getData());
+////            }
+//            $booking = new Applicant();
+//            $booking->setName($formBooking->get("name")->getData());
+//            $booking->setLastName($formBooking->get("lastName")->getData());
+//            $booking->setDate($formBooking->get("date")->getData());
+//
+//            $booking->setTimeStart($formBooking->get("timeStart")->getData());
+//            $booking->setTimeEnd($formBooking->get("timeEnd")->getData());
+//            $booking->setParticipants($formBooking->get("participants")->getData());
+//            $booking->setReason($formBooking->get("reason")->getData());
             $booking->setRoom($formBooking->get("room")->getData());
             //$booking->setRoom($formBooking->get("reason")->getData());
             //var_dump($formBooking->get("room")->getData());
