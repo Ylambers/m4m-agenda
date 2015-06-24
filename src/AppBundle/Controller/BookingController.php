@@ -67,9 +67,19 @@ class BookingController extends Controller
 //                var_dump($val);
 //                //$formBooking->addRoom($val);
 //            }
+            $booking = new Applicant();
+            $booking->setName($formBooking->get("name")->getData());
+            $booking->setLastName($formBooking->get("lastName")->getData());
+            $booking->setDate($formBooking->get("date")->getData());
 
-
-            $em->persist($formBooking);
+            $booking->setTimeStart($formBooking->get("timeStart")->getData());
+            $booking->setTimeEnd($formBooking->get("timeEnd")->getData());
+            $booking->setParticipants($formBooking->get("participants")->getData());
+            $booking->setReason($formBooking->get("reason")->getData());
+            $booking->setRoom($formBooking->get("room")->getData());
+            //$booking->setRoom($formBooking->get("reason")->getData());
+            //var_dump($formBooking->get("room")->getData());
+            $em->persist($booking);
             $em->flush();
 
 //           $text = "Uw aanvraag is aangekomen";

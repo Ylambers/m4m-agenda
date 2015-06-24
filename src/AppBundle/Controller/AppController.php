@@ -17,9 +17,9 @@ use AppBundle\Entity\Room;
 class AppController extends Controller
 {
     /**
-     * @Route("/app/{type}", defaults={"type" = "rooms"}, name="appAPI")
+     * @Route("/app/{type}/{extra}", defaults={"type" = "rooms", "extra" = ""}, name="appAPI")
      */
-    public function indexAction($type)
+    public function indexAction($type,$extra)
     {
         $response = new Response();
         $page = array();
@@ -36,10 +36,16 @@ class AppController extends Controller
             }
 
         }elseif($type == "reservations"){
+            if($extra != ""){
 
-            $bookings = $this->getDoctrine()
-                ->getRepository('AppBundle:Applicant')
-                ->findAll();
+                $bookings = $this->getDoctrine()
+                    ->getRepository('AppBundle:Applicant')
+                    ->findBy(array("date" => $extra));
+            }else{
+                $bookings = $this->getDoctrine()
+                    ->getRepository('AppBundle:Applicant')
+                    ->findAll();
+            }
 
             foreach($bookings as $booking){
                 $page[$booking->getId()] = array();
