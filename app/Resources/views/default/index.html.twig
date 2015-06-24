@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for booking in bookings  %}
+        <li>
+            {{ bookings.id }}
+        </li>
+    {% endfor %}
+{% endblock %}
