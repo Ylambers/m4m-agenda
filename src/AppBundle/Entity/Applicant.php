@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints\Time;
 
+
+
 /**
  *
  * @ORM\Entity
@@ -73,7 +75,7 @@ class Applicant{
     /**
      * @ORM\ManyToOne(targetEntity="Room")
      */
-    protected $room;
+    private $room;
 
 
 

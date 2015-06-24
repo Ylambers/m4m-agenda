@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Applicant;
 
@@ -41,7 +41,6 @@ class BookingController extends Controller
             ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
                 'years' => range(Date('Y'), Date('Y',strtotime('+3 year')))))
 
-
             ->add('timeStart', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
@@ -67,9 +66,9 @@ class BookingController extends Controller
 //                var_dump($val);
 //                //$formBooking->addRoom($val);
 //            }
+            $book->setRoom($formBooking->get("room")->getData());
 
-
-            $em->persist($formBooking);
+            $em->persist($book);
             $em->flush();
 
 //           $text = "Uw aanvraag is aangekomen";
