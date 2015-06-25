@@ -103,6 +103,7 @@ class BookingController extends Controller
             if($bookingTimeStart <= $timeStart && $bookingTimeEnd >= $timeEnd){
                 $error++;
             }
+
         }
         if($error > 0){
             $this->text['error'][] = "De ruimte is al op deze tijd bezet.";
