@@ -37,11 +37,11 @@ class BookingController extends Controller
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.name', 'ASC');
-                }, 'property' => 'name', 'label' => 'Ruimte'))
+                }, 'property' => 'name', 'label' => 'Ruimte','attr' => array("class" => "form-control")))
 
-            ->add('name', 'text', array('label' => 'Voornaam'))
+            ->add('name', 'text', array('label' => 'Voornaam','attr' => array("class" => "form-control")))
 
-            ->add('lastName', 'text', array('label' => 'Achter naam'))
+            ->add('lastName', 'text', array('label' => 'Achter naam','attr' => array("class" => "form-control")))
 
             ->add('date', 'date', array('label' => 'Datum', 'placeholder' => array
             ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
@@ -51,14 +51,16 @@ class BookingController extends Controller
             ->add('timeStart', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'placeholder' => false))
+                'attr' => array("class" => "datetimepicker")
+            ))
 
             ->add('timeEnd', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'placeholder' => false))
+                'attr' => array("class" => "form-control")
+            ))
 
-            ->add('save', 'submit', array('label' => "Verzenden"))
+            ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
 
         $formBooking->handleRequest($request);
@@ -80,7 +82,6 @@ class BookingController extends Controller
 
     private function checkBooking($booking){
 
-
         $em = $this->getDoctrine()->getManager();
 
         $reservations = $em->getRepository("AppBundle:Applicant")->findBy(array("date" => $booking->getDate(),"room" => $booking->getRoom()));
@@ -100,10 +101,9 @@ class BookingController extends Controller
             if($bookingTimeStart <= $timeStart && $bookingTimeEnd >= $timeEnd){
                 $error++;
             }
-
         }
         if($error > 0){
-            $this->text['error'][] = "Deze ruimte is al op deze tijd bezet.";
+            $this->text['error'][] = "De ruimte is al op deze tijd bezet.";
         }
         if($booking->getTimeEnd() < $booking->getTimeStart()){
             $this->text['error'][] = "De eind tijd kan niet minder zijn dan de start tijd.";
