@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 use AppBundle\Entity\Applicant;
@@ -28,7 +29,7 @@ class BookingController extends Controller
 
         $formBooking = $this->createFormBuilder($booking)
 
-            ->add('room', 'entity', array('required' => true, 'class' => "AppBundle:Room",
+          ->add('room', 'entity', array('required' => true, 'class' => "AppBundle:Room",
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.name', 'ASC');
@@ -58,42 +59,47 @@ class BookingController extends Controller
 
         $formBooking->handleRequest($request);
 
-        if ($formBooking->isValid()) {
-            /* post in database */
-            $em = $this->getDoctrine()->getManager();
-//            var_dump(count($formBooking->get('room')->getData()));
-//            foreach ($formBooking->get('room')->getData() as $val) {
-//                var_dump($val);
-//                //$formBooking->addRoom($val);
-////            }
-//            $booking = new Applicant();
-//            $booking->setName($formBooking->get("name")->getData());
-//            $booking->setLastName($formBooking->get("lastName")->getData());
-//            $booking->setDate($formBooking->get("date")->getData());
+//        Find the items
+//        $location = $this->getDoctrine()
+//            ->getRepository('AppBundle:Applicant')
+//            ->findAll();
 //
-//            $booking->setTimeStart($formBooking->get("timeStart")->getData());
-//            $booking->setTimeEnd($formBooking->get("timeEnd")->getData());
-//            $booking->setParticipants($formBooking->get("participants")->getData());
-//            $booking->setReason($formBooking->get("reason")->getData());
-            $booking->setRoom($formBooking->get("room")->getData());
-            //$booking->setRoom($formBooking->get("reason")->getData());
-            //var_dump($formBooking->get("room")->getData());
-            $em->persist($booking);
-            $em->flush();
+//        foreach($location as $val){
+//            $val->getDate();
+//        }
+//        if ($formBooking->isValid()) {
+////            if($formBooking->get('lastName') == 'test'){
+//                /* post in database */
+//                $em = $this->getDoctrine()->getManager();
+//                $booking->setRoom($formBooking->get("room")->getData());
+//                $em->persist($booking);
+//                $em->flush();
+//            return new Response('The author is valid! Yes!');
+//        }
 
+        if ($formBooking->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $bookEntity = $em->getRepository("AppBundle:Applicant")->findBy(array("date" => $booking->getDate()));
+            $time_start = $em->getRepository("AppBundle:Applicant")->findBy(array("timeStart"=>$formBooking->get("timeStart") -> getViewData()));
+            $time_end = $em->getRepository("AppBundle:Applicant")->findBy(array("timeEnd"=>$formBooking->get("timeEnd") -> getViewData()));
 
-                $message['response'] =  'bedankt voor het versturen van uw aanvraag';
-                $message['alert'] = 'succes';
-
-
-            }else{
-            $message['response'] = 'Sorry, er is een fout opgetreden, probeer het later nog eens.';
-            $message['alert'] = 'danger';
+            if (count($bookEntity) == 0) {
+                if (count($time_start) == 0){
+                    $em = $this->getDoctrine()->getManager();
+                    $booking->setRoom($formBooking->get("room")->getData());
+                    $em->persist($booking);
+                    $em->flush();
+                }
+            }elseif(count($bookEntity) == 1){
+                // return new Response ('Er is al iets gepland');
+                $errorMsg = "Er is al iets gepland";
+            }
         }
+
+
     return $this->render('default/book.html.twig',
         array(
             'formBooking' => $formBooking->createView(),
-            'message' =>  $message
         ));
     }
 }
