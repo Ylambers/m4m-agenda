@@ -79,8 +79,10 @@ class BookingController extends Controller
                 'texts' => $this->text,
             ));
     }
+    public function checkBooking($booking){
 
-    private function checkBooking($booking){
+
+        $booking->setRoom($formBooking->get("room")->getData());
 
         $em = $this->getDoctrine()->getManager();
 

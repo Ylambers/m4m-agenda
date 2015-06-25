@@ -8,11 +8,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Applicant;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Room;
+use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class AppController extends Controller
@@ -66,6 +68,27 @@ class AppController extends Controller
                 $page[$booking->getId()]['room']['seats'] = $booking->getRoom()->getSeats();
             }
         }elseif($type == "reservation"){
+        }elseif($type == "results"){
+            $reservation = new Applicant();
+            $room = $this->getDoctrine()->getManager()->getRepository("AppBundle:Room")->find(intval($_POST['room_id']));
+
+            $reservation->setRoom($room);
+
+            $date = new \DateTime(strtotime($_POST['date']));
+            $reservation->setDate($date);
+
+            $reservation->setName($_POST['firstname']);
+            $reservation->setLastName($_POST['surname']);
+
+            $startTime = new \DateTime(strtotime($_POST['startTime']));
+            $reservation->setTimeStart($startTime);
+
+            $endTime = new \DateTime(strtotime($_POST['endTime']));
+            $reservation->setTimeStart($endTime);
+
+            $bookingCheck = new BookingController();
+            $bookingCheck->checkBooking($reservation);
+
 
         }else{
 
