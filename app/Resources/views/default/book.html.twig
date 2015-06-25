@@ -2,6 +2,9 @@
 
 {% block body %}
     <h1>Maak een nieuwe reservering aan</h1>
+    {% for error in texts.error %}
+        {{ error }}<br />
+    {% endfor %}
     {{ form_start(formBooking) }}
     {{ form_widget(formBooking) }}
     {{ form_end(formBooking) }}
