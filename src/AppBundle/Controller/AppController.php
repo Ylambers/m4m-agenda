@@ -18,24 +18,37 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class AppController extends Controller
 {
     /**
-     * @Route("/app/{type}/{extra}", defaults={"type" = "rooms", "extra" = ""}, name="appAPI")
+     * @Route("/app/{type}/{extra}/{room}", defaults={"type" = "rooms", "extra" = "", "room" = ""}, name="appAPI")
      */
-    public function indexAction($type,$extra)
+    public function indexAction($type,$extra,$room)
     {
         $response = new Response();
         $page = array();
         if($type == "reservations"){
-            if($extra != ""){
+            if($extra != "" && $extra != "false"){
                 $date = new \DateTime($extra);
-                //$year = Date("Y",strtotime($extra));
-                $bookings = $this->getDoctrine()
-                    ->getRepository('AppBundle:Applicant')
-                    ->findBy(array("date" => $date));
-                //echo $extra;
+                if($room != ""){
+                    $room = $this->getDoctrine()->getRepository("AppBundle:Room")->find($room);
+
+                    $bookings = $this->getDoctrine()
+                        ->getRepository('AppBundle:Applicant')
+                        ->findBy(array("date" => $date,"room"=>$room));
+                }else{
+                    $bookings = $this->getDoctrine()
+                        ->getRepository('AppBundle:Applicant')
+                        ->findBy(array("date" => $date));
+                }
             }else{
-                $bookings = $this->getDoctrine()
-                    ->getRepository('AppBundle:Applicant')
-                    ->findAll();
+                if($room != ""){
+                    $room = $this->getDoctrine()->getRepository("AppBundle:Room")->find($room);
+                    $bookings = $this->getDoctrine()
+                        ->getRepository('AppBundle:Applicant')
+                        ->findBy(array("room"=>$room));
+                }else{
+                    $bookings = $this->getDoctrine()
+                        ->getRepository('AppBundle:Applicant')
+                        ->findAll();
+                }
             }
 
             foreach($bookings as $booking){
@@ -45,8 +58,8 @@ class AppController extends Controller
                 $page[$booking->getId()]['date'] = $booking->getDate();
                 $page[$booking->getId()]['startTime'] = $booking->getTimeStart();
                 $page[$booking->getId()]['endTime'] = $booking->getTimeEnd();
-                $page[$booking->getId()]['participants'] = $booking->getParticipants();
-                $page[$booking->getId()]['reason'] = $booking->getReason();
+//                $page[$booking->getId()]['participants'] = $booking->getParticipants();
+//                $page[$booking->getId()]['reason'] = $booking->getReason();
                 $page[$booking->getId()]['room'] = array();
                 $page[$booking->getId()]['room']['id'] = $booking->getRoom()->getId();
                 $page[$booking->getId()]['room']['name'] = $booking->getRoom()->getName();
