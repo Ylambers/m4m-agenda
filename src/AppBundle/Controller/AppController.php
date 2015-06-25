@@ -69,18 +69,22 @@ class AppController extends Controller
             }
         }elseif($type == "reservation"){
         }elseif($type == "results"){
+            var_dump($_POST['startTime']);
+            var_dump(strtotime($_POST['startTime']));
             $reservation = new Applicant();
             $room = $this->getDoctrine()->getManager()->getRepository("AppBundle:Room")->find(intval($_POST['room_id']));
 
             $reservation->setRoom($room);
 
             $date = new \DateTime(strtotime($_POST['date']));
+            var_dump($_POST['date']);
             $reservation->setDate($date);
 
             $reservation->setName($_POST['firstname']);
             $reservation->setLastName($_POST['surname']);
 
             $startTime = new \DateTime(strtotime($_POST['startTime']));
+            var_dump($startTime->format("Y-m-d H:i:s"));
             $reservation->setTimeStart($startTime);
 
             $endTime = new \DateTime(strtotime($_POST['endTime']));
