@@ -62,47 +62,13 @@ class BookingController extends Controller
             ->getForm();
 
         $formBooking->handleRequest($request);
-
-//        Find the items
-//        $location = $this->getDoctrine()
-//            ->getRepository('AppBundle:Applicant')
-//            ->findAll();
-//
-//        foreach($location as $val){
-//            $val->getDate();
-//        }
-//        if ($formBooking->isValid()) {
-////            if($formBooking->get('lastName') == 'test'){
-//                /* post in database */
-//                $em = $this->getDoctrine()->getManager();
-//                $booking->setRoom($formBooking->get("room")->getData());
-//                $em->persist($booking);
-//                $em->flush();
-//            return new Response('The author is valid! Yes!');
-//        }
-
         if ($formBooking->isValid()){
 
-            $this->checkBooking($formBooking,$booking);
 
+            $booking->setRoom($formBooking->get("room")->getData());
 
+            $this->checkBooking($booking);
 
-
-
-            //$time_start = $em->getRepository("AppBundle:Applicant")->findBy(array("timeStart"=>$formBooking->get("timeStart") -> getViewData()));
-            //$time_end = $em->getRepository("AppBundle:Applicant")->findBy(array("timeEnd"=>$formBooking->get("timeEnd") -> getViewData()));
-//
-//            if (count($bookEntity) == 0) {
-//                if (count($time_start) == 0){
-//                    $em = $this->getDoctrine()->getManager();
-//                    $booking->setRoom($formBooking->get("room")->getData());
-//                    $em->persist($booking);
-//                    $em->flush();
-//                }
-//            }elseif(count($bookEntity) == 1){
-//                // return new Response ('Er is al iets gepland');
-//                $errorMsg = "Er is al iets gepland";
-//            }
         }
 
 
@@ -111,12 +77,11 @@ class BookingController extends Controller
                 'texts' => $this->text,
             ));
     }
-    private function checkBooking($formBooking,$booking){
+
+    private function checkBooking($booking){
+
 
         $em = $this->getDoctrine()->getManager();
-
-        $booking->setRoom($formBooking->get("room")->getData());
-
 
         $reservations = $em->getRepository("AppBundle:Applicant")->findBy(array("date" => $booking->getDate(),"room" => $booking->getRoom()));
         $error = 0;
@@ -125,12 +90,6 @@ class BookingController extends Controller
             $timeEnd = $reservation->getTimeEnd()->format('H:i:s');
             $bookingTimeStart = $booking->getTimeStart()->format('H:i:s');
             $bookingTimeEnd = $booking->getTimeEnd()->format('H:i:s');
-//                echo $bookingTimeStart ." > ".$timeStart." && ". $bookingTimeStart." < ".$timeEnd;
-//                echo "<br />";
-//                echo $bookingTimeEnd ." > ".$timeStart." && ". $bookingTimeEnd." < ".$timeEnd;
-//                echo "<br />";
-//                echo $bookingTimeStart ." > ".$timeStart." && ". $bookingTimeEnd." < ".$timeEnd;
-//                echo '<br /><br /><br />';
 
             if($bookingTimeStart >= $timeStart && $bookingTimeStart <= $timeEnd){
                 $error++;
