@@ -57,7 +57,7 @@ class BookingController extends Controller
             ->add('timeEnd', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'attr' => array("class" => "form-control")
+                //'attr' => array("class" => "form-control")
             ))
 
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))

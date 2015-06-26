@@ -45,8 +45,23 @@ html, body{
     color: #fff;
 }
 
-#create-Form{
-    z-index: 100000;
-    display: none;
+.create-Form{
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
+.main > section button {
+    border: none;
+    background: #3D3C41;
+    color: #fff;
+    padding: 1.5em;
+    display: block;
+    width: 10%;
+    cursor: pointer;
+    font-size: 1.0em;
+    z-index: 9999;
+    /*float: right;*/
+    margin: 20px 0 0 50%;
 }
 
