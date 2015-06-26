@@ -20,13 +20,15 @@ html, body{
     color: #fff;
     text-align: center;
 }
+
 .container-input .header-img{
-    padding: 30px;
-    background: url('/img/logo-white-trans.png') ;
+    background: url('/img/logo-white-trans.png')  ;
+    background-size:cover;
     width: 321px;
     height: 71px;
     z-index: 999;
     position: absolute;
+    left: 1px;
 }
 
 .container-input .required{
