@@ -69,7 +69,9 @@ class BookingController extends Controller
 
             $booking->setRoom($formBooking->get("room")->getData());
 
-            $this->checkBooking($booking);
+            foreach($this->checkBooking($booking, $this->getDoctrine()->getManager()) as $val){
+                $this->text['error'][] = $val;
+            }
 
         }
 
@@ -79,43 +81,48 @@ class BookingController extends Controller
                 'texts' => $this->text,
             ));
     }
-    public function checkBooking($booking){
+    public function checkBooking($booking,$em){
 
+        //$em = $this->getDoctrine()->getManager();
 
 //        $booking->setRoom($formBooking->get("room")->getData());
 
         $em = $this->getDoctrine()->getManager();
 
         $reservations = $em->getRepository("AppBundle:Applicant")->findBy(array("date" => $booking->getDate(),"room" => $booking->getRoom()));
-        $error = 0;
+        $errors = 0;
+        $bookingTimeStart = $booking->getTimeStart()->format('H:i');
+        $bookingTimeEnd = $booking->getTimeEnd()->format('H:i');
         foreach($reservations as $reservation){
-            $timeStart = $reservation->getTimeStart()->format('H:i:s');
-            $timeEnd = $reservation->getTimeEnd()->format('H:i:s');
-            $bookingTimeStart = $booking->getTimeStart()->format('H:i:s');
-            $bookingTimeEnd = $booking->getTimeEnd()->format('H:i:s');
+            $timeStart = $reservation->getTimeStart()->format('H:i');
+            $timeEnd = $reservation->getTimeEnd()->format('H:i');
 
             if($bookingTimeStart >= $timeStart && $bookingTimeStart <= $timeEnd){
-                $error++;
+                $errors++;
             }
             if($bookingTimeEnd >= $timeStart && $bookingTimeEnd <= $timeEnd){
-                $error++;
+                $errors++;
             }
             if($bookingTimeStart <= $timeStart && $bookingTimeEnd >= $timeEnd){
-                $error++;
+                $errors++;
             }
 
         }
-        if($error > 0){
-            $this->text['error'][] = "De ruimte is al op deze tijd bezet.";
+        $error = array();
+        if($errors > 0){
+            $error[] = "De ruimte is al op deze tijd bezet.";
         }
-        if($booking->getTimeEnd() < $booking->getTimeStart()){
-            $this->text['error'][] = "De eind tijd kan niet minder zijn dan de start tijd.";
-            $error++;
+        if($bookingTimeEnd < $bookingTimeStart){
+            $error[] = "De eind tijd kan niet minder zijn dan de start tijd.";
         }
 
-        if($error == 0){
+        if(count($error) == 0){
             $em->persist($booking);
             $em->flush();
+            return array();
+        }else{
+            return $error;
         }
+
     }
 }
