@@ -6,17 +6,27 @@ html, body{
 }
 
 .container-input{
-    padding: 0 30px 30px 30px;
-    width: 360px;
-    background: #333;
-    height: auto;
-    border: 1px solid #333;
+    margin: -20px 0 0 0 ;
+    width: 100%;
+    background: #3D3C41;
+    height: 10%;
     position: relative;
     z-index: 999;
 }
 
 .container-input h1{
+    padding: 30px;
+    font-size: 25px;
     color: #fff;
+    text-align: center;
+}
+.container-input .header-img{
+    padding: 30px;
+    background: url('/img/logo-white-trans.png') ;
+    width: 321px;
+    height: 71px;
+    z-index: 999;
+    position: absolute;
 }
 
 .container-input .required{
@@ -32,3 +42,9 @@ html, body{
 .container-input p{
     color: #fff;
 }
+
+#create-Form{
+    z-index: 100000;
+    display: none;
+}
+
