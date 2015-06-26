@@ -1,0 +1,7 @@
+var events = [
+{id:1, text:"Meeting",   start_date:"06/11/2015 14:00",end_date:"06/11/2015 17:00"},
+{id:2, text:"Conference",start_date:"06/15/2015 12:00",end_date:"06/18/2015 19:00"},
+{id:3, text:"Interview", start_date:"06/24/2015 09:00",end_date:"06/24/2015 10:00"}
+];
+
+scheduler.parse(events, "json");
