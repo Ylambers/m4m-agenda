@@ -87,7 +87,7 @@ class BookingController extends Controller
 
 //        $booking->setRoom($formBooking->get("room")->getData());
 
-        $em = $this->getDoctrine()->getManager();
+        //$em = $this->getDoctrine()->getManager();
 
         $reservations = $em->getRepository("AppBundle:Applicant")->findBy(array("date" => $booking->getDate(),"room" => $booking->getRoom()));
         $errors = 0;
