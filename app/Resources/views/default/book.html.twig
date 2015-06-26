@@ -5,9 +5,11 @@
     <div class="container-input">
         <h1>Maak een nieuwe reservering aan</h1>
 
-        {% for error in texts.error %}
-            {{ error }}<br />
-        {% endfor %}
+        <p>
+            {% for error in texts.error %}
+                {{ error }}<br />
+            {% endfor %}
+        </p>
 
         {{ form_start(formBooking) }}
         {{ form_widget(formBooking) }}

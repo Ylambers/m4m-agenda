@@ -82,7 +82,7 @@ class BookingController extends Controller
     public function checkBooking($booking){
 
 
-        $booking->setRoom($formBooking->get("room")->getData());
+//        $booking->setRoom($formBooking->get("room")->getData());
 
         $em = $this->getDoctrine()->getManager();
 
