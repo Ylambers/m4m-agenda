@@ -34,22 +34,22 @@ class AppController extends Controller
 
                     $bookings = $this->getDoctrine()
                         ->getRepository('AppBundle:Applicant')
-                        ->findBy(array("date" => $date,"room"=>$room));
+                        ->findBy(array("date" => $date,"room"=>$room),["date"=>"DESC","timeStart" => "ASC"]);
                 }else{
                     $bookings = $this->getDoctrine()
                         ->getRepository('AppBundle:Applicant')
-                        ->findBy(array("date" => $date));
+                        ->findBy(array("date" => $date),["date"=>"DESC","timeStart" => "ASC"]);
                 }
             }else{
                 if($room != ""){
                     $room = $this->getDoctrine()->getRepository("AppBundle:Room")->find($room);
                     $bookings = $this->getDoctrine()
                         ->getRepository('AppBundle:Applicant')
-                        ->findBy(array("room"=>$room));
+                        ->findBy(array("room"=>$room),["date"=>"DESC","timeStart" => "ASC"]);
                 }else{
                     $bookings = $this->getDoctrine()
                         ->getRepository('AppBundle:Applicant')
-                        ->findAll();
+                        ->findBy([],["date"=>"DESC","timeStart" => "ASC"]);
                 }
             }
 
@@ -101,7 +101,18 @@ class AppController extends Controller
                 if($_POST['endTime'] == "00:00"){
                     $error[] = "Geen eindtijd gekozen.";
                 }
-
+//                var_dump($_POST['room_id']);
+//                echo " - ";
+//                var_dump($_POST['firstname']);
+//                echo " - ";
+//                var_dump($_POST['surname']);
+//                echo " - ";
+//                var_dump($_POST['date']);
+//                echo " - ";
+//                var_dump($_POST['startTime']);
+//                echo " - ";
+//                var_dump($_POST['endTime']);
+//                echo " - ";
 
                 if(count($error) == 0) {
                     $reservation = new Applicant();
@@ -118,14 +129,18 @@ class AppController extends Controller
 
                     $endTime = new \DateTime($_POST['endTime']);
                     $reservation->setTimeEnd($endTime);
-//                    echo " - ";
+
 //                    var_dump($reservation->getRoom()->getName());
 //                    echo " - ";
 //                    var_dump($reservation->getDate());
 //                    echo " - ";
-//                    var_dump($reservation->getTimeStart()->format('H:i'));
+//                    var_dump($reservation->getName());
 //                    echo " - ";
-//                    var_dump($reservation->getTimeEnd()->format('H:i'));
+//                    var_dump($reservation->getLastName());
+//                    echo " - ";
+//                    var_dump($reservation->getTimeStart());
+//                    echo " - ";
+//                    var_dump($reservation->getTimeEnd());
 
                     $bookingCheck = new BookingController();
                     $errors = $bookingCheck->checkBooking($reservation, $this->getDoctrine()->getManager());

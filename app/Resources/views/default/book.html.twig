@@ -32,6 +32,7 @@
             <div class="dhx_cal_data"></div>
         </div>
         <script>
+            scheduler.init('scheduler_here', new Date(),"month");
             var events = [];
             $(document).ready(function(){
 
@@ -55,13 +56,11 @@
                         }
                     }
                     events.clean(undefined);
-                    scheduler.init('scheduler_here', new Date(),"month");
-                    console.log(events);
 
                     scheduler.parse(events, "json");
 
                 });
-                console.log(events);
+
             });
             Array.prototype.clean = function(deleteValue) {
                 for (var i = 0; i < this.length; i++) {
