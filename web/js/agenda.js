@@ -8,6 +8,10 @@ showLeft.onclick = function() {
     classie.toggle( menuLeft, 'cbp-spmenu-open' );
     disableOther( 'showLeft' );
 };
+document.querySelector("#scheduler_here").onclick = function () {
+
+    $(".cbp-spmenu-open").removeClass("cbp-spmenu-open");
+};
 function disableOther( button ) {
     if( button !== 'showLeft' ) {
         classie.toggle( showLeft, 'disabled' );
@@ -19,6 +23,14 @@ scheduler.init('scheduler_here', new Date(),"month");
 var events = [];
 $(document).ready(function(){
 
+    jQuery('#form_date').datetimepicker({
+        inline:false,
+        theme:'dark',
+        lang:'nl',
+        timepicker:false,
+        datepicker:true,
+        format:'d-m-Y'
+    });
     $.ajax({
         url: "/app/reservations",
         cache: false,
