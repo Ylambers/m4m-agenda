@@ -54,7 +54,7 @@ html, body{
 }
 
 .main{
-    width: 350px;
+    width: 400px;
     height: auto;
     margin: auto;
     text-align: center;
@@ -62,7 +62,7 @@ html, body{
 
 .main > section button {
     border: none;
-    background: #3D3C41;
+    background: rgba(0,0,0,0.0);
     color: #fff;
     padding: 1.5em;
     display: block;
@@ -71,10 +71,7 @@ html, body{
     font-size: 1.5em;
     z-index: 9999;
     float: right;
-    -webkit-transition: opacity 3s ease-in-out;
-    -moz-transition: opacity 3s ease-in-out;
-    -ms-transition: opacity 3s ease-in-out;
-    -o-transition: opacity 3s ease-in-out;
+    transition: 500ms;
 }
 
 .main > section button:hover{

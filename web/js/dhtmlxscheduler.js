@@ -1608,16 +1608,16 @@ window.dhtmlXScheduler = window.scheduler = {
     }
 }, scheduler.locale = {
     date: {
-        month_full: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-        month_short: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        day_full: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        day_short: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        month_full: ["Januari", "Februari ", "Maart ", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"],
+        month_short: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        day_full: ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "vrijdag", "Zaterdag"],
+        day_short: ["Zon", "Maa", "Din", "Woe", "Don", "Vri", "Zat"]
     },
     labels: {
-        dhx_cal_today_button: "Today",
-        day_tab: "Day",
+        dhx_cal_today_button: "Vandaag",
+        day_tab: "Dag",
         week_tab: "Week",
-        month_tab: "Month",
+        month_tab: "Maand",
         new_event: "New event",
         icon_save: "Save",
         icon_cancel: "Cancel",
@@ -1638,7 +1638,7 @@ window.dhtmlXScheduler = window.scheduler = {
         agenda_tab: "Agenda",
         date: "Date",
         description: "Description",
-        year_tab: "Year",
+        year_tab: "Jaar",
         week_agenda_tab: "Agenda",
         grid_tab: "Grid",
         drag_to_create: "Drag to create",
@@ -1659,8 +1659,8 @@ window.dhtmlXScheduler = window.scheduler = {
     preserve_length: !0,
     time_step: 5,
     start_on_monday: 1,
-    first_hour: 0,
-    last_hour: 24,
+    first_hour: 8,
+    last_hour: 19,
     readonly: !0,
     drag_resize: 0,
     drag_move: 0,

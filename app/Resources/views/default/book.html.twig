@@ -6,11 +6,6 @@
     <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
         <h3>Reserveren</h3>
         <div class="create-Form">
-            <p>
-                {% for error in texts.error %}
-                    {{ error }}<br />
-                {% endfor %}
-            </p>
             {{ form_start(formBooking) }}
             {{ form_widget(formBooking) }}
             {{ form_end(formBooking) }}
@@ -23,6 +18,11 @@
                 <section>
                     <button id="showLeft">Maak een nieuwe reservering aan</button>
                 </section>
+
+                    {#{% for error in texts.error %}#}
+                        {#{{ error }}<br />#}
+                    {#{% endfor %}#}
+
             </div>
         </div>
         <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:90%;'>
@@ -39,6 +39,9 @@
             <div class="dhx_cal_data"></div>
         </div>
     <script src="{{ asset('js/agenda.js') }}"></script>
+
+
+
 
     </body>
 {% endblock %}
