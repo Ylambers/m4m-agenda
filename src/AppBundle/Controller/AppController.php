@@ -83,8 +83,6 @@ class AppController extends Controller
 
                 $room = $this->getDoctrine()->getManager()->getRepository("AppBundle:Room")->find(intval($_POST['room_id']));
 
-
-
                 if(count($room) == 0){
                     $error[] = "Ruimte niet gevonden.";
                 }

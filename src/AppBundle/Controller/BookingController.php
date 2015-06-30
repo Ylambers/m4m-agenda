@@ -48,7 +48,6 @@ class BookingController extends Controller
 //    ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
 //                'years' => range(Date('Y'), Date('Y',strtotime('+3 year')))
 
-            //->add('date', 'text', array('label' => 'Datum','attr' => array("id" => "datetimepicker")))
 
             ->add('timeStart', 'time', array(
                 'input'  => 'datetime',
@@ -71,12 +70,12 @@ class BookingController extends Controller
 
             $booking->setRoom($formBooking->get("room")->getData());
 
+            $booking->getDate()->format(strtotime('d-m-Y'));
+
             foreach($this->checkBooking($booking, $this->getDoctrine()->getManager()) as $val){
                 $this->text['error'][] = $val;
             }
-
         }
-
         return $this->render('default/book.html.twig',array(
                 'formBooking' => $formBooking->createView(),
                 'texts' => $this->text,
@@ -84,16 +83,14 @@ class BookingController extends Controller
     }
     public function checkBooking($booking,$em){
 
-        //$em = $this->getDoctrine()->getManager();
-
-//        $booking->setRoom($formBooking->get("room")->getData());
-
-        //$em = $this->getDoctrine()->getManager();
-
         $reservations = $em->getRepository("AppBundle:Applicant")->findBy(array("date" => $booking->getDate(),"room" => $booking->getRoom()));
         $errors = 0;
         $bookingTimeStart = $booking->getTimeStart()->format('H:i');
         $bookingTimeEnd = $booking->getTimeEnd()->format('H:i');
+
+
+
+
         foreach($reservations as $reservation){
             $timeStart = $reservation->getTimeStart()->format('H:i');
             $timeEnd = $reservation->getTimeEnd()->format('H:i');
@@ -107,7 +104,6 @@ class BookingController extends Controller
             if($bookingTimeStart <= $timeStart && $bookingTimeEnd >= $timeEnd){
                 $errors++;
             }
-
         }
         $error = array();
         if($errors > 0){
