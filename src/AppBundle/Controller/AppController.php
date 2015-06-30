@@ -67,7 +67,16 @@ class AppController extends Controller
                 $page[$booking->getId()]['room']['name'] = $booking->getRoom()->getName();
                 $page[$booking->getId()]['room']['seats'] = $booking->getRoom()->getSeats();
             }
-        }elseif($type == "reservation"){
+        }elseif($type == "checkconnect"){
+            $page = array(true);
+        }elseif($type == "checkDates"){
+            $page = [];
+            $reservations = $this->getDoctrine()->getManager()->getRepository("AppBundle:Applicant")->findBy([],["date"=>"ASC"]);
+            foreach($reservations as $reservation){
+                if(!in_array($reservation->getDate()->format("Y-m-d"),$page)){
+                    $page[] = $reservation->getDate()->format("Y-m-d");
+                }
+            }
         }elseif($type == "results"){
             $error = array();
             if(isset($_POST['room_id']) && isset($_POST['firstname']) && isset($_POST['surname']) && isset($_POST['date']) && isset($_POST['startTime']) && isset($_POST['endTime']) ){
