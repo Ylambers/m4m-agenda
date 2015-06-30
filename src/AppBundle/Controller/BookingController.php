@@ -41,7 +41,7 @@ class BookingController extends Controller
 
             ->add('name', 'text', array('label' => 'Voornaam','attr' => array("class" => "form-control")))
 
-            ->add('lastName', 'text', array('label' => 'Achter naam','attr' => array("class" => "form-control")))
+            ->add('lastName', 'text', array('label' => 'Achternaam','attr' => array("class" => "form-control")))
 
             ->add('date', 'date', array('label' => 'Datum', 'placeholder' => array
             ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),

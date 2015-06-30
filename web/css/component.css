@@ -1,6 +1,6 @@
 /* General styles for all menus */
 .cbp-spmenu {
-	background: #47a3da;
+	background:#3FA2D8;
 	position: fixed;
 }
 
@@ -11,7 +11,7 @@
 	margin: 0;
 	font-weight: 300;
 	background: #3D3C41;
-    height: 10%;
+    height: 80px;
 }
 
 .cbp-spmenu a {
@@ -33,7 +33,7 @@
 /* Orientation-dependent styles for the content of the menu */
 
 .cbp-spmenu-vertical {
-	width: 240px;
+	width: 340px;
 	height: 100%;
 	top: 0;
 	z-index: 1000;
@@ -68,11 +68,11 @@
 /* Vertical menu that slides from the left or right */
 
 .cbp-spmenu-left {
-	left: -240px;
+	left: -340px;
 }
 
 .cbp-spmenu-right {
-	right: -240px;
+	right: -340px;
 }
 
 .cbp-spmenu-left.cbp-spmenu-open {
