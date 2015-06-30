@@ -23,13 +23,13 @@ class BookingController extends Controller
     private $text = array();
 
     /**
-     * @Route("/booking", name="Booking")
+     * @Route("/", name="Booking")
      */
     public function Booking(request $request)
     {
         $booking = new Applicant();
         $this->text['error'] = array();
-
+        $booking->setDate(new \DateTime('NOW'));
 
         $formBooking = $this->createFormBuilder($booking)
 
@@ -54,6 +54,7 @@ class BookingController extends Controller
                 'attr' => array("class" => "datetimepicker")
             ))
 
+
             ->add('timeEnd', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
@@ -66,7 +67,6 @@ class BookingController extends Controller
         $formBooking->handleRequest($request);
         if ($formBooking->isValid()){
 
-
             $booking->setRoom($formBooking->get("room")->getData());
 
             foreach($this->checkBooking($booking, $this->getDoctrine()->getManager()) as $val){
@@ -74,7 +74,6 @@ class BookingController extends Controller
             }
 
         }
-
 
         return $this->render('default/book.html.twig',array(
                 'formBooking' => $formBooking->createView(),

@@ -10,7 +10,7 @@ use AppBundle\Entity\Room;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/default", name="homepage")
      */
     public function indexAction()
     {
