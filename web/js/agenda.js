@@ -27,7 +27,6 @@ scheduler.init('scheduler_here', new Date(),"month");
 var events = [];
 $(document).ready(function(){
 
-
     jQuery('#form_date').datetimepicker({
         inline:false,
         theme:'light',
@@ -61,6 +60,7 @@ function schedulerUpdate(){
         var key, count = 0;
         for(key in data){
             if(data.hasOwnProperty(key)) {
+                var room = data[key].room;
                 var text = data[key].name + " " + data[key].lastname;//yyyy-MM-dd HH:mm:s
                 var expDate = data[key].date.date.split(" ")[0].split("-");
                 var expStartTime = data[key].startTime.date.split(" ")[1].split(".")[0].split(":");
@@ -68,8 +68,8 @@ function schedulerUpdate(){
                 var startDate = expDate[1]+"/"+expDate[2]+"/"+expDate[0]+" "+expStartTime[0]+":"+expStartTime[1];//new Date(expDate[0],expDate[1],expDate[2],expStartTime[0],expStartTime[1],expStartTime[2]);
                 var endDate = expDate[1]+"/"+expDate[2]+"/"+expDate[0]+" "+expEndTime[0]+":"+expEndTime[1];//new Date(expDate[0],expDate[1],expDate[2],expEndTime[0],expEndTime[1],expEndTime[2]);
 
-                events.push({id:parseInt(key), text:text,   start_date:startDate,end_date:endDate});
-
+                text += " "+room.name;
+                events.push({id:parseInt(key), text:text,   start_date:startDate,end_date:endDate });
             }
         }
         events.clean(undefined);
@@ -96,6 +96,10 @@ function saveResults(){
         var responseText = document.querySelector("#responseText");
         responseText.innerHTML = "";
         //data.
+        if (data.length == 0){
+            responseText.setAttribute("class", "");
+            responseText.setAttribute("role", "");
+        }
         var el;
         for(var i = 0;i < data.length;i++){
             el = document.createElement("div");
@@ -108,3 +112,8 @@ function saveResults(){
         schedulerUpdate();
     });
 }
+
+
+//document.querySelector(".dhx_cal_event_clear .dhx_cal_event_line_start .dhx_cal_ev").onclick = function () {
+//    alert("hoi");
+//};
