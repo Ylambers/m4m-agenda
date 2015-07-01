@@ -18,7 +18,6 @@ function disableOther( button ) {
     }
 }
 
-
 scheduler.init('scheduler_here', new Date(),"month");
 var events = [];
 $(document).ready(function(){

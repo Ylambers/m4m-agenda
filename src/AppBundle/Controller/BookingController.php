@@ -48,13 +48,11 @@ class BookingController extends Controller
 //    ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
 //                'years' => range(Date('Y'), Date('Y',strtotime('+3 year')))
 
-
             ->add('timeStart', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
                 'attr' => array("id" => "datetimepicker")
             ))
-
 
             ->add('timeEnd', 'time', array(
                 'input'  => 'datetime',
@@ -82,15 +80,13 @@ class BookingController extends Controller
                 'texts' => $this->text,
             ));
     }
+    
     public function checkBooking($booking,$em){
 
         $reservations = $em->getRepository("AppBundle:Applicant")->findBy(array("date" => $booking->getDate(),"room" => $booking->getRoom()));
         $errors = 0;
         $bookingTimeStart = $booking->getTimeStart()->format('H:i');
         $bookingTimeEnd = $booking->getTimeEnd()->format('H:i');
-
-
-
 
         foreach($reservations as $reservation){
             $timeStart = $reservation->getTimeStart()->format('H:i');
