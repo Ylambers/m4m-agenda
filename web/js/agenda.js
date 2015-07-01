@@ -36,6 +36,23 @@ $(document).ready(function(){
         datepicker:true,
         format:'d-m-Y'
     });
+
+    schedulerUpdate();
+
+    document.querySelector("#form_save").onclick = saveResults;
+    document.querySelector("#form_save").setAttribute("type","button");
+});
+Array.prototype.clean = function(deleteValue) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == deleteValue) {
+            this.splice(i, 1);
+            i--;
+        }
+    }
+    return this;
+};
+function schedulerUpdate(){
+
     $.ajax({
         url: "/app/reservations",
         cache: false,
@@ -60,23 +77,7 @@ $(document).ready(function(){
         scheduler.parse(events, "json");
 
     });
-
-    $ajax({
-        url: ""
-    });
-    document.querySelector("#form_save").onclick = saveResults;
-    document.querySelector("#form_save").setAttribute("type","button");
-});
-Array.prototype.clean = function(deleteValue) {
-    for (var i = 0; i < this.length; i++) {
-        if (this[i] == deleteValue) {
-            this.splice(i, 1);
-            i--;
-        }
-    }
-    return this;
-};
-
+}
 function saveResults(){
     var room_id = document.querySelector("#form_room").value;
     var firstname = document.querySelector("#form_name").value;
@@ -98,11 +99,12 @@ function saveResults(){
         var el;
         for(var i = 0;i < data.length;i++){
             el = document.createElement("div");
-            el.id = "error";
-            el.innerHTML = data[i]+"<br />";
+            el.innerHTML = data[i];
             responseText.appendChild(el);
+            responseText.setAttribute("class","alert alert-danger");
+            responseText.setAttribute("role", "alert");
         }
 
-        console.log(data);
+        schedulerUpdate();
     });
 }
