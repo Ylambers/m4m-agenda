@@ -43,7 +43,7 @@ class BookingController extends Controller
 
             ->add('lastName', 'text', array('label' => 'Achternaam','attr' => array("class" => "form-control")))
 
-            ->add('date', 'text', array('label' => 'Datum'))
+            ->add('date', 'text', array('label' => 'Datum','attr' => array("class" => "form-control")))
 //             'placeholder' => array
 //    ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
 //                'years' => range(Date('Y'), Date('Y',strtotime('+3 year')))
@@ -69,8 +69,9 @@ class BookingController extends Controller
         if ($formBooking->isValid()){
 
             $booking->setRoom($formBooking->get("room")->getData());
-
-            $booking->getDate()->format(strtotime('d-m-Y'));
+            //var_dump($formBooking->get('date')->getData());
+            $booking->setDate(new \DateTime($formBooking->get('date')->getData()) );
+            //$booking->getDate()->format();
 
             foreach($this->checkBooking($booking, $this->getDoctrine()->getManager()) as $val){
                 $this->text['error'][] = $val;

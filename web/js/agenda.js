@@ -23,6 +23,7 @@ scheduler.init('scheduler_here', new Date(),"month");
 var events = [];
 $(document).ready(function(){
 
+
     jQuery('#form_date').datetimepicker({
         inline:false,
         theme:'dark',
@@ -55,7 +56,8 @@ $(document).ready(function(){
         scheduler.parse(events, "json");
 
     });
-
+    document.querySelector("#form_save").onclick = saveResults;
+    document.querySelector("#form_save").setAttribute("type","button");
 });
 Array.prototype.clean = function(deleteValue) {
     for (var i = 0; i < this.length; i++) {
@@ -66,3 +68,31 @@ Array.prototype.clean = function(deleteValue) {
     }
     return this;
 };
+
+function saveResults(){
+    var room_id = document.querySelector("#form_room").value;
+    var firstname = document.querySelector("#form_name").value;
+    var surname = document.querySelector("#form_lastName").value;
+    var date = document.querySelector("#form_date").value;
+    var startTime = document.querySelector("#form_timeStart_hour").value+":"+document.querySelector("#form_timeStart_minute").value;
+    var endTime = document.querySelector("#form_timeEnd_hour").value+":"+document.querySelector("#form_timeEnd_minute").value;
+
+    $.ajax({
+        url: "/app/results",
+        cache: false,
+        method: 'post',
+        data: {room_id: room_id, firstname: firstname, surname: surname, date:date, startTime:startTime, endTime:endTime},
+        dataType: 'json'
+    }).done(function(data){
+        var responseText = document.querySelector("#responseText");
+        responseText.innerHTML = "";
+        //data.
+        var el;
+        for(var i = 0;i < data.length;i++){
+            el = document.createElement("span");
+            el.innerHTML = data[i]+"<br />";
+            responseText.appendChild(el);
+        }
+        console.log(data);
+    });
+}
