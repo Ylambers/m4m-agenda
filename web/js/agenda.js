@@ -60,6 +60,10 @@ $(document).ready(function(){
         scheduler.parse(events, "json");
 
     });
+
+    $ajax({
+        url: ""
+    });
     document.querySelector("#form_save").onclick = saveResults;
     document.querySelector("#form_save").setAttribute("type","button");
 });
