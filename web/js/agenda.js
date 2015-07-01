@@ -12,6 +12,11 @@ document.querySelector("#scheduler_here").onclick = function () {
 
     $(".cbp-spmenu-open").removeClass("cbp-spmenu-open");
 };
+
+document.querySelector(".exit").onclick = function () {
+    $(".cbp-spmenu-open").removeClass("cbp-spmenu-open");
+};
+
 function disableOther( button ) {
     if( button !== 'showLeft' ) {
         classie.toggle( showLeft, 'disabled' );
@@ -25,7 +30,7 @@ $(document).ready(function(){
 
     jQuery('#form_date').datetimepicker({
         inline:false,
-        theme:'dark',
+        theme:'light',
         lang:'nl',
         timepicker:false,
         datepicker:true,

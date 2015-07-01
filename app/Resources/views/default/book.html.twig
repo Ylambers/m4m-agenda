@@ -4,14 +4,19 @@
     <body>
 
     <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-        <h3>Reserveren</h3>
+        <div class="header-text">
+            <h3>Reserveren</h3>
+            <div class="exit">
+                 <i class="fa fa-times fa-5x"></i>
+            </div>
+        </div>
+
         <div class="create-Form">
             {{ form_start(formBooking) }}
             {{ form_widget(formBooking) }}
             {{ form_end(formBooking) }}
-            <div id="responseText">
+            <div id="responseText">{#Error message#}</div>
 
-            </div>
         </div>
 
         {% for error in texts.error %}

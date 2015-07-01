@@ -51,13 +51,13 @@ class BookingController extends Controller
             ->add('timeStart', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'attr' => array("id" => "datetimepicker")
+                'attr' => array("id" => "datetimepicker", "class" => "form-control")
             ))
 
             ->add('timeEnd', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'attr' => array("id" => "datetimepicker")
+                'attr' => array("id" => "datetimepicker", "class" => "form-control")
             ))
 
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
