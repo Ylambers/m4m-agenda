@@ -93,10 +93,12 @@ function saveResults(){
         //data.
         var el;
         for(var i = 0;i < data.length;i++){
-            el = document.createElement("span");
+            el = document.createElement("div");
+            el.id = "error";
             el.innerHTML = data[i]+"<br />";
             responseText.appendChild(el);
         }
+
         console.log(data);
     });
 }

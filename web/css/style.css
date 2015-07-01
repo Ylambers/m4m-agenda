@@ -85,8 +85,6 @@ html, body{
     margin: 0 0 0 20px;
 }
 
-
-
 #form_timeStart select{
     outline:none;
 }
@@ -102,11 +100,10 @@ html, body{
 }
 
 #responseText{
-    margin: 20px 0 0 0;
+    margin: 15px 0 0 0;
+}
+
+#responseText #error{
     background: #fff;
     padding: 5px;
-    border-radius:3px;
-    border: 1px solid #000;
-    color: #333;
-    font-size: 1.0em;
 }
