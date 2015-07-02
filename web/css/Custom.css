@@ -1,10 +1,24 @@
-/*.dhx_wrap_section{*/
+.dhx_wrap_section{
+    display: none;
+}
+.dhx_cancel_btn_set{
     /*display: none;*/
-/*}*/
-/*.dhx_cancel_btn_set{*/
+}
+.dhx_cal_ltitle{
+    font-size: 20px;
+}
+
+.dhx_btn_set, .dhx_btn_set div{
     /*display: none;*/
-/*}*/
-/*.dhx_cal_ltitle{*/
-    /*height: 50px;*/
-    /*font-size: 20px;*/
-/*}*/
+}
+
+.dhx_delete_btn{
+    /*display: none;*/
+}
+.dhx_cal_cover{
+    display: none;
+}
+
+.dhx_cal_light .dhx_cal_light_wide .close{
+
+}

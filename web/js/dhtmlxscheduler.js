@@ -917,7 +917,7 @@ window.dhtmlXScheduler = window.scheduler = {
         scheduler.setCurrentView(scheduler._date, t)
     },
     buttons: {
-        "delete": function(e) {
+        "deletedelete": function(e) {
             var t = scheduler.locale.labels.confirm_deleting;
             scheduler._dhtmlx_confirm(t, scheduler.locale.labels.title_confirm_deleting, function() {
                 scheduler.deleteEvent(e)
