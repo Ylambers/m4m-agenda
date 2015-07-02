@@ -75,6 +75,7 @@ function schedulerUpdate(){
         events.clean(undefined);
 
         scheduler.parse(events, "json");
+        var el = document.querySelectorAll(".dhx_month_body");
         setTimeout(function(){
             for(var i =0; i<el.length;i++){
                 el[i].onclick = function(e){
@@ -83,7 +84,6 @@ function schedulerUpdate(){
                 }
             }
         }, 1000);
-        var el = document.querySelectorAll(".dhx_month_body");
     });
 }
 function saveResults(){
@@ -119,4 +119,8 @@ function saveResults(){
 
         schedulerUpdate();
     });
+}
+
+function setStyle(){
+    var elem = document.getElementById()
 }
