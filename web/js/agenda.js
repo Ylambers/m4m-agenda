@@ -80,6 +80,7 @@ function schedulerUpdate(){
             for(var i =0; i<el.length;i++){
                 el[i].onclick = function(e){
                     console.log(e.target.innerHTML);
+                    scheduler._click.dhx_cal_today_button();
 
                 }
             }

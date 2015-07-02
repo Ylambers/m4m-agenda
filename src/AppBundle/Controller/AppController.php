@@ -154,6 +154,8 @@ class AppController extends Controller
 
                     if(count($errors) != 0){
                         $page = $errors;
+                    }else{
+                        $page[] = "succes";
                     }
 
                 }else{
