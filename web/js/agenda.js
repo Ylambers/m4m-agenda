@@ -60,6 +60,7 @@ function schedulerUpdate(){
         var key, count = 0;
         for(key in data){
             if(data.hasOwnProperty(key)) {
+                var room = data[key].room;
                 var text = data[key].name + " " + data[key].lastname;//yyyy-MM-dd HH:mm:s
                 var expDate = data[key].date.date.split(" ")[0].split("-");
                 var expStartTime = data[key].startTime.date.split(" ")[1].split(".")[0].split(":");
