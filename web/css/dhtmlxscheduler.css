@@ -226,7 +226,7 @@ div.dhx_modal_cover {
     padding-left: 2px;
     white-space: nowrap;
     overflow: hidden;
-    cursor: pointer
+    cursor: default;
 }
 .dhx_in_move {
     background-color: #FFFF80

@@ -40,6 +40,7 @@ $(document).ready(function(){
 
     document.querySelector("#form_save").onclick = saveResults;
     document.querySelector("#form_save").setAttribute("type","button");
+
 });
 Array.prototype.clean = function(deleteValue) {
     for (var i = 0; i < this.length; i++) {
@@ -74,7 +75,15 @@ function schedulerUpdate(){
         events.clean(undefined);
 
         scheduler.parse(events, "json");
+        setTimeout(function(){
+            for(var i =0; i<el.length;i++){
+                el[i].onclick = function(e){
+                    console.log(e.target.innerHTML);
 
+                }
+            }
+        }, 1000);
+        var el = document.querySelectorAll(".dhx_month_body");
     });
 }
 function saveResults(){
@@ -111,4 +120,3 @@ function saveResults(){
         schedulerUpdate();
     });
 }
-

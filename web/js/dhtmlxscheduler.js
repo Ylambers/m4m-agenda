@@ -3000,8 +3000,11 @@ function() {
             }, scheduler.config.delay_render)
         };
     scheduler.attachEvent("onSchedulerReady", function() {
+
         scheduler.config.delay_render ? (scheduler.setCurrentView = n, scheduler.updateView = r) : (scheduler.setCurrentView = t,
             scheduler.updateView = i)
+
     })
+
 }();
 //# sourceMappingURL=sources/dhtmlxscheduler.js.map
