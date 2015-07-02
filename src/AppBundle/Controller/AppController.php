@@ -34,11 +34,11 @@ class AppController extends Controller
 
                     $bookings = $this->getDoctrine()
                         ->getRepository('AppBundle:Applicant')
-                        ->findBy(array("date" => $date,"room"=>$room),["date"=>"DESC","timeStart" => "ASC"]);
+                        ->findBy(array("date" => $date,"room"=>$room),["timeStart" => "ASC"]);
                 }else{
                     $bookings = $this->getDoctrine()
                         ->getRepository('AppBundle:Applicant')
-                        ->findBy(array("date" => $date),["date"=>"DESC","timeStart" => "ASC"]);
+                        ->findBy(array("date" => $date),["timeStart" => "ASC"]);
                 }
             }else{
                 if($room != ""){
