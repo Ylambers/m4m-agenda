@@ -2,34 +2,31 @@
 
 {% block body %}
     <div class="container-input">
-        <a href="https://www.move4mobile.com/nl/">
             <div class="header-img"></div>
-        </a>
 
         <div class="title">
-            <h2> Admin Panel |</h2>
+            <a href="/"><h2>Ga naar de agenda <i class="fa fa-calendar fa-2x"></i>
+                </h2></a>
         </div>
-
-        <a href="/loguit">  </a>
-
     </div>
 
-    <div class="container">
+    <div class="container-scheduler">
         <h2>Verwijder of pas een afspraak aan</h2>
+
+        {#{% for schedulers in scheduler %}#}
+            {#<ul>#}
+                 {#<li>#}
+                     {#{{ scheduler.id }}#}
+                 {#</li>#}
+            {#</ul>#}
+        {#{% endfor %}#}
     </div>
 
-    <div class="container">
+    <div class="container-room">
         <h2>Maak een nieuwe ruimte aan</h2>
         {{ form_start(formRoom) }}
         {{ form_widget(formRoom) }}
         {{ form_end(formRoom) }}
-    </div>
-
-    <div class="container">
-        <h2>Maak een nieuwe gebruiker aan</h2>
-        {{ form_start(user) }}
-        {{ form_widget(user) }}
-        {{ form_end(user) }}
     </div>
 
 

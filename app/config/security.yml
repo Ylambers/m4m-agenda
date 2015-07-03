@@ -9,7 +9,7 @@ security:
             memory:
                 users:
                     admin:
-                        password: $2a$04$fRBpWHMBJqHnLs/Mkcl2Zexr4zp0Jmnh0BJLrsc.lErZQPzLIBrk6
+                        password: $2a$04$fRBpWHMBJqHnLs/Mkcl2Zexr4zp0Jmnh0BJLrsc.lErZQPzLIBrk6 # admin
                         roles: 'ROLE_ADMIN'
 
     firewalls:

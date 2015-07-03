@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Entity\Room;
-use AppBundle\Entity\User;
+use AppBundle\Entity\Applicant;
 
 class adminController extends Controller
 {
@@ -31,9 +31,6 @@ class adminController extends Controller
 //        form room
         $room = new Room;
 
-        //        form user
-        $user = new User;
-
 //        form room
         $formRoom = $this->createFormBuilder($room)
             ->add('name', 'text', array('label' => 'name','attr' => array("id" => "datetimepicker", "class" => "form-control")))
@@ -41,14 +38,8 @@ class adminController extends Controller
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
 
-//        form user
-        $formUser = $this->createFormBuilder($user)
-            ->add("name", "text", array("label" => "Naam",'attr' => array("id" => "datetimepicker", "class" => "form-control")))
-            ->add("password", "text", array("label" => "Wachtwoord",'attr' => array("id" => "datetimepicker", "class" => "form-control")))
-            ->add("save", "submit", array("label" => "verzenden",'attr' => array("id" => "datetimepicker", "class" => "form-control")))
-            ->getForm();
 
-        $formRoom && $formUser->handleRequest($request);
+        $formRoom->handleRequest($request);
 
 //        form room
         if($formRoom->isValid()){
@@ -57,18 +48,13 @@ class adminController extends Controller
             $em->flush();
         }
 
-//        form user
-        if($formUser->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-        }
+        $scheduler = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findAll();
 
 
 
         return $this->render('default/admin.html.twig', array(
             'formRoom' => $formRoom->createView(),
-            'user' => $formUser->createView(),
+            'scheduler' =>$scheduler
         ));
     }
 }

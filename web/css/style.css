@@ -123,12 +123,13 @@ html, body{
 }
 
 /*================================= admin panel*/
-.container{
-    padding: 0 0 20px 0;
+.container-room{
+    position: absolute;
+    padding: 0 20px 20px 20px;
     border-radius: 5px;
     color: #000;
-    margin: 30px 0 0 0;
-    width: 80%;
+    margin: 30px 0 0 10px;
+    width: 30%;
     height: auto;
     background: #F9F9F9;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
@@ -137,7 +138,29 @@ html, body{
     transition: 500ms;
 }
 
-.container:hover{
+.container-scheduler{
+    float: right;
+    position: relative;
+    padding: 0 20px 20px 20px;
+    border-radius: 5px;
+    color: #000;
+    margin: 30px 10px 0 0;
+    width: 65%;
+    height: auto;
+    background: #F9F9F9;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    transition: 500ms;
+}
+
+.container-room:hover{
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    transition: 1000ms;
+}
+.container-scheduler:hover{
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
@@ -146,9 +169,10 @@ html, body{
 
 .title h2{
     color: #fff;
-    padding: 20px;
+    padding: 25px;
     transition: 1000ms;
-    cursor: default;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 .title h2:hover{
