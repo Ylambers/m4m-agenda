@@ -29,7 +29,7 @@ html, body{
     height: 71px;
     z-index: 1;
     /*position: absolute;*/
-    margin: 20px -60px 0 0 ;
+    margin: 0 0 0 0 ;
     float: right;
     transition: 1000ms;
 }
@@ -120,4 +120,38 @@ html, body{
 /*============================== info box*/
 #container-info{
 
+}
+
+/*================================= admin panel*/
+.container{
+    padding: 0 0 20px 0;
+    border-radius: 5px;
+    color: #000;
+    margin: 30px 0 0 0;
+    width: 80%;
+    height: auto;
+    background: #F9F9F9;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    transition: 500ms;
+}
+
+.container:hover{
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    transition: 1000ms;
+}
+
+.title h2{
+    color: #fff;
+    padding: 20px;
+    transition: 1000ms;
+    cursor: default;
+}
+
+.title h2:hover{
+    color: #3FA2D8;
+    transition: 1000ms;
 }

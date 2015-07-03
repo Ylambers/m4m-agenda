@@ -19,14 +19,13 @@ use AppBundle\Entity\Applicant;
 
 class BookingController extends Controller
 {
-
     private $text = array();
-
     /**
      * @Route("/", name="Booking")
      */
     public function Booking(request $request)
     {
+       // $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Geen toegang tot deze pagina');
         $booking = new Applicant();
         $this->text['error'] = array();
         //$booking->setDate(new \DateTime('NOW'));
