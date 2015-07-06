@@ -5,8 +5,7 @@
             <div class="header-img"></div>
 
         <div class="title">
-            <a href="/"><h2>Ga naar de agenda <i class="fa fa-calendar fa-2x"></i>
-                </h2></a>
+            <a href="/"> <h2>Ga naar de agenda <i class="fa fa-calendar fa-2x"> </i></h2> </a>
         </div>
     </div>
 
@@ -34,6 +33,10 @@
                     <li>
                         <label>Eind tijd: </label>    {{ schedulers.timeEnd|date('H:i') }}
                     </li>
+
+                    <li>
+                        <label>Token: </label>    {{ schedulers.token }}
+                    </li>
                     <li>
                         <a href="/admin/{{ schedulers.id }}">Aanpassen</a>
                     </li>
@@ -45,9 +48,9 @@
 
     <div class="container-room">
         <h2>Pas een afspraak aan</h2>
-        {{ form_start(formRoom) }}
-        {{ form_widget(formRoom) }}
-        {{ form_end(formRoom) }}
+        {{ form_start(formBooking) }}
+        {{ form_widget(formBooking) }}
+        {{ form_end(formBooking) }}
 
          <div id="responseText" class="alert alert-danger" role="alert">
             {% for error in errors %}
@@ -57,7 +60,8 @@
 
     </div>
 
-
-
+    {#{{ form_start(formRoom) }}#}
+    {#{{ form_widget(formRoom) }}#}
+    {#{{ form_end(formRoom) }}#}
 
 {% endblock %}

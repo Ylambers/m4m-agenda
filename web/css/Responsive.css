@@ -1,0 +1,14 @@
+@media (max-width: 1000px) {
+    .container-room{
+        padding: 5px;
+        margin: 0px;
+        z-index: 1;
+    }
+
+    .container-scheduler{
+        padding: 5px;
+        margin: 0px;
+        z-index: 1;
+
+    }
+}

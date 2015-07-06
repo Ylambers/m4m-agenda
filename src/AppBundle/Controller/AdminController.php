@@ -28,24 +28,7 @@ class adminController extends Controller
     public function createRoom($id, request $request)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Geen toegang tot deze pagina');
-//        form room
-        /*
-        $room = new Room;
 
-//        form room
-        $formRoom = $this->createFormBuilder($room)
-            ->add('name', 'text', array('label' => 'name','attr' => array("id" => "datetimepicker", "class" => "form-control")))
-            ->add('seats', 'integer', array('label' => 'stoelen','attr' => array("id" => "datetimepicker", "class" => "form-control")))
-            ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
-            ->getForm();
-        $formRoom->handleRequest($request);
-
-//        form room
-        if($formRoom->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($room);
-            $em->flush();
-        }*/
 
         $scheduler = $this->getDoctrine()->getRepository('AppBundle:Applicant')->findBy([], ['id' => 'DESC']);
 
@@ -75,6 +58,7 @@ class adminController extends Controller
 
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
+
         $formBooking->handleRequest($request);
 
         $errors = array();
@@ -83,10 +67,34 @@ class adminController extends Controller
             $errors = $bookingCheck->checkBooking($booking, $this->getDoctrine()->getManager(),$id);
         }
 
+
         return $this->render('default/admin.html.twig', array(
-            'formRoom' => $formBooking->createView(),
+            'formBooking' => $formBooking->createView(),
             'scheduler' =>$scheduler,
             'errors' =>$errors,
+        ));
+    }
+
+    public function addRoom(request $request)
+    {
+        $room = new Room;
+
+        $formRoom = $this->createFormBuilder($room)
+            ->add('name', 'text', array('label' => 'name', 'attr' => array("id" => "datetimepicker", "class" => "form-control")))
+            ->add('seats', 'integer', array('label' => 'stoelen', 'attr' => array("id" => "datetimepicker", "class" => "form-control")))
+            ->add('save', 'submit', array('label' => "Verzenden", 'attr' => array("class" => "form-control")))
+            ->getForm();
+
+        $formRoom->handleRequest($request);
+
+        if ($formRoom->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($room);
+            $em->flush();
+        }
+
+        return $this->render('default/admin.html.twig', array(
+            'formRoom' => $formRoom->createView(),
         ));
     }
 }

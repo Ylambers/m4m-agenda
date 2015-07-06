@@ -46,7 +46,6 @@ html, body{
     z-index: 10000;
 }
 
-
 .container-input .required{
     color:   #fff;
 }
@@ -140,8 +139,8 @@ html, body{
 }
 
 .container-scheduler{
-    position: fixed;
-    padding: 0 20px 20px 20px;
+    position: absolute;
+    padding: 20px;
     border-radius: 5px;
     margin: 30px 10px 0 30px;
     width: 25%;
@@ -177,10 +176,11 @@ html, body{
 }
 
 .title h2{
+    width: 300px;
     color: #fff;
     padding: 25px;
     transition: 1000ms;
-    cursor: pointer;
+    cursor: default;
     font-size: 20px;
 }
 
@@ -192,3 +192,4 @@ html, body{
 .container-scheduler li{
     list-style: none;
 }
+
