@@ -137,7 +137,7 @@ class BookingController extends Controller
                 $token = md5($lastId.$booking->getName());
                 $booking->setToken($token);
             }
-            //$em->persist($booking);
+            $em->persist($booking);
             $em->flush();
             if($id == false){
                 return array("token" => $token);
