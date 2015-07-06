@@ -23,10 +23,15 @@ class BookingController extends Controller
     /**
      * @Route("/", name="Booking")
      */
-    public function Booking(request $request)
+    public function Booking($id=false)
     {
        // $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Geen toegang tot deze pagina');
-        $booking = new Applicant();
+        if($id == false){
+            $booking = new Applicant();
+        }else{
+            $booking = $this->getDoctrine()->getManager()->getRepository("AppBundle:Applicant")->find($id);
+
+        }
         $this->text['error'] = array();
         //$booking->setDate(new \DateTime('NOW'));
 
@@ -61,7 +66,7 @@ class BookingController extends Controller
 
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
-
+        /*
         $formBooking->handleRequest($request);
         if ($formBooking->isValid()){
 
@@ -82,12 +87,19 @@ class BookingController extends Controller
                     ];
                 }
             }
-        }
+        }*/
         return $this->render('default/book.html.twig',array(
                 'formBooking' => $formBooking->createView(),
                 'texts' => $this->text,
             ));
     }
+    /**
+     * @Route("/change/{id}", defaults={"id",""}, name="change")
+     */
+    public function change($id=false){
+
+    }
+
     
     public function checkBooking($booking,$em,$id=false){
 
