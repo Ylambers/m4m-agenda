@@ -23,4 +23,5 @@ class DefaultController extends Controller
                 "available_room" => $booking
             ));
     }
+
 }

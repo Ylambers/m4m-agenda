@@ -80,25 +80,30 @@ class BookingController extends Controller
             ));
     }
     
-    public function checkBooking($booking,$em){
+    public function checkBooking($booking,$em,$id=false){
+
 
         $reservations = $em->getRepository("AppBundle:Applicant")->findBy(array("date" => $booking->getDate(),"room" => $booking->getRoom()));
+
         $errors = 0;
         $bookingTimeStart = $booking->getTimeStart()->format('H:i');
         $bookingTimeEnd = $booking->getTimeEnd()->format('H:i');
 
         foreach($reservations as $reservation){
-            $timeStart = $reservation->getTimeStart()->format('H:i');
-            $timeEnd = $reservation->getTimeEnd()->format('H:i');
+            if($id != $reservation->getId()){
 
-            if($bookingTimeStart >= $timeStart && $bookingTimeStart <= $timeEnd){
-                $errors++;
-            }
-            if($bookingTimeEnd >= $timeStart && $bookingTimeEnd <= $timeEnd){
-                $errors++;
-            }
-            if($bookingTimeStart <= $timeStart && $bookingTimeEnd >= $timeEnd){
-                $errors++;
+                $timeStart = $reservation->getTimeStart()->format('H:i');
+                $timeEnd = $reservation->getTimeEnd()->format('H:i');
+
+                if($bookingTimeStart >= $timeStart && $bookingTimeStart <= $timeEnd){
+                    $errors++;
+                }
+                if($bookingTimeEnd >= $timeStart && $bookingTimeEnd <= $timeEnd){
+                    $errors++;
+                }
+                if($bookingTimeStart <= $timeStart && $bookingTimeEnd >= $timeEnd){
+                    $errors++;
+                }
             }
         }
         $error = array();

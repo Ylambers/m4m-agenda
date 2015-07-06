@@ -27,45 +27,86 @@ class AppController extends Controller
         $response = new Response();
         $page = array();
         if($type == "reservations"){
+            $repo = $this->getDoctrine()->getRepository('AppBundle:Applicant');
             if($extra != "" && $extra != "false"){
                 $date = new \DateTime($extra);
                 if($room != ""){
                     $room = $this->getDoctrine()->getRepository("AppBundle:Room")->find($room);
+//
+//                    $bookings = $this->getDoctrine()
+//                        ->getRepository('AppBundle:Applicant')
+//                        ->findBy(array("date" => $date,"room"=>$room),["timeStart" => "ASC"]);
 
-                    $bookings = $this->getDoctrine()
-                        ->getRepository('AppBundle:Applicant')
-                        ->findBy(array("date" => $date,"room"=>$room),["timeStart" => "ASC"]);
+                    $query = $repo->createQueryBuilder('p')
+                        ->where('p.date=:date AND p.room=:room')
+                        ->setParameter('date', $date)
+                        ->setParameter('room', $room)
+                        ->addOrderBy('p.timeStart', 'ASC')
+                        ->getQuery();
                 }else{
-                    $bookings = $this->getDoctrine()
-                        ->getRepository('AppBundle:Applicant')
-                        ->findBy(array("date" => $date),["timeStart" => "ASC"]);
+//                    $bookings = $this->getDoctrine()
+//                        ->getRepository('AppBundle:Applicant')
+//                        ->findBy(array("date" => $date),["timeStart" => "ASC"]);
+                    $query = $repo->createQueryBuilder('p')
+                        ->where('p.date=:date')
+                        ->setParameter('date', $date)
+                        ->addOrderBy('p.timeStart', 'ASC')
+                        ->getQuery();
                 }
             }else{
                 if($room != ""){
                     $room = $this->getDoctrine()->getRepository("AppBundle:Room")->find($room);
-                    $bookings = $this->getDoctrine()
-                        ->getRepository('AppBundle:Applicant')
-                        ->findBy(array("room"=>$room),["date"=>"DESC","timeStart" => "ASC"]);
+
+                    $query = $repo->createQueryBuilder('p')
+                        ->where('p.room=:room')
+                        ->setParameter('room', $room)
+                        ->addOrderBy('p.date', 'DESC')
+                        ->addOrderBy('p.timeStart', 'ASC')
+                        ->getQuery();
+
+//                    $bookings = $this->getDoctrine()
+//                        ->getRepository('AppBundle:Applicant')
+//                        ->findBy(array("room"=>$room),["date"=>"DESC","timeStart" => "ASC"]);
                 }else{
-                    $bookings = $this->getDoctrine()
-                        ->getRepository('AppBundle:Applicant')
-                        ->findBy([],["date"=>"DESC","timeStart" => "ASC"]);
+//                    $bookings = $this->getDoctrine()
+//                        ->getRepository('AppBundle:Applicant')
+//                        ->findBy([],["date"=>"DESC","timeStart" => "ASC"]);
+                    $query = $repo->createQueryBuilder('p')
+                        ->addOrderBy('p.date', 'DESC')
+                        ->addOrderBy('p.timeStart', 'ASC')
+                        ->getQuery();
+
                 }
             }
-
+            $bookings = $query->getResult();
+            $i = 0;
             foreach($bookings as $booking){
-                $page[$booking->getId()] = array();
-                $page[$booking->getId()]['name'] = $booking->getName();
-                $page[$booking->getId()]['lastname'] = $booking->getLastName();
-                $page[$booking->getId()]['date'] = $booking->getDate();
-                $page[$booking->getId()]['startTime'] = $booking->getTimeStart();
-                $page[$booking->getId()]['endTime'] = $booking->getTimeEnd();
-//                $page[$booking->getId()]['participants'] = $booking->getParticipants();
-//                $page[$booking->getId()]['reason'] = $booking->getReason();
-                $page[$booking->getId()]['room'] = array();
-                $page[$booking->getId()]['room']['id'] = $booking->getRoom()->getId();
-                $page[$booking->getId()]['room']['name'] = $booking->getRoom()->getName();
-                $page[$booking->getId()]['room']['seats'] = $booking->getRoom()->getSeats();
+
+                $page[strval($i)] = $booking->getDate()->format("d-m-Y");
+                $page[strval($i)] = [
+                    "id" => $booking->getId(),
+                    "name" => $booking->getName(),
+                    "lastname" => $booking->getLastName(),
+                    "date" => $booking->getDate(),
+                    "startTime" => $booking->getTimeStart(),
+                    "endTime" => $booking->getTimeEnd(),
+                    "room" => [
+                        "id" => $booking->getRoom()->getId(),
+                        "name" => $booking->getRoom()->getName(),
+                        "seats" => $booking->getRoom()->getSeats(),
+                    ],
+                ];
+                $i++;
+//                $page[$booking->getId()] = array();
+//                $page[$booking->getId()]['name'] = $booking->getName();
+//                $page[$booking->getId()]['lastname'] = $booking->getLastName();
+//                $page[$booking->getId()]['date'] = $booking->getDate();
+//                $page[$booking->getId()]['startTime'] = $booking->getTimeStart();
+//                $page[$booking->getId()]['endTime'] = $booking->getTimeEnd();
+//                $page[$booking->getId()]['room'] = array();
+//                $page[$booking->getId()]['room']['id'] = $booking->getRoom()->getId();
+//                $page[$booking->getId()]['room']['name'] = $booking->getRoom()->getName();
+//                $page[$booking->getId()]['room']['seats'] = $booking->getRoom()->getSeats();
             }
         }elseif($type == "checkconnect"){
             $page = array(true);

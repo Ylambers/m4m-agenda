@@ -13,6 +13,9 @@
     <div class="container-scheduler">
         <div class="items">
             <h2>Verwijder of pas een afspraak aan</h2>
+            {% for error in errors %}
+                {{ error }}<br />
+            {% endfor %}
             {% for schedulers in scheduler %}
                 <ul>
                     <li>

@@ -23,12 +23,13 @@ class adminController extends Controller
 {
     private $text = array();
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/admin/{id}", defaults={"id"=""}, name="admin")
      */
-    public function createRoom(request $request)
+    public function createRoom($id, request $request)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Geen toegang tot deze pagina');
 //        form room
+        /*
         $room = new Room;
 
 //        form room
@@ -37,7 +38,6 @@ class adminController extends Controller
             ->add('seats', 'integer', array('label' => 'stoelen','attr' => array("id" => "datetimepicker", "class" => "form-control")))
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
-
         $formRoom->handleRequest($request);
 
 //        form room
@@ -45,11 +45,10 @@ class adminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);
             $em->flush();
-        }
+        }*/
 
         $scheduler = $this->getDoctrine()->getRepository('AppBundle:Applicant')->findAll();
 
-        $id = 69;
         $booking = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->find($id);
 
         $formBooking = $this->createFormBuilder($booking)
@@ -76,17 +75,19 @@ class adminController extends Controller
 
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
+        $formBooking->handleRequest($request);
 
+        $errors = array();
         if($formBooking->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($booking);
-            $em->flush();
+            $bookingCheck = new BookingController();
+            $errors = $bookingCheck->checkBooking($booking, $this->getDoctrine()->getManager(),$id);
         }
 
 
         return $this->render('default/admin.html.twig', array(
             'formRoom' => $formBooking->createView(),
             'scheduler' =>$scheduler,
+            'errors' =>$errors,
         ));
     }
 
