@@ -45,5 +45,25 @@
             <div class="dhx_cal_data"></div>
         </div>
     <script src="{{ asset('js/agenda.js') }}"></script>
+        <div class="modal fade puppupBox" id="puppupBox" tabindex="-1" role="dialog" aria-labelledby="puppupBox">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if texts.box is defined %}
+            {% if texts.box.autoLoad == true %}
+                <script>
+                    $('#puppupBox').modal('show');
+                </script>
+            {% endif %}
+        {% endif %}
     </body>
 {% endblock %}

@@ -70,8 +70,17 @@ class BookingController extends Controller
             $booking->setDate(new \DateTime($formBooking->get('date')->getData()) );
             //$booking->getDate()->format();
 
-            foreach($this->checkBooking($booking, $this->getDoctrine()->getManager()) as $val){
-                $this->text['error'][] = $val;
+            foreach($this->checkBooking($booking, $this->getDoctrine()->getManager()) as $key => $val){
+                if($key != "token"){
+                    $this->text['error'][] = $val;
+                }else{
+                    $this->text['box'] = [
+                        "autoLoad" => true,
+                        "title" => "Aanpassen",
+                        "text" => "Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n".$val."<br />\n<br />Ga naar <a href='/aanpassen/".$val."'>-website-/aanpassen/".$val."</a>"
+
+                    ];
+                }
             }
         }
         return $this->render('default/book.html.twig',array(
@@ -82,8 +91,8 @@ class BookingController extends Controller
     
     public function checkBooking($booking,$em,$id=false){
 
-
         $reservations = $em->getRepository("AppBundle:Applicant")->findBy(array("date" => $booking->getDate(),"room" => $booking->getRoom()));
+
 
         $errors = 0;
         $bookingTimeStart = $booking->getTimeStart()->format('H:i');
@@ -115,9 +124,26 @@ class BookingController extends Controller
         }
 
         if(count($error) == 0){
-            $em->persist($booking);
+            //$last = $em->
+            if($id == false){
+                $last = $em->getRepository("AppBundle:Applicant")->findAll();
+                $lastId = 0;
+                foreach($last as $item){
+                    if($item->getId() > $lastId){
+                        $lastId = $item->getId();
+                    }
+                }
+                $lastId++;
+                $token = md5($lastId.$booking->getName());
+                $booking->setToken($token);
+            }
+            //$em->persist($booking);
             $em->flush();
-            return array();
+            if($id == false){
+                return array("token" => $token);
+            }else{
+                return array();
+            }
         }else{
             return $error;
         }

@@ -104,20 +104,27 @@ function saveResults(){
     }).done(function(data){
         var responseText = document.querySelector("#responseText");
         responseText.innerHTML = "";
+        if(data["token"] != undefined) {
 
-        if (data.length == 0){
-            responseText.setAttribute("class", "");
-            responseText.setAttribute("role", "");
-        }
-        var el;
-        for(var i = 0;i < data.length;i++){
-            el = document.createElement("div");
-            el.innerHTML = data[i];
-            responseText.appendChild(el);
-            responseText.setAttribute("class","alert alert-danger");
-            responseText.setAttribute("role", "alert");
-        }
+            var $val = data['token'];
+            document.querySelector(".modal-title").innerHTML = "Aanpassen";
+            document.querySelector(".modal-body").innerHTML = "<p>Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n<pre>"+ $val+ "</pre><br />Ga naar <a href='/aanpassen/"+ $val+ "'>-website-/aanpassen/" + $val + "</a></p>";
+            $('#puppupBox').modal('show');
+        }else{
+            if (data.length == 0){
+                responseText.setAttribute("class", "");
+                responseText.setAttribute("role", "");
+            }
+            var el;
+            for(var i = 0;i < data.length;i++){
 
+                el = document.createElement("div");
+                el.innerHTML = data[i];
+                responseText.appendChild(el);
+                responseText.setAttribute("class","alert alert-danger");
+                responseText.setAttribute("role", "alert");
+            }
+        }
         schedulerUpdate();
     });
 }

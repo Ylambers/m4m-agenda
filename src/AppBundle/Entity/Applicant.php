@@ -66,6 +66,11 @@ class Applicant{
      */
     private $room;
 
+    /**
+     * @var string
+     * @ORM\Column(name="token", type="string", length=64)
+     */
+    private $token;
 
     /**
      * Get id
@@ -213,5 +218,28 @@ class Applicant{
     public function getRoom()
     {
         return $this->room;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     * @return Applicant
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string 
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 }
