@@ -38,7 +38,6 @@ class adminController extends Controller
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
 
-
         $formRoom->handleRequest($request);
 
 //        form room
@@ -48,13 +47,47 @@ class adminController extends Controller
             $em->flush();
         }
 
-        $scheduler = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findAll();
+        $scheduler = $this->getDoctrine()->getRepository('AppBundle:Applicant')->findAll();
 
+        $id = 69;
+        $booking = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->find($id);
+
+        $formBooking = $this->createFormBuilder($booking)
+
+            ->add('room', 'entity', array('required' => true, 'class' => "AppBundle:Room", 'property' => 'name', 'label' => 'Ruimte','attr' => array("class" => "form-control")))
+
+            ->add('name', 'text', array('label' => 'Voornaam','attr' => array("class" => "form-control")))
+
+            ->add('lastName', 'text', array('label' => 'Achternaam','attr' => array("class" => "form-control")))
+
+            ->add('date', 'date', array('label' => 'Datum','attr' => array("class" => "form-control")))
+
+            ->add('timeStart', 'time', array(
+                'input'  => 'datetime',
+                'widget' => 'choice',
+                'attr' => array("class" => "form-control")
+            ))
+
+            ->add('timeEnd', 'time', array(
+                'input'  => 'datetime',
+                'widget' => 'choice',
+                'attr' => array("class" => "form-control")
+            ))
+
+            ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
+            ->getForm();
+
+        if($formBooking->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($booking);
+            $em->flush();
+        }
 
 
         return $this->render('default/admin.html.twig', array(
-            'formRoom' => $formRoom->createView(),
-            'scheduler' =>$scheduler
+            'formRoom' => $formBooking->createView(),
+            'scheduler' =>$scheduler,
         ));
     }
+
 }

@@ -11,15 +11,30 @@
     </div>
 
     <div class="container-scheduler">
-        <h2>Verwijder of pas een afspraak aan</h2>
+        <div class="items">
+            <h2>Verwijder of pas een afspraak aan</h2>
+            {% for schedulers in scheduler %}
+                <ul>
+                    <li>
+                        <label>Naam: </label>   {{ schedulers.name }}
+                    </li>
+                    <li>
+                        <label>Achternaam: </label>   {{ schedulers.lastName }}
+                    </li>
+                    <li>
+                        <label>Datum: </label>    {{ schedulers.date|date('Y-m-d') }}
+                    </li>
+                    <li>
+                        <label>Begin tijd: </label>    {{ schedulers.timeStart|date('H:i') }}
+                    </li>
+                    <li>
+                        <label>Eind tijd: </label>    {{ schedulers.timeEnd|date('H:i') }}
+                    </li>
 
-        {#{% for schedulers in scheduler %}#}
-            {#<ul>#}
-                 {#<li>#}
-                     {#{{ scheduler.id }}#}
-                 {#</li>#}
-            {#</ul>#}
-        {#{% endfor %}#}
+                    <br />
+                </ul>
+            {% endfor %}
+        </div>
     </div>
 
     <div class="container-room">
