@@ -1,4 +1,4 @@
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
     .container-room{
         padding: 5px;
         margin: 0px;
@@ -11,4 +11,15 @@
         z-index: 1;
 
     }
+}
+
+@media (max-width: 1000px){
+    .cbp-spmenu-vertical {
+        width: 100%;
+        overflow: auto;
+    }
+    .cbp-spmenu-left {
+        left: -100%;
+    }
+
 }
