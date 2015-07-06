@@ -47,7 +47,7 @@ class adminController extends Controller
             $em->flush();
         }*/
 
-        $scheduler = $this->getDoctrine()->getRepository('AppBundle:Applicant')->findAll();
+        $scheduler = $this->getDoctrine()->getRepository('AppBundle:Applicant')->findBy([], ['id' => 'DESC']);
 
         $booking = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->find($id);
 
@@ -83,12 +83,10 @@ class adminController extends Controller
             $errors = $bookingCheck->checkBooking($booking, $this->getDoctrine()->getManager(),$id);
         }
 
-
         return $this->render('default/admin.html.twig', array(
             'formRoom' => $formBooking->createView(),
             'scheduler' =>$scheduler,
             'errors' =>$errors,
         ));
     }
-
 }
