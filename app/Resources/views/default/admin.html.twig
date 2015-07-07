@@ -62,10 +62,14 @@
                 {{ error }}<br />
             {% endfor %}
          </div>
-        <h2>Add room</h2>
-        {{ form_start(formRooms) }}
-        {{ form_widget(formRooms) }}
-        {{ form_end(formRooms) }}
+
+        <div class="container-addRoom">
+            <h2>Add room</h2>
+            {{ form_start(formRooms) }}
+            {{ form_widget(formRooms) }}
+            {{ form_end(formRooms) }}
+        </div>
+
 
          <div id="responseText" class="alert alert-danger" role="alert">
             {% for error in texts.errors %}
@@ -75,9 +79,6 @@
 
     </div>
 
-    {#{{ form_start(formRoom) }}#}
-    {#{{ form_widget(formRoom) }}#}
-    {#{{ form_end(formRoom) }}#}
 
 {% endblock %}
 {% block javascripts %}
