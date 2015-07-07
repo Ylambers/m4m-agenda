@@ -162,16 +162,16 @@ class BookingController extends Controller
     }
     /**
      * @Route("/updateTokens", name="updateTokens")
-     */
+    */
     public function updateTokens(){
         $em = $this->getDoctrine()->getManager();
         $reservations = $em->getRepository("AppBundle:Applicant")->findBy(array("token"=>""));
-
+        //$reservations = [];
         foreach($reservations as $reservation){
             $token = md5($reservation->getId().$reservation->getName());
 
             $reservation->setToken($token);
-            $em->persist($em);
+            $em->persist($reservation);
             $em->flush();
 
         }
