@@ -1,3 +1,8 @@
+@import "http://fonts.googleapis.com/css?family=Open+Sans:400,300";
+
+h1, h2, h3,h4 ,h5{
+    font-family: "Open Sans",sans-serif;
+}
 html, body{
     margin: 0;
     padding: 0;
@@ -64,6 +69,7 @@ html, body{
 }
 
 .main > section button {
+    font-family: "Open Sans",sans-serif;
     border: none;
     background: rgba(0,0,0,0.0);
     color: #fff;
@@ -93,6 +99,13 @@ html, body{
 
 #form_save{
     background: #fff;
+}
+
+.required{
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: "Open Sans",sans-serif;
 }
 
 .form-control:focus {

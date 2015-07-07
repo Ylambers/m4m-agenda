@@ -106,7 +106,6 @@ function saveResults(){
         var responseText = document.querySelector("#responseText");
         responseText.innerHTML = "";
         if(data["token"] != undefined) {
-
             var $val = data['token'];
             document.querySelector(".modal-title").innerHTML = "Aanpassen";
             document.querySelector(".modal-body").innerHTML = "<p>Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n<pre>"+ $val+ "</pre><br />Ga naar <a href='/aanpassen/"+ $val+ "'>-website-/aanpassen/" + $val + "</a></p>";
@@ -129,7 +128,7 @@ function saveResults(){
         schedulerUpdate();
     });
 }
-
-function setStyle(){
-    var elem = document.getElementById()
-}
+//
+//function setStyle(){
+//    var elem = document.getElementById();
+//}
