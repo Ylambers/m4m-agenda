@@ -125,7 +125,7 @@ function saveResults(){
                 responseText.setAttribute("role", "alert");
             }
         }
-        schedulerUpdate();
+        //schedulerUpdate();
     });
 }
 //
