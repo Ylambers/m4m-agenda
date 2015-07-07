@@ -40,9 +40,11 @@ h1, h2, h3,h4 ,h5{
     font-size: 20px;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
+    transition: 1000ms;
 }
 
 .login-form .login_button:hover{
+
     background: #3cb0fd;
     background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
     background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
@@ -50,6 +52,7 @@ h1, h2, h3,h4 ,h5{
     background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
     background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
     text-decoration: none;
+    transition: 1000ms;
 }
 
 .login-form h2{
