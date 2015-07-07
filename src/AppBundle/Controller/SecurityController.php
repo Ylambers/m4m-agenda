@@ -23,6 +23,10 @@ class SecurityController extends Controller
 
         $error = $authenticationUtils->getLastAuthenticationError();
 
+        if($error == "Invalid credentials."){
+            echo "Verkeerd Wachtwoord of Gebruikersnaam";
+        }
+
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('default/login.html.twig', array(
