@@ -52,12 +52,13 @@ Array.prototype.clean = function(deleteValue) {
     return this;
 };
 function schedulerUpdate(){
-
+    scheduler.clearAll();
     $.ajax({
         url: "/app/reservations",
         cache: false,
         dataType: 'json',
     }).done(function(data){
+        events = [];
         var key, count = 0;
         for(key in data){
             if(data.hasOwnProperty(key)) {
@@ -125,7 +126,7 @@ function saveResults(){
                 responseText.setAttribute("role", "alert");
             }
         }
-        //schedulerUpdate();
+        schedulerUpdate();
     });
 }
 //
