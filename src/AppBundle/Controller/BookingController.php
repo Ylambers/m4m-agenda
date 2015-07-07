@@ -231,7 +231,7 @@ class BookingController extends Controller
             $em->persist($booking);
             $em->flush();
             if($id == false){
-                return array("token" => $token);
+                return ["token",$token];
             }else{
                 return array();
             }

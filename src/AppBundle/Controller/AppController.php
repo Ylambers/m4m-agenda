@@ -110,6 +110,26 @@ class AppController extends Controller
             }
         }elseif($type == "checkconnect"){
             $page = array(true);
+        }elseif($type == "getReservation"){
+            $reservation = $this->getDoctrine()->getManager()->getRepository("AppBundle:Applicant")->findOneBy(["token"=> $extra]);
+            if($reservation != null){
+                $page['id'] = $reservation->getId();
+                $page['name'] = $reservation->getName();
+                $page['lastName'] = $reservation->getLastName();
+                $page['date'] = $reservation->getDate();
+                $page['startTime'] = $reservation->getTimeStart();
+                $page['endTime'] = $reservation->getTimeEnd();
+                $page['room'] = [
+                    "id" => $reservation->getRoom()->getId(),
+                    "name" => $reservation->getRoom()->getName(),
+                    "seats" => $reservation->getRoom()->getSeats(),
+                ];
+                $page['token'] = $reservation->getToken();
+            }else{
+                $page = null;
+            }
+
+            //$page = $reservation;
         }elseif($type == "checkDates"){
             $page = [];
             $reservations = $this->getDoctrine()->getManager()->getRepository("AppBundle:Applicant")->findBy([],["date"=>"ASC"]);
