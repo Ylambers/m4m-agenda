@@ -23,15 +23,10 @@ class BookingController extends Controller
     /**
      * @Route("/", name="Booking")
      */
-    public function Booking($id=false)
+    public function Booking()
     {
        // $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Geen toegang tot deze pagina');
-        if($id == false){
-            $booking = new Applicant();
-        }else{
-            $booking = $this->getDoctrine()->getManager()->getRepository("AppBundle:Applicant")->find($id);
-
-        }
+        $booking = new Applicant();
         $this->text['error'] = array();
         //$booking->setDate(new \DateTime('NOW'));
 
@@ -94,10 +89,76 @@ class BookingController extends Controller
             ));
     }
     /**
-     * @Route("/change/{id}", defaults={"id",""}, name="change")
+     * @Route("/change/{token}", defaults={"token"=""}, name="change")
      */
-    public function change($id=false){
+    public function change($token, request $request){
 
+        if($token == false){
+            return $this->render('default/change.html.twig');
+        }else{
+            $this->text['error'] = array();
+            $booking = $this->getDoctrine()->getManager()->getRepository("AppBundle:Applicant")->findOneBy(array("token"=>$token));
+
+            //$booking->setDate(new \DateTime('NOW'));
+
+            $formBooking = $this->createFormBuilder($booking)
+
+                ->add('room', 'entity', array('required' => true, 'class' => "AppBundle:Room",
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('u')
+                            ->orderBy('u.name', 'ASC');
+                    }, 'property' => 'name', 'label' => 'Ruimte','attr' => array("class" => "form-control")))
+
+                ->add('name', 'text', array('label' => 'Voornaam','attr' => array("class" => "form-control")))
+
+                ->add('lastName', 'text', array('label' => 'Achternaam','attr' => array("class" => "form-control")))
+
+                ->add('date', 'date', array('label' => 'Datum','attr' => array("class" => "form-control")))
+//             'placeholder' => array
+//    ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
+//                'years' => range(Date('Y'), Date('Y',strtotime('+3 year')))
+
+                ->add('timeStart', 'time', array(
+                    'input'  => 'datetime',
+                    'widget' => 'choice',
+                    'attr' => array("id" => "datetimepicker", "class" => "form-control")
+                ))
+
+                ->add('timeEnd', 'time', array(
+                    'input'  => 'datetime',
+                    'widget' => 'choice',
+                    'attr' => array("id" => "datetimepicker", "class" => "form-control")
+                ))
+
+                ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
+                ->getForm();
+
+            $formBooking->handleRequest($request);
+            if ($formBooking->isValid()){
+
+                $booking->setRoom($formBooking->get("room")->getData());
+                //var_dump($formBooking->get('date')->getData());
+                //$booking->getDate()->format();
+
+                foreach($this->checkBooking($booking, $this->getDoctrine()->getManager(), $booking->getId()) as $key => $val){
+                    if($key != "token"){
+                        $this->text['error'][] = $val;
+                    }else{
+                        $this->text['box'] = [
+                            "autoLoad" => true,
+                            "title" => "Aanpassen",
+                            "text" => "Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n".$val."<br />\n<br />Ga naar <a href='/aanpassen/".$val."'>-website-/aanpassen/".$val."</a>"
+
+                        ];
+                    }
+                }
+            }
+
+            return $this->render('default/change.html.twig',array(
+                'formBooking' => $formBooking->createView(),
+                'texts' => $this->text,
+            ));
+        }
     }
 
     
