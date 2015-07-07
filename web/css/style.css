@@ -23,13 +23,12 @@ html, body{
 }
 
 .container-input .header-img{
-    background: url('/img/logo-white-trans.png')  ;
-    background-size:cover;
-    width: 321px;
+    background: url('/img/logo-white-trans.png')  no-repeat ;
+    /*background-size:cover;*/
+    width:355px;
     height: 71px;
     z-index: 1;
-    /*position: absolute;*/
-    margin: 20px 10px 0 0;
+    margin: 20px 20px 0 0;
     float: right;
     transition: 1000ms;
 }
@@ -37,14 +36,6 @@ html, body{
     /*transition: 1000ms;*/
     /*margin: 20px 10px 0 0;*/
 /*}*/
-
-.container-input .overflow{
-    width: 80px;
-    height: 80px;
-    float: right;
-    right: 30px;
-    z-index: 10000;
-}
 
 .container-input .required{
     color:   #fff;
@@ -96,8 +87,12 @@ html, body{
     outline:none;
 }
 
-#form_timeEnd select{
+#form_timeEnd{
+    margin-bottom: 25px;
+}
 
+#form_save{
+    background: #fff;
 }
 
 .form-control:focus {
@@ -116,9 +111,3 @@ html, body{
 }
 
 
-/*============================== info box*/
-#container-info{
-
-}
-
-/*================================= admin panel*/
