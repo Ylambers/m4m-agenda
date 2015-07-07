@@ -185,7 +185,6 @@ class BookingController extends Controller
 
         $reservations = $em->getRepository("AppBundle:Applicant")->findBy(array("date" => $booking->getDate(),"room" => $booking->getRoom()));
 
-
         $errors = 0;
         $bookingTimeStart = $booking->getTimeStart()->format('H:i');
         $bookingTimeEnd = $booking->getTimeEnd()->format('H:i');
