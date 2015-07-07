@@ -14,31 +14,63 @@ h1, h2, h3,h4 ,h5{
     /*margin-top: -50px;*/
     /*margin-left: -100px;*/
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 550px;
+    min-height: 400px;
     height: auto;
-    padding: 10px 10px 20px 10px;
+    padding: 10px 0px 20px 0px;
     background: #fff;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
 }
 
+.login-form .login_button{
+    width: 100%;
+    background: #4A89DC;
+    background-image: -webkit-linear-gradient(top, #4A89DC, #4A89DC);
+    background-image: -moz-linear-gradient(top, #4A89DC, #4A89DC);
+    background-image: -ms-linear-gradient(top, #4A89DC, #4A89DC);
+    background-image: -o-linear-gradient(top, #4A89DC, #4A89DC);
+    background-image: linear-gradient(to bottom, #4A89DC, #4A89DC);
+    -webkit-border-radius: 3;
+    -moz-border-radius: 3;
+    border-radius: 3px;
+    font-family: "Open Sans",sans-serif;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.login-form .login_button:hover{
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
 .login-form h2{
-    color: #333;
-    font-size: 24px;
+    color: #368EE0;
+    font-size: 18px;
     font-weight: 300;
     padding: 10px 0 10px 0;
 }
 
+.login-form .login-body{
+    padding: 0 40px 20px 40px;
+}
 
-.admin-container .header-img{
-    background: url('/img/logo-m4m.jpg') no-repeat center;
-    background-color: #DDDDDD;
+.login-form .header-img{
+    background: url('/img/logo-m4m.png') no-repeat center;
     width: 100%;
     height: 100px;
     z-index: 1;
     margin: auto;
     transition: 2000ms;
+    border-bottom: 1px solid #DADADA;
 }
 
 .admin-container .header-img:hover{
