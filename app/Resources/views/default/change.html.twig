@@ -1,23 +1,29 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/change.css') }}" />
+{% endblock %}
 {% block body %}
-    <body>
-    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-        <div class="header-text">
-            <h3>Reserveren</h3>
-            <div class="exit">
-                <i class="fa fa-times fa-5x"></i>
-            </div>
-        </div>
-        {% if texts.error|length > 0 %}
-            <div id="responseText" class="alert alert-danger" role="alert">
-                {% for error in texts.error %}
-                    <div>{{ error }}</div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </nav>
-    <section>
+    <div class="container-input">
+        <div class="header-img"></div>
+
+    </div>
+    {#<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">#}
+        {#<div class="header-text">#}
+            {#<h3>Reserveren</h3>#}
+            {#<div class="exit">#}
+                {#<i class="fa fa-times fa-5x"></i>#}
+            {#</div>#}
+        {#</div>#}
+        {#{% if texts.error|length > 0 %}#}
+            {#<div id="responseText" class="alert alert-danger" role="alert">#}
+                {#{% for error in texts.error %}#}
+                    {#<div>{{ error }}</div>#}
+                {#{% endfor %}#}
+            {#</div>#}
+        {#{% endif %}#}
+    {#</nav>#}
+    <section class="content">
         {% if formBooking is defined %}
             <div class="create-Form">
                 {{ form_start(formBooking) }}
@@ -52,5 +58,13 @@
             </div>
         </div>
     </section>
-    </body>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        window.onload = function(){
+            var content = document.querySelector("section.content");
+            console.log(content);
+            content.setAttribute("class", content.getAttribute("class")+" topBottomIn")
+        };
+    </script>
 {% endblock %}

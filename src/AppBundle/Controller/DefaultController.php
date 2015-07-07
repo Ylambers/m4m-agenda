@@ -23,5 +23,16 @@ class DefaultController extends Controller
                 "available_room" => $booking
             ));
     }
+    /**
+     * @Route("/loginscreens/{id}", defaults={"id"="1"}, name="homepage")
+     */
+    public function loginScreens($id)
+    {
+
+        return $this->render('default/login.screens.html.twig',
+            array(
+                "id" => $id
+            ));
+    }
 
 }

@@ -1,0 +1,14 @@
+section.content{
+    position: absolute;
+    top: -900px;
+    width: 800px;
+    left: 50%;
+    margin-left: -400px;
+    opacity: 0;
+    transition: top 1s, opacity 2s;
+}
+
+section.content.topBottomIn{
+    top: 100px;
+    opacity: 1;
+}
