@@ -58,7 +58,17 @@
         {{ form_end(formBooking) }}
 
          <div id="responseText" class="alert alert-danger" role="alert">
-            {% for error in errors %}
+            {% for error in texts.errors %}
+                {{ error }}<br />
+            {% endfor %}
+         </div>
+        <h2>Add room</h2>
+        {{ form_start(formRooms) }}
+        {{ form_widget(formRooms) }}
+        {{ form_end(formRooms) }}
+
+         <div id="responseText" class="alert alert-danger" role="alert">
+            {% for error in texts.errors %}
                 {{ error }}<br />
             {% endfor %}
          </div>
@@ -69,4 +79,6 @@
     {#{{ form_widget(formRoom) }}#}
     {#{{ form_end(formRoom) }}#}
 
+{% endblock %}
+{% block javascripts %}
 {% endblock %}

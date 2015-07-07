@@ -22,6 +22,8 @@ use AppBundle\Entity\Applicant;
 class adminController extends Controller
 {
     private $text = array();
+
+
     /**
      * @Route("/admin/{id}", defaults={"id"=""}, name="admin")
      */
@@ -33,8 +35,8 @@ class adminController extends Controller
         $scheduler = $this->getDoctrine()->getRepository('AppBundle:Applicant')->findBy([], ['id' => 'DESC']);
 
         $booking = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->find($id);
+        $formBooking = $this->createFormBuilder($booking, array('attr' => array('id' => "reservations")))
 
-        $formBooking = $this->createFormBuilder($booking)
 
             ->add('room', 'entity', array('required' => true, 'class' => "AppBundle:Room", 'property' => 'name', 'label' => 'Ruimte','attr' => array("class" => "form-control")))
 
@@ -59,42 +61,55 @@ class adminController extends Controller
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
 
-        $formBooking->handleRequest($request);
 
-        $errors = array();
-        if($formBooking->isValid()){
-            $bookingCheck = new BookingController();
-            $errors = $bookingCheck->checkBooking($booking, $this->getDoctrine()->getManager(),$id);
+
+        $this->text['errors'] = array();
+        $formRoom = $this->addRoom();
+        if($request->getMethod() == "POST"){
+
+            $data = $request->request->all();
+            if(isset($data['form']['seats'])){
+
+                $formRoom = $this->addRoom($request);
+            }else {
+                $formBooking->handleRequest($request);
+                if ($formBooking->isValid()) {
+                    $bookingCheck = new BookingController();
+                    $this->text['errors'] = $bookingCheck->checkBooking($booking, $this->getDoctrine()->getManager(), $id);
+                }
+            }
+
         }
+
 
 
         return $this->render('default/admin.html.twig', array(
             'formBooking' => $formBooking->createView(),
+            'formRooms' => $formRoom->createView(),
             'scheduler' =>$scheduler,
-            'errors' =>$errors,
+            'texts' => $this->text,
         ));
     }
 
-    public function addRoom(request $request)
+    public function addRoom($request=false)
     {
         $room = new Room;
 
-        $formRoom = $this->createFormBuilder($room)
+        $formRoom = $this->createFormBuilder($room, array('attr' => array('id' => 'rooms')))
             ->add('name', 'text', array('label' => 'name', 'attr' => array("id" => "datetimepicker", "class" => "form-control")))
             ->add('seats', 'integer', array('label' => 'stoelen', 'attr' => array("id" => "datetimepicker", "class" => "form-control")))
             ->add('save', 'submit', array('label' => "Verzenden", 'attr' => array("class" => "form-control")))
             ->getForm();
+        if($request != null){
+            $formRoom->handleRequest($request);
 
-        $formRoom->handleRequest($request);
-
-        if ($formRoom->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($room);
-            $em->flush();
+            if ($formRoom->isValid()) {
+                //$this->text['errors'] = [];
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($room);
+                $em->flush();
+            }
         }
-
-        return $this->render('default/admin.html.twig', array(
-            'formRoom' => $formRoom->createView(),
-        ));
+        return $formRoom;
     }
 }
