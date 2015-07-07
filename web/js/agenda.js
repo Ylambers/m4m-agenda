@@ -52,12 +52,13 @@ Array.prototype.clean = function(deleteValue) {
     return this;
 };
 function schedulerUpdate(){
-    scheduler.clearAll();
+
     $.ajax({
         url: "/app/reservations",
         cache: false,
         dataType: 'json',
     }).done(function(data){
+        scheduler.clearAll();
         events = [];
         var key, count = 0;
         for(key in data){
@@ -109,8 +110,11 @@ function saveResults(){
         if(data[0] == "token") {
             var $val = data[1];
             document.querySelector(".modal-title").innerHTML = "Aanpassen";
+
             document.querySelector(".modal-body").innerHTML = "<p>Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n<pre>"+ $val+ "</pre><br />Ga naar <a href='/change/"+ $val+ "'>-website-/change/" + $val + "</a></p>";
             $('#puppupBox').modal('show');
+            responseText.setAttribute("class", "");
+            responseText.setAttribute("role", "");
         }else{
             if (data.length == 0){
                 responseText.setAttribute("class", "");
@@ -129,7 +133,3 @@ function saveResults(){
         schedulerUpdate();
     });
 }
-//
-//function setStyle(){
-//    var elem = document.getElementById();
-//}
