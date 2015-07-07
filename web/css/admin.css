@@ -1,0 +1,117 @@
+@import "http://fonts.googleapis.com/css?family=Open+Sans:400,300";
+h1, h2, h3,h4 ,h5{
+    font-family: "Open Sans",sans-serif;
+}
+.admin-container{
+    width: 100%;
+    height: 100%;
+    background: #368EE0;
+}
+.login-form{
+    position:fixed;
+    top: 40%;
+    left: 50%;
+    /*margin-top: -50px;*/
+    /*margin-left: -100px;*/
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: auto;
+    padding: 10px 10px 20px 10px;
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+}
+
+.login-form h2{
+    color: #333;
+    font-size: 24px;
+    font-weight: 300;
+    padding: 10px 0 10px 0;
+}
+
+.admin-container .header-img{
+    background: url('/img/logo-m4m.jpg') no-repeat center;
+    background-color: #DDDDDD;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+    margin: auto;
+    transition: 2000ms;
+}
+
+.admin-container .header-img:hover{
+    background-color: #fff;
+    transition: 1000ms;
+}
+
+.container-room{
+    float: right;
+    position: relative;
+    padding: 0 20px 20px 20px;
+    border-radius: 5px;
+    color: #000;
+    margin: 30px 30px 0 10px;
+    width: 70%;
+    height: 600px;
+    background: #F9F9F9;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    transition: 500ms;
+}
+
+.container-scheduler{
+    position: absolute;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 30px 10px 0 30px;
+    width: 25%;
+    height: 600px ;
+    color: #000;
+    background: #F9F9F9;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    transition: 500ms;
+    z-index: 1000;
+}
+
+.container-scheduler .items{
+    overflow:auto;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.container-room:hover{
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    transition: 1000ms;
+}
+
+.container-scheduler:hover{
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    transition: 1000ms;
+}
+
+.title h2{
+    width: 300px;
+    color: #fff;
+    padding: 25px;
+    transition: 1000ms;
+    cursor: default;
+    font-size: 20px;
+}
+
+.title h2:hover{
+    color: #3FA2D8;
+    transition: 1000ms;
+}
+
+.container-scheduler li{
+    list-style: none;
+}
