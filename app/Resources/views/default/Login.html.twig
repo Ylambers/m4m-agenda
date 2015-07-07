@@ -2,16 +2,6 @@
 
 {% block body %}
 <div class="admin-container">
-       {#<form action="" method="post">#}
-        {#&#123;&#35;<label for="username">Username:</label>&#35;&#125;#}
-        {#<input type="text" id="username" name="_username" value="{{ last_username }}" />#}
-
-        {#&#123;&#35;<label for="password">Password:</label>&#35;&#125;#}
-        {#<input type="password" id="password" name="_password" />#}
-
-        {#&#123;&#35;<button type="submit">login</button>&#35;&#125;#}
-        {#&#123;&#35;</form>&#35;&#125;#}
-
     <div class="login-form">
         <a href="/"> <div class="header-img"></div></a>
 
@@ -32,6 +22,7 @@
 
                 <div class="error">
                     {% if error %}
+                        {#<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
                         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
                 </div>
