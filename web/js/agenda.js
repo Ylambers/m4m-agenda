@@ -105,10 +105,10 @@ function saveResults(){
     }).done(function(data){
         var responseText = document.querySelector("#responseText");
         responseText.innerHTML = "";
-        if(data["token"] != undefined) {
-            var $val = data['token'];
+        if(data[0] == "token") {
+            var $val = data[1];
             document.querySelector(".modal-title").innerHTML = "Aanpassen";
-            document.querySelector(".modal-body").innerHTML = "<p>Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n<pre>"+ $val+ "</pre><br />Ga naar <a href='/aanpassen/"+ $val+ "'>-website-/aanpassen/" + $val + "</a></p>";
+            document.querySelector(".modal-body").innerHTML = "<p>Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n<pre>"+ $val+ "</pre><br />Ga naar <a href='/change/"+ $val+ "'>-website-/change/" + $val + "</a></p>";
             $('#puppupBox').modal('show');
         }else{
             if (data.length == 0){
