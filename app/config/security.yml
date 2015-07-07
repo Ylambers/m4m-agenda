@@ -16,6 +16,9 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
+        login_firewall:
+            pattern:   ^/login$
+            anonymous: ~
         main:
             anonymous: ~
             http_basic: ~
@@ -23,6 +26,9 @@ security:
                   login_path: /login
                   check_path: /login_check
                   default_target_path: /admin
+            logout:
+                path:   /logout
+                target: /
 
 #        secured_area:
 #            logout:

@@ -24,14 +24,14 @@ class DefaultController extends Controller
             ));
     }
     /**
-     * @Route("/loginscreens/{id}", defaults={"id"="1"}, name="homepage")
+     * @Route("/loginscreens/{type}", defaults={"type"="apollo"}, name="homepage")
      */
-    public function loginScreens($id)
+    public function loginScreens($type)
     {
 
         return $this->render('default/login.screens.html.twig',
             array(
-                "id" => $id
+                "type" => $type
             ));
     }
 
