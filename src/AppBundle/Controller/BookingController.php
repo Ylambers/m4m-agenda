@@ -130,7 +130,7 @@ class BookingController extends Controller
                     'attr' => array("id" => "datetimepicker", "class" => "form-control")
                 ))
 
-                ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
+                ->add('save', 'submit', array('label' => "Aanpassen",'attr' => array("class" => "btn btn-primary", "style" => "margin-top: 10px;")))
                 ->getForm();
 
             $formBooking->handleRequest($request);

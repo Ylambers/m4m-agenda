@@ -1,0 +1,75 @@
+body{
+    background: #34393D;
+}
+#apollo{
+    position: fixed;
+    width: 300px;
+    height: 120px;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -60px;
+    background: #34393D;
+}
+#apollo .username, #apollo .password{
+    padding: 12px 20px;
+    background: #1C1D21;
+    color: #6c727d;
+    display: block;
+    border: solid 2px #34393D;
+    width: 235px;
+}
+#apollo .username{
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+#apollo .password{
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+#apollo .extra{
+    position: absolute;
+    top: 42px;
+    width: 228px;
+    border-left: solid 20px #1C1D21;
+    height: 4px;
+    left: 2px;
+}
+#apollo .button{
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    background: url('http://www.mein-suedamerika.de/themes/frontend/resources/images/caret_right.png') #1C1D21;
+    background-size: 10px auto;
+    background-position: 16px;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: solid 5px #34393D;
+    cursor: pointer;
+}
+#apollo .button:hover{
+    border-color: #43484c;
+}
+#apollo .button:hover ~ .extra{
+    background: #43484c;
+}
+#apollo .forgot{
+    width: 100%;
+    color: #595f6b;
+    font-family: "Lucida Grande", arial, sans-serif;
+    font-size: 13px;
+    padding: 5px 20px;
+}
+#apollo .forgot a{
+    color: #838b97;
+}
