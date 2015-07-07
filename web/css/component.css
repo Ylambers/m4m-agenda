@@ -2,13 +2,20 @@
 .cbp-spmenu {
 	background:#0072C6;
 	position: fixed;
+    -webkit-box-shadow: 3px 0px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 0px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 0px 0px 0px rgba(0,0,0,0.75);
 }
+
 
 .cbp-spmenu .header-text{
     padding: 5px 5px 0 5px;
     margin: 0;
-    background: #3D3C41;
+    background:#012055;
     height: 80px;
+    -webkit-box-shadow: 3px 0px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 0px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 0px 0px 0px rgba(0,0,0,0.75);
 }
 
 .cbp-spmenu h3 {
@@ -87,7 +94,7 @@
 /* Vertical menu that slides from the left or right */
 
 .cbp-spmenu-left {
-	left: -440px;
+	left: -443px;
 }
 
 .cbp-spmenu-right {

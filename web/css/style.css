@@ -97,12 +97,8 @@ html, body{
     margin-bottom: 25px;
 }
 
-#form_save{
-    background: #fff;
-}
-
 .required{
-    color: #fff;
+    color: #000;
     font-size: 15px;
     font-weight: 400;
     font-family: "Open Sans",sans-serif;
