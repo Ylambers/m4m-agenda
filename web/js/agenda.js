@@ -122,7 +122,7 @@ function saveResults(){
             document.querySelector(".modal-title").innerHTML = "Aanpassen";
 
             document.querySelector(".modal-body").innerHTML = "<p>Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. " +
-                "Het token is:<br />\n<pre>"+ $val+ "</pre><br />Ga naar <a href='/change/"+ $val+ "'>-website-/change/" + $val + "</a> De tokens worden ook opgeslagen als cookies en die kunt u later weer oproepen!</p>";
+                "Het token is:<br />\n<pre>"+ $val+ "</pre><br />Ga naar <a href='/change/"+ $val+ "'>-website-/change/" + $val + "</a> </p>";//De tokens worden ook opgeslagen als cookies en die kunt u later weer oproepen!
             $('#puppupBox').modal('show');
             responseText.setAttribute("class", "");
             responseText.setAttribute("role", "");
