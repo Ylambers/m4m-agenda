@@ -2,14 +2,12 @@
 
 {% block body %}
     <div class="container-input">
-             <a href="/admin">
+             <a href="/">
                  <div class="header-img"></div>
              </a>
         <div class="main">
             <section>
-                <form action="/">
-                    <button id="showLeft">Calendar <i class="fa fa-calendar fa-2x"> </i></button>
-                </form>
+                    <button id="showLeft" onclick="window.open('/', '_top')">Calendar <i class="fa fa-calendar fa-2x"> </i></button>
             </section>
         </div>
     </div>
@@ -62,10 +60,14 @@
                 {{ error }}<br />
             {% endfor %}
          </div>
-        <h2>Add room</h2>
-        {{ form_start(formRooms) }}
-        {{ form_widget(formRooms) }}
-        {{ form_end(formRooms) }}
+
+        <div class="container-addRoom">
+            <h2>Add room</h2>
+            {{ form_start(formRooms) }}
+            {{ form_widget(formRooms) }}
+            {{ form_end(formRooms) }}
+        </div>
+
 
          <div id="responseText" class="alert alert-danger" role="alert">
             {% for error in texts.errors %}
@@ -75,9 +77,6 @@
 
     </div>
 
-    {#{{ form_start(formRoom) }}#}
-    {#{{ form_widget(formRoom) }}#}
-    {#{{ form_end(formRoom) }}#}
 
 {% endblock %}
 {% block javascripts %}
