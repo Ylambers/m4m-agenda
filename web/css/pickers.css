@@ -15,8 +15,9 @@
     top: 50%;
     width: 300px;
     height: 500px;
-    left: 400px;
+    left: 50%;
     margin-top: -270px;
+    margin-left: -150px;
     background: #012055;
 
     z-index: 9999999;

@@ -4,7 +4,6 @@
 var picker_all;
 window.onload = function(){
 
-
     var timers = document.querySelectorAll(".picker");
 
     for(var i=0;i<timers.length;i++){
@@ -19,19 +18,23 @@ window.onload = function(){
         timers[i].onclick = function(e){
             //alert(e.target.innerHTML);
             var selects = e.target.getElementsByTagName("select");
+            console.log(e);
+            console.log(e.target);
+            console.log(selects);
+
             //console.log(selects[0].value, selects[1].value);
 
             if(picker_all != null){
+
+                log("picker",picker_all);
                 picker_all.hide();
             }
             picker_all = timePicker(e.target, selects[0].value, selects[1].value);
             //var picker = timePicker(e.target, 23, 59);
-            picker_all.open();
+            picker_all.openScreen();
         };
     }
 };
-var is_scrolling = false;
-var scroll_interval = false;
 function timePicker(element,hours,minutes){
 
     this.hours = hours == undefined ? 0 : hours;
@@ -47,10 +50,9 @@ function timePicker(element,hours,minutes){
             }
         }
         this.minutes = this.minutes > 55 ? 55 : this.minutes;
-        console.log("After: "+this.minutes);
     }
 
-    this.open = function(){
+    this.openScreen = function(){
         var picker = document.createElement("div");
         var hours = document.createElement("div");
         var minutes = document.createElement("div");
@@ -179,8 +181,10 @@ function timePicker(element,hours,minutes){
             //document.querySelector(".picker")
             el.getElementsByTagName("span")[0].innerHTML = (hVal < 10 ? "0"+hVal : ""+hVal) + ":" + (mVal < 10 ? "0"+mVal : ""+mVal);
 
-            picker_all = null;
-            document.getElementById('m4mPicker').parentNode.removeChild(document.getElementById('m4mPicker'));
+
+            picker_all.hideScreen();
+            //picker_all = null;
+            //document.getElementById('m4mPicker').parentNode.removeChild(document.getElementById('m4mPicker'));
         };
         document.querySelector("#m4mPicker .hours .inner").onscroll = function(e){
             is_scrolling = true;
@@ -204,17 +208,16 @@ function timePicker(element,hours,minutes){
             }, 500);
         },false);
     };
+    this.hideScreen = function(){
+
+        document.getElementById('m4mPicker').parentNode.removeChild(document.getElementById('m4mPicker'));
+        picker_all = null;
+    };
     this.getElement = function(){
         return this.element;
     };
-    this.hide = function(){
-
-        picker_all = null;
-        document.getElementById('m4mPicker').parentNode.removeChild(document.getElementById('m4mPicker'));
-    };
     return this;
 }
-
 function setTimeGood(){
 
     var h = document.querySelector("#m4mPicker .hours");

@@ -8,7 +8,7 @@
         <div class="header-img"></div>
     <div class="main">
         <section>
-            <button onclick="window.open('/','_top');"><i class="fa fa-caret-left"></i> Terug</button>
+            <button id="back" ><i class="fa fa-caret-left"></i> Terug</button>
         </section>
     </div>
 
@@ -81,21 +81,25 @@
 {% endblock %}
 {% block javascripts %}
     <script>
-        window.addEventListener("load",function(){
+        $(window).ready(function(){
             var content = document.querySelector("section.content");
             content.setAttribute("class", content.getAttribute("class")+" topBottomIn");
-        },true);
-        document.getElementById("submitToken").onclick = function(){
+            $("#submitToken").click(function(){
 
-            var token = document.getElementById("token").value;
-            if(token.length > 32){
-                document.getElementById("errors").innerHTML = "Token is te lang";
-            }else if(token.length < 32){
-                document.getElementById("errors").innerHTML = "Token is te kort";
-            }else{
-                window.open("/change/"+token,"_top");
-            }
-        };
+                var token = document.getElementById("token").value;
+                if(token.length > 32){
+                    document.getElementById("errors").innerHTML = "Token is te lang";
+                }else if(token.length < 32){
+                    document.getElementById("errors").innerHTML = "Token is te kort";
+                }else{
+                    window.open("/change/"+token,"_top");
+                }
+            });
+            $("#back").click(function(){
+
+                window.open("/","_top");
+            });
+        });
     </script>
 
 {% endblock %}
