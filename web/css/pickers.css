@@ -22,7 +22,22 @@
 
     z-index: 9999999;
     color: #FFF;
-
+    -webkit-box-shadow: 0px 20px 30px 5px rgba(0, 0, 0, 1);
+    -moz-box-shadow:    0px 20px 30px 5px rgba(0, 0, 0, 1);
+    box-shadow:         0px 20px 30px 5px rgba(0, 0, 0, 1);
+    opacity: 0;
+    transition: 500ms;
+}
+.shadow_background{
+    position: fixed;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999998;
+    opacity: 0;
+    transition: 500ms;
 }
 #m4mPicker .fa{
     font-size: 50px;
@@ -69,19 +84,24 @@
     font-size: 20px;
     padding: 30px;
 }
-#m4mPicker #done{
+#m4mPicker #done, #m4mPicker #cancel{
     position: absolute;
     bottom: -40px;
     height: 40px;
     padding: 5px;
     font-size: 20px;
     cursor: pointer;
-    width: 100%;
+    width: 150px;
     text-align: center;
     background: #012055;
 }
-#m4mPicker #done:hover{
-
+#m4mPicker #done {
+    right: 0;
+}
+#m4mPicker #cancel{
+    left: 0;
+}
+#m4mPicker #done:hover, #m4mPicker #cancel:hover{
     background: #0072C6;
 }
 

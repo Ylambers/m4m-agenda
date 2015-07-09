@@ -64,28 +64,6 @@ class BookingController extends Controller
 
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
-        /*
-        $formBooking->handleRequest($request);
-        if ($formBooking->isValid()){
-
-            $booking->setRoom($formBooking->get("room")->getData());
-            //var_dump($formBooking->get('date')->getData());
-            $booking->setDate(new \DateTime($formBooking->get('date')->getData()) );
-            //$booking->getDate()->format();
-
-            foreach($this->checkBooking($booking, $this->getDoctrine()->getManager()) as $key => $val){
-                if($key != "token"){
-                    $this->text['error'][] = $val;
-                }else{
-                    $this->text['box'] = [
-                        "autoLoad" => true,
-                        "title" => "Aanpassen",
-                        "text" => "Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n".$val."<br />\n<br />Ga naar <a href='/aanpassen/".$val."'>-website-/aanpassen/".$val."</a>"
-
-                    ];
-                }
-            }
-        }*/
         return $this->render('default/book.html.twig',array(
                 'formBooking' => $formBooking->createView(),
                 'texts' => $this->text,
@@ -99,7 +77,6 @@ class BookingController extends Controller
         if($token == false){
             return $this->render('default/change.html.twig');
         }else{
-            $this->text['error'] = array();
             $booking = $this->getDoctrine()->getManager()->getRepository("AppBundle:Applicant")->findOneBy(array("token"=>$token));
 
             //$booking->setDate(new \DateTime('NOW'));
@@ -142,17 +119,17 @@ class BookingController extends Controller
                 $booking->setRoom($formBooking->get("room")->getData());
                 //var_dump($formBooking->get('date')->getData());
                 //$booking->getDate()->format();
-
+                $token = false;
+                $this->text['error'] = array();
                 foreach($this->checkBooking($booking, $this->getDoctrine()->getManager(), $booking->getId()) as $key => $val){
                     if($key != "token"){
                         $this->text['error'][] = $val;
                     }else{
-                        $this->text['box'] = [
-                            "autoLoad" => true,
-                            "title" => "Aanpassen",
-                            "text" => "Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n".$val."<br />\n<br />Ga naar <a href='/aanpassen/".$val."'>-website-/aanpassen/".$val."</a>"
-                        ];
+                        $token = true;
                     }
+                }
+                if($token == true){
+                    $this->text['error'] = [];
                 }
             }
 

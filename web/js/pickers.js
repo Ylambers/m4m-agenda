@@ -17,17 +17,14 @@ window.onload = function(){
         timers[i].appendChild(span);
         timers[i].onclick = function(e){
             //alert(e.target.innerHTML);
-            var selects = e.target.getElementsByTagName("select");
-            console.log(e);
-            console.log(e.target);
-            console.log(selects);
+            var selects = e.target.querySelectorAll("select");
+            //console.log(selects[0].value);
+            //console.log(selects[1].value);
 
             //console.log(selects[0].value, selects[1].value);
 
             if(picker_all != null){
-
-                log("picker",picker_all);
-                picker_all.hide();
+                picker_all.hideScreen();
             }
             picker_all = timePicker(e.target, selects[0].value, selects[1].value);
             //var picker = timePicker(e.target, 23, 59);
@@ -42,7 +39,7 @@ function timePicker(element,hours,minutes){
     this.element = element;
     if(this.minutes % 5){
         var x = this.minutes;
-        console.log("Before: "+this.minutes);
+        //console.log("Before: "+this.minutes);
         for(var i=3;i < 60;i +=5){
             if(x < i){
                 this.minutes = i-3;
@@ -51,7 +48,6 @@ function timePicker(element,hours,minutes){
         }
         this.minutes = this.minutes > 55 ? 55 : this.minutes;
     }
-
     this.openScreen = function(){
         var picker = document.createElement("div");
         var hours = document.createElement("div");
@@ -102,6 +98,10 @@ function timePicker(element,hours,minutes){
         done.setAttribute("id","done");
         done.innerHTML = "Opslaan";
 
+        var cancel = document.createElement("div");
+        cancel.setAttribute("id","cancel");
+        cancel.innerHTML = "Annuleren";
+
 
         var bg = document.createElement("div");
         bg.setAttribute("class","bg");
@@ -125,13 +125,21 @@ function timePicker(element,hours,minutes){
         bg.appendChild(downH);
         bg.appendChild(downM);
         bg.appendChild(done);
+        bg.appendChild(cancel);
         picker.appendChild(bg);
 
         document.body.appendChild(picker);
+        document.body.appendChild(crDiv("shadow_background"));
 
-        document.querySelector("#m4mPicker .hours").scrollTop = (this.hours * 88.5);
-        //console.log(this.hours * 60);
-        document.querySelector("#m4mPicker .minutes").scrollTop = ((this.minutes/5) * 88.5);
+        document.querySelector("#m4mPicker .hours").dataset.val = this.hours;
+        document.querySelector("#m4mPicker .minutes").dataset.val = this.minutes/5;
+
+        //console.log(document.querySelector("#m4mPicker .hours").dataset.val);
+        //console.log(document.querySelector("#m4mPicker .minutes").dataset.val);
+        document.querySelector("#m4mPicker .hours .inner").scrollTop = (this.hours * 88.5);
+        document.querySelector("#m4mPicker .minutes .inner").scrollTop = ((this.minutes/5) * 88.5);
+        document.querySelector(".shadow_background").style.opacity = 1;
+        document.querySelector("#m4mPicker").style.opacity = 1;
 
         document.querySelector("#m4mPicker .upH").onclick = function(){
             var h = document.querySelector("#m4mPicker .hours");
@@ -186,6 +194,9 @@ function timePicker(element,hours,minutes){
             //picker_all = null;
             //document.getElementById('m4mPicker').parentNode.removeChild(document.getElementById('m4mPicker'));
         };
+        document.querySelector("#m4mPicker #cancel").onclick = function(){
+            picker_all.hideScreen();
+        };
         document.querySelector("#m4mPicker .hours .inner").onscroll = function(e){
             is_scrolling = true;
         };
@@ -209,8 +220,14 @@ function timePicker(element,hours,minutes){
     };
     this.hideScreen = function(){
 
-        document.getElementById('m4mPicker').parentNode.removeChild(document.getElementById('m4mPicker'));
-        picker_all = null;
+        document.querySelector(".shadow_background").style.opacity = 0;
+        document.querySelector("#m4mPicker").style.opacity = 0;
+        setTimeout(function(){
+            document.getElementById('m4mPicker').parentNode.removeChild(document.getElementById('m4mPicker'));
+
+            document.querySelector('.shadow_background').parentNode.removeChild(document.querySelector('.shadow_background'));
+            picker_all = null;
+        },500);
     };
     this.getElement = function(){
         return this.element;

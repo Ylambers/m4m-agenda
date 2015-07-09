@@ -31,7 +31,19 @@
     {#</nav>#}
     <section class="content">
         {% if formBooking is defined %}
+            <h3>Aanpassen</h3>
             <div class="create-Form">
+                {% if texts.error is defined %}
+                    {% if texts.error|length > 0 %}
+                    <div id="errors" style="color: #880000;">
+                        {% for error in texts.error %}
+                            {{ error }}<br />
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        Opgeslagen!
+                    {% endif %}
+                {% endif %}
                 {{ form_start(formBooking) }}
                 {{ form_widget(formBooking) }}
                 {{ form_end(formBooking) }}
