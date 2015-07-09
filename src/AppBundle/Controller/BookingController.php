@@ -96,6 +96,8 @@ class BookingController extends Controller
      */
     public function change($token, request $request){
 
+
+
         if($token == false){
             return $this->render('default/change.html.twig');
         }else{
@@ -138,12 +140,6 @@ class BookingController extends Controller
 
             $formBooking->handleRequest($request);
             if ($formBooking->isValid()){
-
-             $session = new Session();
-                $session->start();
-
-                $session->setName('Token');
-
 
                 $booking->setRoom($formBooking->get("room")->getData());
                 //var_dump($formBooking->get('date')->getData());
@@ -248,3 +244,10 @@ class BookingController extends Controller
         }
     }
 }
+
+//if(isset($_COOKIE['tokens'])) {
+//    $tokens = explode(",", $_COOKIE['tokens']);
+//    foreach ($tokens as $token) {
+//        echo  $token. "<br />";
+//    }
+//}

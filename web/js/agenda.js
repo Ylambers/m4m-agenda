@@ -58,7 +58,7 @@ Array.prototype.clean = function(deleteValue) {
     return this;
 };
 function schedulerUpdate(){
-
+    console.log(getCookie("tokens").split(","));
     $.ajax({
         url: "/app/reservations",
         cache: false,
@@ -96,6 +96,7 @@ function schedulerUpdate(){
         }, 1000);
     });
 }
+
 function saveResults(){
     var room_id = document.querySelector("#form_room").value;
     var firstname = document.querySelector("#form_name").value;
@@ -115,6 +116,8 @@ function saveResults(){
         responseText.innerHTML = "";
         if(data[0] == "token") {
             var $val = data[1];
+            setCookie("tokens",getCookie("tokens")+","+$val,365);
+            document.cookie = "tokens:"+$val;
             document.querySelector(".modal-title").innerHTML = "Aanpassen";
 
             document.querySelector(".modal-body").innerHTML = "<p>Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n<pre>"+ $val+ "</pre><br />Ga naar <a href='/change/"+ $val+ "'>-website-/change/" + $val + "</a></p>";
@@ -138,4 +141,20 @@ function saveResults(){
         }
         schedulerUpdate();
     });
+}
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
 }
