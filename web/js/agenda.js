@@ -118,6 +118,7 @@ function saveResults(){
             var $val = data[1];
             setCookie("tokens",getCookie("tokens")+","+$val,365);
             document.cookie = "tokens:"+$val;
+
             document.querySelector(".modal-title").innerHTML = "Aanpassen";
 
             document.querySelector(".modal-body").innerHTML = "<p>Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n<pre>"+ $val+ "</pre><br />Ga naar <a href='/change/"+ $val+ "'>-website-/change/" + $val + "</a></p>";
@@ -148,6 +149,7 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
 }
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');

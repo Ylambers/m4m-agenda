@@ -96,8 +96,6 @@ class BookingController extends Controller
      */
     public function change($token, request $request){
 
-
-
         if($token == false){
             return $this->render('default/change.html.twig');
         }else{
@@ -126,13 +124,13 @@ class BookingController extends Controller
                 ->add('timeStart', 'time', array(
                     'input'  => 'datetime',
                     'widget' => 'choice',
-                    'attr' => array("id" => "datetimepicker", "class" => "form-control")
+                    'attr' => array("id" => "datetimepicker", "class" => "form-control picker")
                 ))
 
                 ->add('timeEnd', 'time', array(
                     'input'  => 'datetime',
                     'widget' => 'choice',
-                    'attr' => array("id" => "datetimepicker", "class" => "form-control")
+                    'attr' => array("id" => "datetimepicker", "class" => "form-control picker")
                 ))
 
                 ->add('save', 'submit', array('label' => "Aanpassen",'attr' => array("class" => "btn btn-primary", "style" => "margin-top: 10px;")))
