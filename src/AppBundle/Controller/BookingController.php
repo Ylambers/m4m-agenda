@@ -233,7 +233,7 @@ class BookingController extends Controller
             if($id == false){
                 return ["token",$token];
             }else{
-                return array();
+                return ["token", $booking->getToken()];
             }
         }else{
             return $error;

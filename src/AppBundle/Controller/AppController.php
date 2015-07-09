@@ -182,8 +182,16 @@ class AppController extends Controller
 //                var_dump($_POST['endTime']);
 //                echo " - ";
 
-                if(count($error) == 0) {
+                $em = $this->getDoctrine()->getManager();
+                if(isset($_POST['id'])){
+                    $reservation = $em->getRepository("AppBundle:Applicant")->find($_POST['id']);
+                    if(count($reservation) != 1){
+                        $error[] = "Id bestaat niet.";
+                    }
+                    }else{
                     $reservation = new Applicant();
+                }
+                if(count($error) == 0) {
                     $reservation->setRoom($room);
 
                     $date = new \DateTime($_POST['date']);
@@ -209,9 +217,12 @@ class AppController extends Controller
 //                    var_dump($reservation->getTimeStart());
 //                    echo " - ";
 //                    var_dump($reservation->getTimeEnd());
-
                     $bookingCheck = new BookingController();
-                    $errors = $bookingCheck->checkBooking($reservation, $this->getDoctrine()->getManager());
+                    if(isset($_POST['id'])){
+                        $errors = $bookingCheck->checkBooking($reservation, $em,$_POST['id']);
+                    }else{
+                        $errors = $bookingCheck->checkBooking($reservation, $em);
+                    }
 
                     if(count($errors) != 0){
                         $page = $errors;
