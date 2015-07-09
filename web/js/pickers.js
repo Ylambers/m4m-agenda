@@ -88,19 +88,25 @@ function timePicker(element,hours,minutes){
 
         var done = document.createElement("div");
         done.setAttribute("id","done");
-        done.innerHTML = "Oke";
+        done.innerHTML = "Opslaan";
+
+
+        var bg = document.createElement("div");
+        bg.setAttribute("class","bg");
+
 
         hours.appendChild(emptyDiv());
         minutes.appendChild(emptyDiv());
 
-        picker.appendChild(selected);
-        picker.appendChild(upH);
-        picker.appendChild(upM);
-        picker.appendChild(hours);
-        picker.appendChild(minutes);
-        picker.appendChild(downH);
-        picker.appendChild(downM);
-        picker.appendChild(done);
+        bg.appendChild(selected);
+        bg.appendChild(upH);
+        bg.appendChild(upM);
+        bg.appendChild(hours);
+        bg.appendChild(minutes);
+        bg.appendChild(downH);
+        bg.appendChild(downM);
+        bg.appendChild(done);
+        picker.appendChild(bg);
 
         document.body.appendChild(picker);
 
