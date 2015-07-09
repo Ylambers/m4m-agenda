@@ -12,14 +12,14 @@ document.querySelector("#scheduler_here").onclick = function () {
 
     $(".cbp-spmenu-open").removeClass("cbp-spmenu-open");
     if(picker_all != null){
-        picker_all.hide();
+        picker_all.hideScreen();
     }
 };
 
 document.querySelector(".exit").onclick = function () {
     $(".cbp-spmenu-open").removeClass("cbp-spmenu-open");
     if(picker_all != null){
-        picker_all.hide();
+        picker_all.hideScreen();
     }
 };
 
