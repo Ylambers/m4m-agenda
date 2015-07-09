@@ -4,12 +4,76 @@
 .picker{
     cursor: pointer;
 }
-.picker::before, .picker::after{
-    content: "00";
-}
 .picker:hover{
     background: #EEE;
 }
 .picker:active{
     background: #DDD;
+}
+#m4mPicker{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 500px;
+    margin-left: -150px;
+    margin-top: -270px;
+    background: #012055;
+    z-index: 9999999;
+    color: #FFF;
+
+}
+#m4mPicker .fa{
+    font-size: 50px;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+#m4mPicker .fa:hover{
+    font-size: 50px;
+    width: 150px;
+    text-align: center;
+    color: #0072C6;
+}
+#m4mPicker .selected {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    margin-top: -30px;
+    background: rgba(255, 255, 255, 0.3);
+    border-bottom: solid 2px rgba(200, 200, 200, 0.3);
+    border-top: solid 2px rgba(200, 200, 200, 0.3);
+}
+#m4mPicker .hours, #m4mPicker .minutes{
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+    overflow: hidden;
+    height: 400px;
+    text-align: center;
+}
+#m4mPicker .hours .empty, #m4mPicker .minutes .empty{
+    width: 100%;
+    height: 157px;
+}
+#m4mPicker .hours .item, #m4mPicker .minutes .item{
+    font-size: 20px;
+    padding: 30px;
+}
+#m4mPicker #done{
+    position: absolute;
+    bottom: -40px;
+    height: 40px;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    background: #012055;
+}
+#m4mPicker #done:hover{
+
+    background: #0072C6;
 }
