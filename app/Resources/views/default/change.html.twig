@@ -43,6 +43,15 @@
                 </div>
                 <input type="text" name="token" placeholder="Token" class="form-control" id="token" /><br />
                 <input type="submit" name="submitToken" value="Wijzig" class="btn btn-default" style="width: 100%;" id="submitToken"  />
+                <br />
+                <br />
+                <p>Beschikbare tokens, heeft u een andere token dan kunt u hem hierboven in voeren</p>
+                {% if app.request.cookies.get("tokens") != null %}
+                    {% set tokens = app.request.cookies.get("tokens")|split(',') %}
+                    {% for token in tokens %}
+                        <a href="/change/{{ token }}">{{ token }}</a> <br/><br/>
+                    {% endfor %}
+                {% endif %}
             </div>
         {% endif %}
         {% if texts.box is defined %}
