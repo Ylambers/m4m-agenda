@@ -53,8 +53,10 @@ function timePicker(element,hours,minutes){
         picker.id = "m4mPicker";
         hours.setAttribute("class", "hours");
         hours.dataset.val = this.hours;
+        hours.id = "hoursScroll";
         minutes.setAttribute("class", "minutes");
         minutes.dataset.val = this.minutes;
+        minutes.id = "minutesScroll";
 
         hours.appendChild(emptyDiv());
 
@@ -165,6 +167,8 @@ function timePicker(element,hours,minutes){
             picker_all = null;
             document.getElementById('m4mPicker').parentNode.removeChild(document.getElementById('m4mPicker'));
         };
+        new DragDivScroll( 'hoursScroll' );
+        new DragDivScroll( 'minutesScroll' );
     };
     this.getElement = function(){
         return this.element;
