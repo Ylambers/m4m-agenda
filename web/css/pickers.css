@@ -13,10 +13,9 @@
 #m4mPicker{
     position: fixed;
     top: 50%;
-    left: 50%;
     width: 300px;
     height: 500px;
-    margin-left: -150px;
+    left: 400px;
     margin-top: -270px;
     background: #012055;
 
@@ -46,6 +45,7 @@
     background: rgba(255, 255, 255, 0.3);
     border-bottom: solid 2px rgba(200, 200, 200, 0.3);
     border-top: solid 2px rgba(200, 200, 200, 0.3);
+    z-index: -1;
 }
 #m4mPicker .hours, #m4mPicker .minutes{
     display: inline-block;
@@ -54,6 +54,11 @@
     overflow: hidden;
     height: 400px;
     text-align: center;
+}
+#m4mPicker .hours .inner, #m4mPicker .minutes .inner{
+    width: 170px;
+    height: 400px;
+    overflow-y: scroll;
 }
 #m4mPicker .hours .empty, #m4mPicker .minutes .empty{
     width: 100%;

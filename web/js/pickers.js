@@ -21,13 +21,17 @@ window.onload = function(){
             var selects = e.target.getElementsByTagName("select");
             //console.log(selects[0].value, selects[1].value);
 
+            if(picker_all != null){
+                picker_all.hide();
+            }
             picker_all = timePicker(e.target, selects[0].value, selects[1].value);
             //var picker = timePicker(e.target, 23, 59);
             picker_all.open();
         };
     }
 };
-
+var is_scrolling = false;
+var scroll_interval = false;
 function timePicker(element,hours,minutes){
 
     this.hours = hours == undefined ? 0 : hours;
@@ -57,23 +61,27 @@ function timePicker(element,hours,minutes){
         minutes.setAttribute("class", "minutes");
         minutes.dataset.val = this.minutes;
         minutes.id = "minutesScroll";
+        var hInner = document.createElement("div");
+        hInner.setAttribute("class","inner");
+        var mInner = document.createElement("div");
+        mInner.setAttribute("class","inner");
 
-        hours.appendChild(emptyDiv());
+        hInner.appendChild(emptyDiv());
 
-        minutes.appendChild(emptyDiv());
+        mInner.appendChild(emptyDiv());
 
         for(var i=0; i<24;i++){
             var item = document.createElement("div");
             item.setAttribute("class","item");
             item.innerHTML = i < 10 ? "0"+i : ""+i;
-            hours.appendChild(item);
+            hInner.appendChild(item);
         }
 
         for(var i=0; i<12;i++){
             var item = document.createElement("div");
             item.setAttribute("class","item");
             item.innerHTML = i < 2 ? "0"+i*5 : ""+i*5;
-            minutes.appendChild(item);
+            mInner.appendChild(item);
         }
         var upH = document.createElement("i");
         upH.setAttribute("class", "upH fa fa-caret-up");
@@ -97,8 +105,13 @@ function timePicker(element,hours,minutes){
         bg.setAttribute("class","bg");
 
 
-        hours.appendChild(emptyDiv());
-        minutes.appendChild(emptyDiv());
+
+        hInner.appendChild(emptyDiv());
+        mInner.appendChild(emptyDiv());
+
+        hours.appendChild(hInner);
+        minutes.appendChild(mInner);
+
 
         bg.appendChild(selected);
         bg.appendChild(upH);
@@ -122,7 +135,7 @@ function timePicker(element,hours,minutes){
             if(hVal > 0){
                 hVal--;
             }
-            h.scrollTop = (hVal * 88.5);
+            h.querySelector(".inner").scrollTop = (hVal * 88.5);
             h.dataset.val = hVal;
         };
         document.querySelector("#m4mPicker .downH").onclick = function(){
@@ -131,7 +144,7 @@ function timePicker(element,hours,minutes){
             if(hVal < 23) {
                 hVal++;
             }
-            h.scrollTop = (hVal * 88.5);
+            h.querySelector(".inner").scrollTop = (hVal * 88.5);
             h.dataset.val = hVal;
         };
         document.querySelector("#m4mPicker .upM").onclick = function(){
@@ -140,7 +153,7 @@ function timePicker(element,hours,minutes){
             if(mVal > 0){
                 mVal = mVal - 5;
             }
-            m.scrollTop = ((mVal/5) * 88.5);
+            m.querySelector(".inner").scrollTop = ((mVal/5) * 88.5);
             m.dataset.val = mVal;
         };
         document.querySelector("#m4mPicker .downM").onclick = function(){
@@ -149,7 +162,7 @@ function timePicker(element,hours,minutes){
             if(mVal < 55){
                 mVal = mVal + 5;
             }
-            m.scrollTop = ((mVal/5) * 88.5);
+            m.querySelector(".inner").scrollTop = ((mVal/5) * 88.5);
             m.dataset.val = mVal;
         };
         document.querySelector("#m4mPicker #done").onclick = function(){
@@ -167,17 +180,59 @@ function timePicker(element,hours,minutes){
             picker_all = null;
             document.getElementById('m4mPicker').parentNode.removeChild(document.getElementById('m4mPicker'));
         };
-        new DragDivScroll( 'hoursScroll' );
-        new DragDivScroll( 'minutesScroll' );
+        document.querySelector("#m4mPicker .hours .inner").onscroll = function(e){
+            is_scrolling = true;
+        };
+        var scrollTimer = -1;
+        document.querySelector("#m4mPicker .hours .inner").addEventListener("scroll",function(){
+            if (scrollTimer != -1)
+                clearTimeout(scrollTimer);
+
+            scrollTimer = window.setTimeout(function(){
+                setTimeGood();
+            }, 500);
+        },false);
+        var scrollTimer = -1;
+        document.querySelector("#m4mPicker .minutes .inner").addEventListener("scroll",function(){
+            if (scrollTimer != -1)
+                clearTimeout(scrollTimer);
+
+            scrollTimer = window.setTimeout(function(){
+                setTimeGood();
+            }, 500);
+        },false);
     };
     this.getElement = function(){
         return this.element;
     };
+    this.hide = function(){
+
+        picker_all = null;
+        document.getElementById('m4mPicker').parentNode.removeChild(document.getElementById('m4mPicker'));
+    };
     return this;
 }
+
+function setTimeGood(){
+
+    var h = document.querySelector("#m4mPicker .hours");
+    var m = document.querySelector("#m4mPicker .minutes");
+    hScroll = h.querySelector(".inner").scrollTop / 88.5;
+    mScroll = m.querySelector(".inner").scrollTop / 88.5;
+    h.querySelector(".inner").scrollTop = (Math.round(hScroll) * 88.5);
+    m.querySelector(".inner").scrollTop = (Math.round(mScroll) * 88.5);
+    h.dataset.val = Math.round(hScroll);
+    m.dataset.val = Math.round(mScroll*5);
+
+}
+
 function emptyDiv(){
 
     var empty = document.createElement("div");
     empty.setAttribute("class", "empty");
     return empty;
+}
+
+function log(name, string){
+    console.log(name+":    "+string);
 }

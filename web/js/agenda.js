@@ -11,10 +11,16 @@ showLeft.onclick = function() {
 document.querySelector("#scheduler_here").onclick = function () {
 
     $(".cbp-spmenu-open").removeClass("cbp-spmenu-open");
+    if(picker_all != null){
+        picker_all.hide();
+    }
 };
 
 document.querySelector(".exit").onclick = function () {
     $(".cbp-spmenu-open").removeClass("cbp-spmenu-open");
+    if(picker_all != null){
+        picker_all.hide();
+    }
 };
 
 function disableOther( button ) {
@@ -56,7 +62,7 @@ function schedulerUpdate(){
     $.ajax({
         url: "/app/reservations",
         cache: false,
-        dataType: 'json',
+        dataType: 'json'
     }).done(function(data){
         scheduler.clearAll();
         events = [];
