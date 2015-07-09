@@ -68,9 +68,9 @@ function timePicker(element,hours,minutes){
         var mInner = document.createElement("div");
         mInner.setAttribute("class","inner");
 
-        hInner.appendChild(emptyDiv());
+        hInner.appendChild(crDiv("empty"));
 
-        mInner.appendChild(emptyDiv());
+        mInner.appendChild(crDiv("empty"));
 
         for(var i=0; i<24;i++){
             var item = document.createElement("div");
@@ -108,8 +108,8 @@ function timePicker(element,hours,minutes){
 
 
 
-        hInner.appendChild(emptyDiv());
-        mInner.appendChild(emptyDiv());
+        hInner.appendChild(crDiv("empty"));
+        mInner.appendChild(crDiv("empty"));
 
         hours.appendChild(hInner);
         minutes.appendChild(mInner);
@@ -198,7 +198,6 @@ function timePicker(element,hours,minutes){
                 setTimeGood();
             }, 500);
         },false);
-        var scrollTimer = -1;
         document.querySelector("#m4mPicker .minutes .inner").addEventListener("scroll",function(){
             if (scrollTimer != -1)
                 clearTimeout(scrollTimer);

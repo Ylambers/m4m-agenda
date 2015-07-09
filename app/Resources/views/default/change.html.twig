@@ -38,6 +38,7 @@
             </div>
         {% else %}
             <div class="create-Form">
+                <h3>Token invoeren</h3>
                 <div id="errors" style="color: #880000;">
 
                 </div>
@@ -45,12 +46,16 @@
                 <input type="submit" name="submitToken" value="Wijzig" class="btn btn-default" style="width: 100%;" id="submitToken"  />
                 <br />
                 <br />
-                <p>Beschikbare tokens, heeft u een andere token dan kunt u hem hierboven in voeren</p>
+                <h3>Mijn tokens</h3>
                 {% if app.request.cookies.get("tokens") != null %}
                     {% set tokens = app.request.cookies.get("tokens")|split(',') %}
                     {% for token in tokens %}
-                        <a href="/change/{{ token }}">{{ token }}</a> <br/><br/>
+                        <a href="/change/{{ token }}">{{ token }}</a>
+                        <br/>
+                        <br/>
                     {% endfor %}
+                {% else %}
+                    <p>U heeft momenteel geen tokens.</p>
                 {% endif %}
             </div>
         {% endif %}
