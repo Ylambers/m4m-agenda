@@ -81,8 +81,6 @@ class adminController extends Controller
 
         }
 
-
-
         return $this->render('default/admin.html.twig', array(
             'formBooking' => $formBooking->createView(),
             'formRooms' => $formRoom->createView(),

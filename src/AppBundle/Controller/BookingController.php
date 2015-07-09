@@ -14,6 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Cookie;
+
 
 use AppBundle\Entity\Applicant;
 
@@ -136,6 +139,11 @@ class BookingController extends Controller
             $formBooking->handleRequest($request);
             if ($formBooking->isValid()){
 
+               $cookieToken = array(
+                   'name' => 'Token',
+                   'time' => time() + 3600 * 24 * 7
+               );
+
                 $booking->setRoom($formBooking->get("room")->getData());
                 //var_dump($formBooking->get('date')->getData());
                 //$booking->getDate()->format();
@@ -148,7 +156,6 @@ class BookingController extends Controller
                             "autoLoad" => true,
                             "title" => "Aanpassen",
                             "text" => "Uw reservering is aangemaakt.<br />\nAls u deze graag aan wil passen heeft u een token nodig. Het token is:<br />\n".$val."<br />\n<br />Ga naar <a href='/aanpassen/".$val."'>-website-/aanpassen/".$val."</a>"
-
                         ];
                     }
                 }
@@ -238,6 +245,5 @@ class BookingController extends Controller
         }else{
             return $error;
         }
-
     }
 }
