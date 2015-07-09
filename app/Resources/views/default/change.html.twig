@@ -38,8 +38,11 @@
             </div>
         {% else %}
             <div class="create-Form">
-                <input type="text" name="token" placeholder="Token" />
-                <input type="submit" name="submitToken" value="Wijzig" />
+                <div id="errors" style="color: #880000;">
+
+                </div>
+                <input type="text" name="token" placeholder="Token" class="form-control" id="token" /><br />
+                <input type="submit" name="submitToken" value="Wijzig" class="btn btn-default" style="width: 100%;" id="submitToken"  />
             </div>
         {% endif %}
         {% if texts.box is defined %}
@@ -67,10 +70,20 @@
 {% endblock %}
 {% block javascripts %}
     <script>
-        window.onload = function(){
+        window.addEventListener("load",function(){
             var content = document.querySelector("section.content");
-            console.log(content);
-            content.setAttribute("class", content.getAttribute("class")+" topBottomIn")
+            content.setAttribute("class", content.getAttribute("class")+" topBottomIn");
+        },true);
+        document.getElementById("submitToken").onclick = function(){
+
+            var token = document.getElementById("token").value;
+            if(token.length > 32){
+                document.getElementById("errors").innerHTML = "Token is te lang";
+            }else if(token.length < 32){
+                document.getElementById("errors").innerHTML = "Token is te kort";
+            }else{
+                window.open("/change/"+token,"_top");
+            }
         };
     </script>
 {% endblock %}

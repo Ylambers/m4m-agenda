@@ -113,6 +113,8 @@ function timePicker(element,hours,minutes){
         minutes.appendChild(mInner);
 
 
+        bg.appendChild(crDiv("overlapTop"));
+        bg.appendChild(crDiv("overlapBottom"));
         bg.appendChild(selected);
         bg.appendChild(upH);
         bg.appendChild(upM);
@@ -225,7 +227,11 @@ function setTimeGood(){
     m.dataset.val = Math.round(mScroll*5);
 
 }
-
+function crDiv(className){
+    var overlap = document.createElement("div");
+    overlap.setAttribute("class", className);
+    return overlap;
+}
 function emptyDiv(){
 
     var empty = document.createElement("div");
