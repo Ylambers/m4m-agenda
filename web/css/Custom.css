@@ -19,7 +19,6 @@
     display: none;
 }
 
-.dhx_cal_light .dhx_cal_light_wide .close{
-
+.dhx_scale_bar{
+    cursor: default;
 }
-
