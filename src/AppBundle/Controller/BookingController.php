@@ -139,10 +139,11 @@ class BookingController extends Controller
             $formBooking->handleRequest($request);
             if ($formBooking->isValid()){
 
-               $cookieToken = array(
-                   'name' => 'Token',
-                   'time' => time() + 3600 * 24 * 7
-               );
+             $session = new Session();
+                $session->start();
+
+                $session->setName('Token');
+
 
                 $booking->setRoom($formBooking->get("room")->getData());
                 //var_dump($formBooking->get('date')->getData());
