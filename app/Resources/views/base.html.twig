@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ asset('css/Responsive.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/Admin.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/pickers.css') }}" />
 
         <link rel="stylesheet" href="{{ asset('css/Custom.css') }}" /> {#Important !! THE LAST CSS FILE!!!#}
         {#=================================================================JAVASCRIPT#}
@@ -32,6 +33,7 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <script src="{{ asset('js/pickers.js') }}"></script>
     </body>
 </html>
 

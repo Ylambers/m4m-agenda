@@ -1,0 +1,15 @@
+.picker select{
+    display: none;
+}
+.picker{
+    cursor: pointer;
+}
+.picker::before, .picker::after{
+    content: "00";
+}
+.picker:hover{
+    background: #EEE;
+}
+.picker:active{
+    background: #DDD;
+}
