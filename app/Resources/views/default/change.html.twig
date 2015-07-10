@@ -58,7 +58,7 @@
                 <br />
                 <h3>Mijn tokens</h3>
                 {% if app.request.cookies.get("tokens") != null %}
-                    {% set tokens = app.request.cookies.get("tokens")|split(',') %}
+                    {% set tokens = app.request.cookies.get("tokens")|split(',')|reverse %}
                     {% for token in tokens %}
                         <a href="/change/{{ token }}">{{ token }}</a>
                         <br/>

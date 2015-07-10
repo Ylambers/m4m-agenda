@@ -129,8 +129,21 @@ function saveResults(){
         responseText.innerHTML = "";
         if(data[0] == "token") {
             var $val = data[1];
-            setCookie("tokens",getCookie("tokens")+","+$val,365);
-            document.cookie = "tokens:"+$val;
+            var cookies = getCookie("tokens");
+            if (cookies != "") {
+                cookiesSplit = cookies.split(",");
+                if(cookiesSplit.length == 20){
+                    var newCookies = cookiesSplit[1];
+                    for(var i=2;i<cookiesSplit.length;i++){
+                        newCookies += ","+cookiesSplit[i];
+                    }
+                    cookies = newCookies;
+                }
+                setCookie("tokens",cookies+","+$val,365);
+            } else {
+                setCookie("tokens",$val,365);
+            }
+
 
             document.querySelector(".modal-title").innerHTML = "Aanpassen";
 
