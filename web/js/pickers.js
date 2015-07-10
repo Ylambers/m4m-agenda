@@ -95,6 +95,7 @@ function datePicker(element,day,month,year){
         var years = document.createElement("div");
 
         picker.id = "m4mPicker";
+        picker.dataset.datepicker = true;
 
         days.setAttribute("class", "days");
         days.dataset.val = this.day;
@@ -179,12 +180,12 @@ function datePicker(element,day,month,year){
 
         var done = document.createElement("div");
         done.setAttribute("id","done");
-        done.style.width = "225px";
+        //done.style.width = "225px";
         done.innerHTML = "Opslaan";
 
         var cancel = document.createElement("div");
         cancel.setAttribute("id","cancel");
-        cancel.style.width = "225px";
+        //cancel.style.width = "225px";
         cancel.innerHTML = "Annuleren";
         //
         //
@@ -222,8 +223,8 @@ function datePicker(element,day,month,year){
         bg.appendChild(cancel);
         picker.appendChild(bg);
 
-        picker.style.width = "450px";
-        picker.style.marginLeft = "-225px";
+        //picker.style.width = "450px";
+        //picker.style.marginLeft = "-225px";
 
         //
         document.body.appendChild(picker);
