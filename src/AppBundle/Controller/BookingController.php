@@ -184,6 +184,7 @@ class BookingController extends Controller
                 }
             }
         }
+
         $error = array();
         if($errors > 0){
             $error[] = "De ruimte is al op deze tijd bezet.";

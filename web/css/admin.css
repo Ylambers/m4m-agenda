@@ -87,7 +87,6 @@ h1, h2, h3,h4 ,h5{
     display: block;
     margin: 0;
     height: auto;
-
     position: absolute;
     top: 80px;
     bottom: 0;
@@ -96,10 +95,11 @@ h1, h2, h3,h4 ,h5{
     overflow: hidden;
 
 }
+
 .container-addRoom, .container-room, .container-scheduler{
     display: inline-block;
     width: 33%;
-    padding: 30px;
+    padding: 15px;
     transition: 500ms;
     height: 10px;
     overflow: auto;

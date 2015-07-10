@@ -37,7 +37,6 @@ class adminController extends Controller
         $booking = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->find($id);
         $formBooking = $this->createFormBuilder($booking, array('attr' => array('id' => "reservations")))
 
-
             ->add('room', 'entity', array('required' => true, 'class' => "AppBundle:Room", 'property' => 'name', 'label' => 'Ruimte','attr' => array("class" => "form-control")))
 
             ->add('name', 'text', array('label' => 'Voornaam','attr' => array("class" => "form-control")))
@@ -61,8 +60,6 @@ class adminController extends Controller
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
 
-
-
         $this->text['errors'] = array();
         $formRoom = $this->addRoom();
         if($request->getMethod() == "POST"){
@@ -85,6 +82,7 @@ class adminController extends Controller
             'formRooms' => $formRoom->createView(),
             'scheduler' =>$scheduler,
             'texts' => $this->text,
+//            'deleteRoom' => $this->deleteRoom($id)
         ));
     }
 
@@ -109,4 +107,23 @@ class adminController extends Controller
         }
         return $formRoom;
     }
+
+//    /**
+//     * @Route("/admin/delete/{id}", defaults={"id"=""}, name="admin/delete")
+//     */
+//    public function deleteRoom($id){
+//        $em = $this->getDoctrine()->getEntityManager();
+//
+//        $id = $em->getRepository('AppBundle:Room')->findBy([], ['id' => 'DESC']);
+//        $room = $em->getRepository('AppBundle:Room')->find($id);
+//
+//
+//        if($room == $id){
+//            $em->remove($room);
+//            $em->flush();
+//        }
+//
+//        return $room;
+//    }
+//
 }

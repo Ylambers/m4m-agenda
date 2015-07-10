@@ -33,14 +33,10 @@ html, body{
     width:355px;
     height: 71px;
     z-index: 1;
-    margin: 20px 20px 0 0;
+    margin: 10px 20px 0 0;
     float: right;
     transition: 1000ms;
 }
-/*.container-input .header-img:hover{*/
-    /*transition: 1000ms;*/
-    /*margin: 20px 10px 0 0;*/
-/*}*/
 
 .container-input .required{
     color:   #fff;
