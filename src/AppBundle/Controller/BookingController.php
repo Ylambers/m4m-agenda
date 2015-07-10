@@ -92,7 +92,7 @@ class BookingController extends Controller
 
                 ->add('lastName', 'text', array('label' => 'Achternaam','attr' => array("class" => "form-control")))
 
-                ->add('date', 'date', array('label' => 'Datum','attr' => array("class" => "form-control")))
+                ->add('date', 'date', array('label' => 'Datum','attr' => array("class" => "form-control datePicker")))
 //             'placeholder' => array
 //    ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
 //                'years' => range(Date('Y'), Date('Y',strtotime('+3 year')))
