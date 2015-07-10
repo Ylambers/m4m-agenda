@@ -29,7 +29,6 @@ html, body{
 
 .container-input .header-img{
     background: url('/img/logo-white-trans.png')  no-repeat ;
-    /*background-size:cover;*/
     width:355px;
     height: 71px;
     z-index: 1;
