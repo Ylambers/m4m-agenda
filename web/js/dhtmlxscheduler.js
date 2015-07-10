@@ -2928,7 +2928,7 @@ scheduler._init_touch_events = function() {
         }), !s) {
         var a = scheduler.config.minicalendar;
         a && (a.padding = 14), scheduler.templates.event_bar_date = function(e, t, i) {
-            return "• <b>" + scheduler.templates.event_date(e) + "</b> "
+            return scheduler.templates.event_date(e)+"-"+scheduler.templates.event_date(t)
         }, scheduler.attachEvent("onTemplatesReady", function() {
             var e = scheduler.date.date_to_str("%d");
             scheduler.templates._old_month_day || (scheduler.templates._old_month_day = scheduler.templates.month_day);

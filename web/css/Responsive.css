@@ -30,46 +30,62 @@
 
 @media (max-width: 650px){
 
-    .main{
-        width: 200px;
-        height: auto;
-        text-align: left;
-    }
+    /*.main{*/
+        /*width: 200px;*/
+        /*height: auto;*/
+        /*text-align: left;*/
+    /*}*/
 
-    .main  section button {
-        padding: 30px 0 0 10px;
-        cursor: pointer;
-        font-size: 1.0em;
-        display: block;
-    }
-    .main  section button:hover{
-        color: #fff;
-        margin: 0;
-    }
+    /*.main  section button {*/
+        /*padding: 30px 0 0 10px;*/
+        /*cursor: pointer;*/
+        /*font-size: 1.0em;*/
+        /*display: block;*/
+    /*}*/
+    /*.main  section button:hover{*/
+        /*color: #fff;*/
+        /*margin: 0;*/
+    /*}*/
 
-    .reserved{
+    /*.reserved{*/
+        /*position: relative;*/
+        /*padding: 15px 0 0 0 ;*/
+        /*width: 200px;*/
+        /*text-align: left;*/
+        /*float: left;*/
+        /*height: auto;*/
+    /*}*/
+
+    /*.reserved  section button {*/
+        /*padding: 40px 0 0 10px;*/
+        /*cursor: pointer;*/
+        /*font-size: 1.0em;*/
+        /*float: left;*/
+        /*display: block;*/
+        /*margin: 0;*/
+    /*}*/
+
+    /*.reserved > section button:hover{*/
+        /*color: #fff;*/
+        /*transition: 500ms;*/
+        /*margin: 0;*/
+
+    /*}*/
+
+    .container-input{
         position: relative;
-        padding: 15px 0 0 0 ;
-        width: 200px;
-        text-align: left;
-        float: left;
-        height: auto;
+        margin: 0px 0 0 0 ;
     }
-
-    .reserved  section button {
-        padding: 40px 0 0 10px;
-        cursor: pointer;
-        font-size: 1.0em;
-        float: left;
+    .menu_bttn{
+        margin: 0px 0 0 20px;
+        padding-top: 20px;
+        font-size: 15px;
         display: block;
-        margin: 0;
     }
-
-    .reserved > section button:hover{
-        color: #fff;
-        transition: 500ms;
-        margin: 0;
-
+    .menu_bttn_change{
+        font-size: 15px;
+        display: block;
+        margin: 10px 0 0 20px;
     }
 }
 
