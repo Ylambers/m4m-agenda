@@ -1,3 +1,6 @@
+body, html{
+    overflow-y: auto;
+}
 section.content{
     position: absolute;
     top: -900px;
@@ -8,7 +11,20 @@ section.content{
     transition: top 1s, opacity 2s;
 }
 
+section.content .create-Form{
+    height: 100%;
+    overflow-y: auto;
+}
+
 section.content.topBottomIn{
     top: 100px;
     opacity: 1;
+}
+
+@media (max-width: 800px) {
+    section.content {
+        width: 100%;
+        left: 0;
+        margin-left: 0px;
+    }
 }

@@ -43,18 +43,18 @@ class adminController extends Controller
 
             ->add('lastName', 'text', array('label' => 'Achternaam','attr' => array("class" => "form-control")))
 
-            ->add('date', 'date', array('label' => 'Datum','attr' => array("class" => "form-control")))
+            ->add('date', 'date', array('label' => 'Datum','attr' => array("class" => "form-control datePicker")))
 
             ->add('timeStart', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'attr' => array("class" => "form-control")
+                'attr' => array("class" => "form-control timePicker")
             ))
 
             ->add('timeEnd', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'attr' => array("class" => "form-control")
+                'attr' => array("class" => "form-control timePicker")
             ))
 
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))

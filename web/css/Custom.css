@@ -22,3 +22,21 @@
 .dhx_scale_bar{
     cursor: default;
 }
+
+.dhx_cal_event_line {
+    height: 66px;
+}
+.dhx_cal_tab{
+    display: none;
+}
+
+@media (max-width: 500px) {
+    .dhx_cal_event_line {
+        font-size: 10px;
+    }
+    .dhx_cal_event_line strong{
+        font-size: 10px;
+        font-weight: 0;
+        border-bottom: solid 1px #FFF;
+    }
+}

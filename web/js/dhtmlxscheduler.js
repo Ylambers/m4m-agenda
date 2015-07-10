@@ -2905,8 +2905,8 @@ scheduler._init_touch_events = function() {
     displayed_event_text_color: ["#ffef80", "7e2727"]
 }, scheduler._skin_xy = {
     lightbox_additional_height: [90, 50],
-    nav_height: [59, 22],
-    bar_height: [24, 20]
+    nav_height: [30, 12],
+    bar_height: [70, 40]
 }, scheduler._configure = function(e, t, i) {
     for (var s in t) "undefined" == typeof e[s] && (e[s] = t[s][i])
 }, scheduler._skin_init = function() {
@@ -2928,7 +2928,7 @@ scheduler._init_touch_events = function() {
         }), !s) {
         var a = scheduler.config.minicalendar;
         a && (a.padding = 14), scheduler.templates.event_bar_date = function(e, t, i) {
-            return scheduler.templates.event_date(e)+"-"+scheduler.templates.event_date(t)
+            return "<strong>"+scheduler.templates.event_date(e)+"-"+scheduler.templates.event_date(t)+"</strong>\n<br />"
         }, scheduler.attachEvent("onTemplatesReady", function() {
             var e = scheduler.date.date_to_str("%d");
             scheduler.templates._old_month_day || (scheduler.templates._old_month_day = scheduler.templates.month_day);
