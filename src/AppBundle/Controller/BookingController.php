@@ -45,21 +45,20 @@ class BookingController extends Controller
 
             ->add('lastName', 'text', array('label' => 'Achternaam','attr' => array("class" => "form-control")))
 
-            ->add('date', 'text', array('label' => 'Datum','attr' => array("class" => "form-control")))
-//             'placeholder' => array
-//    ('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
-//                'years' => range(Date('Y'), Date('Y',strtotime('+3 year')))
+            ->add('date', 'date', array('label' => 'Datum','attr' => array("class" => "form-control datePicker"),
+                'years' => range(Date('Y'), Date('Y',strtotime('+3 year')))))
+
 
             ->add('timeStart', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'attr' => array("class" => "form-control picker")
+                'attr' => array("class" => "form-control timePicker")
             ))
 
             ->add('timeEnd', 'time', array(
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'attr' => array("class" => "form-control picker")
+                'attr' => array("class" => "form-control timePicker")
             ))
 
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
@@ -101,13 +100,13 @@ class BookingController extends Controller
                 ->add('timeStart', 'time', array(
                     'input'  => 'datetime',
                     'widget' => 'choice',
-                    'attr' => array("id" => "datetimepicker", "class" => "form-control picker")
+                    'attr' => array("id" => "datetimepicker", "class" => "form-control timePicker")
                 ))
 
                 ->add('timeEnd', 'time', array(
                     'input'  => 'datetime',
                     'widget' => 'choice',
-                    'attr' => array("id" => "datetimepicker", "class" => "form-control picker")
+                    'attr' => array("id" => "datetimepicker", "class" => "form-control timePicker")
                 ))
 
                 ->add('save', 'submit', array('label' => "Aanpassen",'attr' => array("class" => "btn btn-primary", "style" => "margin-top: 10px;")))

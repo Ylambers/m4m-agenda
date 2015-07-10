@@ -1,15 +1,16 @@
-.picker select{
+.timePicker select, .datePicker select{
     display: none;
 }
-.picker{
+.timePicker, .datePicker{
     cursor: pointer;
 }
-.picker:hover{
+.timePicker:hover, .datePicker:hover{
     background: #EEE;
 }
-.picker:active{
+.timePicker:active, .datePicker:active{
     background: #DDD;
 }
+
 #m4mPicker{
     position: fixed;
     top: 50%;
@@ -63,7 +64,7 @@
     border-top: solid 2px rgba(200, 200, 200, 0.3);
     z-index: -1;
 }
-#m4mPicker .hours, #m4mPicker .minutes{
+#m4mPicker .hours, #m4mPicker .minutes, #m4mPicker .days, #m4mPicker .months, #m4mPicker .years{
     display: inline-block;
     width: 150px;
     vertical-align: top;
@@ -71,16 +72,16 @@
     height: 400px;
     text-align: center;
 }
-#m4mPicker .hours .inner, #m4mPicker .minutes .inner{
+#m4mPicker .inner{
     width: 170px;
     height: 400px;
     overflow-y: scroll;
 }
-#m4mPicker .hours .empty, #m4mPicker .minutes .empty{
+#m4mPicker .empty{
     width: 100%;
     height: 157px;
 }
-#m4mPicker .hours .item, #m4mPicker .minutes .item{
+#m4mPicker .item{
     font-size: 20px;
     padding: 30px;
 }

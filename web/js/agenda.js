@@ -32,15 +32,15 @@ function disableOther( button ) {
 scheduler.init('scheduler_here', new Date(),"month");
 var events = [];
 $(document).ready(function(){
-
-    jQuery('#form_date').datetimepicker({
-        inline:false,
-        theme:'light',
-        lang:'nl',
-        timepicker:false,
-        datepicker:true,
-        format:'d-m-Y'
-    });
+    //
+    //jQuery('#form_date').datetimepicker({
+    //    inline:false,
+    //    theme:'light',
+    //    lang:'nl',
+    //    timepicker:false,
+    //    datepicker:true,
+    //    format:'d-m-Y'
+    //});
 
     schedulerUpdate();
 
@@ -58,7 +58,6 @@ Array.prototype.clean = function(deleteValue) {
     return this;
 };
 function schedulerUpdate(){
-    console.log(getCookie("tokens").split(","));
     $.ajax({
         url: "/app/reservations",
         cache: false,
@@ -101,15 +100,29 @@ function saveResults(){
     var room_id = document.querySelector("#form_room").value;
     var firstname = document.querySelector("#form_name").value;
     var surname = document.querySelector("#form_lastName").value;
-    var date = document.querySelector("#form_date").value;
-    var startTime = document.querySelector("#form_timeStart_hour").value+":"+document.querySelector("#form_timeStart_minute").value;
-    var endTime = document.querySelector("#form_timeEnd_hour").value+":"+document.querySelector("#form_timeEnd_minute").value;
+    //var date = document.querySelector("#form_date").value;
+    var form_date = document.querySelector("#form_date");
+    var selects = form_date.getElementsByTagName("select");
+    var dateRes = selects[2].value+"-"+selects[1].value+"-"+selects[0].value;
+    var st1 = document.querySelector("#form_timeStart_hour").value;
+    var st2 = document.querySelector("#form_timeStart_minute").value;
+    var et1 = document.querySelector("#form_timeEnd_hour").value;
+    var et2 = document.querySelector("#form_timeEnd_minute").value;
+
+    st1 = parseInt(st1) < 10 ? "0"+st1 : ""+st1;
+    st2 = parseInt(st2) < 10 ? "0"+st2 : ""+st2;
+    et1 = parseInt(et1) < 10 ? "0"+et1 : ""+et1;
+    et2 = parseInt(et2) < 10 ? "0"+et2 : ""+et2;
+
+    console.log(dateRes);
+    var startTime = st1+":"+st2;
+    var endTime = et1+":"+et2;
 
     $.ajax({
         url: "/app/results",
         cache: false,
         method: 'post',
-        data: {room_id: room_id, firstname: firstname, surname: surname, date:date, startTime:startTime, endTime:endTime},
+        data: {room_id: room_id, firstname: firstname, surname: surname, date:dateRes, startTime:startTime, endTime:endTime},
         dataType: 'json'
     }).done(function(data){
         var responseText = document.querySelector("#responseText");
