@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container-input">
-             <a href="/">
-                 <div class="header-img"></div>
-             </a>
-        <div class="main">
-            <section>
-                    <button id="showLeft" onclick="window.open('/', '_top')">Calendar <i class="fa fa-calendar fa-2x"> </i></button>
-            </section>
-        </div>
+ <div class="container-input">
+    <a href="/">
+        <div class="header-img"></div>
+    </a>
+    <div class="main">
+        <section>
+            <button id="showLeft" onclick="window.open('/', '_top')">Calendar <i class="fa fa-calendar fa-2x"> </i></button>
+        </section>
     </div>
+</div>
+
+<div class="container-box">
 
     <div class="container-scheduler">
         <div class="items">
             <h2>Pas een afspraak aan</h2>
-            <hr />
             {% for schedulers in scheduler %}
                 <ul>
                     <li>
@@ -55,27 +56,27 @@
         {{ form_widget(formBooking) }}
         {{ form_end(formBooking) }}
 
-         <div id="responseText" class="alert alert-danger" role="alert">
-            {% for error in texts.errors %}
-                {{ error }}<br />
-            {% endfor %}
-         </div>
-
-        <div class="container-addRoom">
-            <h2>Add room</h2>
-            {{ form_start(formRooms) }}
-            {{ form_widget(formRooms) }}
-            {{ form_end(formRooms) }}
-        </div>
-
-
-         <div id="responseText" class="alert alert-danger" role="alert">
-            {% for error in texts.errors %}
-                {{ error }}<br />
-            {% endfor %}
-         </div>
-
+        {#<div id="responseText" class="alert alert-danger" role="alert">#}
+        {#{% for error in texts.errors %}#}
+        {#{{ error }}<br />#}
+        {#{% endfor %}#}
+        {#</div>#}
     </div>
+    <div class="container-addRoom">
+        <h2>Voeg een ruimte toe</h2>
+        {{ form_start(formRooms) }}
+        {{ form_widget(formRooms) }}
+        {{ form_end(formRooms) }}
+    </div>
+
+    {#<div id="responseText" class="alert alert-danger" role="alert">#}
+        {#{% for error in texts.errors %}#}
+            {#{{ error }}<br />#}
+        {#{% endfor %}#}
+    {#</div>#}
+
+</div>
+
 {% endblock %}
 {% block javascripts %}
 {% endblock %}

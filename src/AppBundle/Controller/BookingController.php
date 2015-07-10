@@ -219,10 +219,3 @@ class BookingController extends Controller
         }
     }
 }
-
-//if(isset($_COOKIE['tokens'])) {
-//    $tokens = explode(",", $_COOKIE['tokens']);
-//    foreach ($tokens as $token) {
-//        echo  $token. "<br />";
-//    }
-//}

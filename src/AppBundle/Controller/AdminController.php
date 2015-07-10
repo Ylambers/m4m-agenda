@@ -78,7 +78,6 @@ class adminController extends Controller
                     $this->text['errors'] = $bookingCheck->checkBooking($booking, $this->getDoctrine()->getManager(), $id);
                 }
             }
-
         }
 
         return $this->render('default/admin.html.twig', array(

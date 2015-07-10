@@ -2,11 +2,19 @@
  * Created by yaron on 1-7-2015.
  */
 
-function errorMsg(){
-    var responseText = document.querySelector("#responseText");
-    responseText.innerHTML = "";
+$(window).ready(function(){
+    makePageGood();
 
-    responseText.setAttribute("class", "display:none;");
+});
+$(window).resize(function(){
+    makePageGood();
+
+});
+
+function makePageGood(){
+    if(document.querySelector(".container-addRoom") != null){
+        document.querySelector(".container-addRoom").style.height = document.querySelector(".container-box").offsetHeight+"px";
+        document.querySelector(".container-room").style.height = document.querySelector(".container-box").offsetHeight+"px";
+        document.querySelector(".container-scheduler").style.height = document.querySelector(".container-box").offsetHeight+"px";
+    }
 }
-
-errorMsg();
