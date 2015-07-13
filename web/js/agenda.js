@@ -180,7 +180,8 @@ function saveResults(){
                 responseText.setAttribute("role", "alert");
             }
         }
-        schedulerUpdate();
+        schedulerUpdate("/false/"+ room_id);
+        //schedulerUpdate();
     });
 }
 function setCookie(cname, cvalue, exdays) {
