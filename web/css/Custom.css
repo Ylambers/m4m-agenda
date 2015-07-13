@@ -41,12 +41,8 @@
 }
 
 .dhx_month_head{
-    background: #fff;
     font-size: 16px;
     color: #0072C6;
-}
-.dhx_now{
-    background: none;
 }
 .dhx_cal_event_line{
     padding-left: 2px;
