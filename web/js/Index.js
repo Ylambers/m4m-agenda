@@ -4,7 +4,6 @@
 
 $(window).ready(function(){
     makePageGood();
-
 });
 $(window).resize(function(){
     makePageGood();

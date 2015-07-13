@@ -24,9 +24,15 @@
 }
 
 .dhx_cal_event_line {
-    height: 66px;
+    height: 20px;
+    z-index: 1;
+    transition: height 500ms;
 }
-.dhx_cal_tab{
+.dhx_cal_event_line:hover{
+    height: 80px;
+    z-index: 2;
+}
+.dhx_cal_tab, .dhx_cal_today_button{
     display: none;
 }
 

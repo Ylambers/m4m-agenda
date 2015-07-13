@@ -2906,7 +2906,7 @@ scheduler._init_touch_events = function() {
 }, scheduler._skin_xy = {
     lightbox_additional_height: [90, 50],
     nav_height: [30, 12],
-    bar_height: [70, 40]
+    bar_height: [24, 20]
 }, scheduler._configure = function(e, t, i) {
     for (var s in t) "undefined" == typeof e[s] && (e[s] = t[s][i])
 }, scheduler._skin_init = function() {

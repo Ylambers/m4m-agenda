@@ -5,12 +5,13 @@
     <a href="/">
         <div class="header-img"></div>
     </a>
-     <div onclick="window.open('/', '_top')" class="menu_bttn">Calendar <i class="fa fa-calendar fa-2x"> </i></div>
+     <div onclick="window.open('/logout', '_top')" class="menu_bttn"><i class="fa fa-sign-out" style="-ms-transform: rotate(180deg); -webkit-transform: rotate(180deg); transform: rotate(180deg);"> </i> Loguit</div>
 </div>
 
 <div class="container-box">
 
     <div class="container-scheduler">
+
         <div class="items">
             <h2>Pas een afspraak aan</h2>
             {% for schedulers in scheduler %}
