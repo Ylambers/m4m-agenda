@@ -45,9 +45,15 @@
     font-size: 16px;
     color: #0072C6;
 }
-
-.dhx_now .dhx_month_body, .dhx_now .dhx_month_head{
-    background: #EAEAEA;
+.dhx_cal_event_line{
+    padding-left: 2px;
+}
+/*.dhx_cal_event_line .dhx_event_resize{*/
+    /*background: #EAEAEA;*/
+/*}*/
+.dhx_cal_event_line .dhx_event_resize{
+    width: 0;
+    display: none;
 }
 
 @media (max-width: 500px) {
@@ -57,6 +63,8 @@
     .dhx_cal_event_line strong{
         font-size: 10px;
         font-weight: normal;
-        border-bottom: solid 1px #FFF;
+        /*border-bottom: solid 1px #FFF;*/
+    }
+    .dhx_cal_event_line:hover{
     }
 }

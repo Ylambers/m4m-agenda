@@ -21,10 +21,16 @@
     .cbp-spmenu-left {
         left: -100%;
     }
-    .header-img{
-        display:none;
-    }
 
+}
+@media (max-width: 900px){
+
+    .container-input .header-img{
+        width: 200px;
+        height: 57px;
+        background-size: 200px 57px;
+        top: 35px;
+    }
 }
 @media (max-width: 800px){
     .container-input {
@@ -36,13 +42,19 @@
 
 
 @media (max-width: 650px){
+
+    .container-input .header-img{
+        top: 10px;
+        height: 45px;
+    }
     .container-input{
         position: relative;
         margin: 0px 0 0 0 ;
+        height: 80px;
     }
     .menu_bttn{
         margin: 0px 0 0 20px;
-        padding-top: 20px;
+        padding-top: 10px;
         font-size: 15px;
         display: block;
     }
@@ -50,5 +62,18 @@
         font-size: 15px;
         display: block;
         margin: 10px 0 0 20px;
+    }
+
+    .roomsMenu{
+        top: 60px;
+        text-align: right;
+    }
+}
+
+@media (max-width: 400px){
+
+    .container-input .header-img {
+        background: url('/img/logo_icon.png') no-repeat;
+        width: 79px;
     }
 }
