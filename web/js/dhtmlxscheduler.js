@@ -2184,7 +2184,7 @@ function() {
         g && (u += " " + g);
         var f = e.color ? "background:" + e.color + ";" : "",
             v = e.textColor ? "color:" + e.textColor + ";" : "",
-            m = ["position:absolute", "top:" + s + "px", "left:" + a + "px", "width:" + (n - a - 15) + "px", v, f, e._text_style || ""].join(";"),
+            m = ["position:absolute", "top:" + s + "px", "left:" + a + "px", "width:" + (n - a - 6) + "px", v, f, e._text_style || ""].join(";"),
             p = '<div event_id="' + e.id + '" class="' + u + '" style="' + m + '">';
         d && (p += r), "month" == scheduler.getState().mode && (e = scheduler.getEvent(e.id)),
         e._timed && (p += scheduler.templates.event_bar_date(e.start_date, e.end_date, e)), p += scheduler.templates.event_bar_text(e.start_date, e.end_date, e) + "</div>", p += "</div>", o.innerHTML = p, this._rendered.push(o.firstChild), t.appendChild(o.firstChild)
