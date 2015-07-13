@@ -35,8 +35,10 @@ class adminController extends Controller
 
 
         $scheduler = $this->getDoctrine()->getRepository('AppBundle:Applicant')->findBy([], ['id' => 'DESC']);
-
         $booking = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->find($id);
+        if($booking == null){
+            $booking = new Applicant();
+        }
         $formBooking = $this->createFormBuilder($booking, array('attr' => array('id' => "reservations")))
 
             ->add('room', 'entity', array('required' => true, 'class' => "AppBundle:Room", 'property' => 'name', 'label' => 'Ruimte','attr' => array("class" => "form-control")))
@@ -74,7 +76,7 @@ class adminController extends Controller
                 $formBooking->handleRequest($request);
                 if ($formBooking->isValid()) {
                     $bookingCheck = new BookingController();
-                    $this->text['errors'] = $bookingCheck->checkBooking($booking, $this->getDoctrine()->getManager(), $id);
+                    $this->text['errors'] = $bookingCheck->checkBooking($booking, $this->getDoctrine()->getManager(), ($booking == null ? false : $id));
                 }
             }
         }
