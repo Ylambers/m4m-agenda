@@ -16,9 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Cookie;
-
-
 use AppBundle\Entity\Applicant;
+
 
 class BookingController extends Controller
 {
@@ -221,3 +220,5 @@ class BookingController extends Controller
         }
     }
 }
+
+
