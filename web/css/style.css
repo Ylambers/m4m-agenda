@@ -176,7 +176,7 @@ html, body{
     text-align: center;
 }
 .roomsMenu .room{
-    color: #3FA2D8;
+    color: #012055;
     padding: 5px;
     cursor: pointer;
     transition: color 500ms;
@@ -189,6 +189,6 @@ html, body{
 }
 .roomsMenu .room.selectedRoom{
     font-weight: bold;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
     color: #fff;
 }
