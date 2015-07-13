@@ -176,7 +176,7 @@ html, body{
     text-align: center;
 }
 .roomsMenu .room{
-    color: #FFF;
+    color: #3FA2D8;
     padding: 5px;
     cursor: pointer;
     transition: color 500ms;
@@ -185,9 +185,10 @@ html, body{
 .roomsMenu .room:hover{
     transition: color 0ms;
     -webkit-transition: color 0ms;
-    color: #3FA2D8;
+    color: #FFF;
 }
 .roomsMenu .room.selectedRoom{
     font-weight: bold;
     text-decoration: underline;
+    color: #fff;
 }
