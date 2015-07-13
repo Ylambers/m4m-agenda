@@ -54,9 +54,9 @@
     display: none;
 }
 
-.dhx_now .dhx_month_body, .dhx_now .dhx_month_head{
-    background: #F59C00;
-}
+/*.dhx_now .dhx_month_body, .dhx_now .dhx_month_head{*/
+    /*background: #F59C00;*/
+/*}*/
 
 
 @media (max-width: 500px) {

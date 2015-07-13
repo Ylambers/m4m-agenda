@@ -11,12 +11,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\ApplicantDelete;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Entity\Room;
+use AppBundle\Entity\ApplicantArchive;
 use AppBundle\Entity\Applicant;
 
 class adminController extends Controller
@@ -82,7 +84,6 @@ class adminController extends Controller
             'formRooms' => $formRoom->createView(),
             'scheduler' =>$scheduler,
             'texts' => $this->text,
-//            'deleteRoom' => $this->deleteRoom($id)
         ));
     }
 
@@ -108,22 +109,33 @@ class adminController extends Controller
         return $formRoom;
     }
 
-//    /**
-//     * @Route("/admin/delete/{id}", defaults={"id"=""}, name="admin/delete")
-//     */
-//    public function deleteRoom($id){
-//        $em = $this->getDoctrine()->getEntityManager();
-//
-//        $id = $em->getRepository('AppBundle:Room')->findBy([], ['id' => 'DESC']);
-//        $room = $em->getRepository('AppBundle:Room')->find($id);
-//
-//
-//        if($room == $id){
-//            $em->remove($room);
-//            $em->flush();
-//        }
-//
-//        return $room;
-//    }
-//
+    /**
+     * @Route("/admin/delete/{id}", defaults={"id"=""}, name="delete")
+     */
+    public function delete($id ){
+        $em = $this->getDoctrine()->getManager();
+        $reservation = $em->getRepository('AppBundle:Applicant')->find($id);
+
+           if($reservation != null){
+
+               $del = new ApplicantArchive();
+
+               $del->setRoom($reservation->getRoom());
+               $del->setName($reservation->getName());
+               $del->setLastName($reservation->getLastName());
+               $del->setDate($reservation->getDate());
+               $del->setTimeStart($reservation->getTimeStart());
+               $del->setTimeEnd($reservation->getTimeEnd());
+               $del->setToken($reservation->getToken());
+
+                $em->persist($del);
+                $em->remove($reservation);
+                $em->flush();
+
+               $this->text['Verwijderd'];
+            }
+        return $this->render('default/admin.html.twig',array(
+            'deleted' => $this->text
+        ));
+    }
 }

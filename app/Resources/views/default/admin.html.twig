@@ -17,7 +17,7 @@
             {% for schedulers in scheduler %}
                 <ul>
                     <li>
-                        <label>ID:  </label>   {{ schedulers.id }}
+                        <label>Id:  </label>   {{ schedulers.id }}
                     </li>
                     <li>
                         <label>Naam: </label>   {{ schedulers.name }}
@@ -39,7 +39,7 @@
                         <label>Token: </label>    {{ schedulers.token }}
                     </li>
                     <li>
-                        <a href="/admin/{{ schedulers.id }}">Aanpassen</a>
+                        <a href="/admin/{{ schedulers.id }}">Aanpassen</a> |  <a href="/admin/delete/{{ schedulers.id }}">Verwijderen</a>
                     </li>
                     <br />
                 </ul>
@@ -77,7 +77,8 @@
     {#</div>#}
 
 </div>
-
 {% endblock %}
+
+
 {% block javascripts %}
 {% endblock %}
