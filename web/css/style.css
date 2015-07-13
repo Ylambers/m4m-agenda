@@ -179,9 +179,14 @@ html, body{
     color: #FFF;
     padding: 5px;
     cursor: pointer;
-    transition: 500ms;
+    transition: color 500ms;
+    -webkit-transition: color 500ms;
 }
 .roomsMenu .room:hover{
-    transition: 0ms;
+    transition: color 0ms;
+    -webkit-transition: color 0ms;
     color: #3FA2D8;
+}
+.roomsMenu .room.selectedRoom{
+    font-weight: bold;
 }

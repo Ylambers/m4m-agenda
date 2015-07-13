@@ -61,7 +61,7 @@ var rooms = document.getElementsByClassName("room");
 for(var i=0;i < rooms.length;i++){
     rooms[i].onclick = function(e){
         if(e.target.dataset.id != "all"){
-            schedulerUpdate("/false/"+ e.target.dataset.id);
+            schedulerUpdate( e.target.dataset.id);
         }else{
 
             schedulerUpdate();
@@ -70,7 +70,22 @@ for(var i=0;i < rooms.length;i++){
 }
 
 function schedulerUpdate(room){
-    url = "/app/reservations"+ (room == undefined ? "" : room);
+    if(room == undefined){
+        url = "/app/reservations";
+
+    }else{
+        url = "/app/reservations/false/"+room;
+
+    }
+    var rooms = document.getElementsByClassName("selectedRoom");
+    for(var i=0;i < rooms.length;i++){
+        rooms[i].setAttribute("class", "room");
+    }
+    var thisRoom = document.querySelector(".room[data-id='"+(room == undefined ? "all" : room)+"']");
+    if(thisRoom != null){
+        thisRoom.setAttribute("class", "room selectedRoom");
+    }
+
     $.ajax({
         url: url,
         cache: false,
@@ -180,7 +195,7 @@ function saveResults(){
                 responseText.setAttribute("role", "alert");
             }
         }
-        schedulerUpdate("/false/"+ room_id);
+        schedulerUpdate(room_id);
         //schedulerUpdate();
     });
 }
