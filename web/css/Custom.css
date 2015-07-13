@@ -46,9 +46,9 @@
     color: #0072C6;
 }
 
-/*.dhx_now .dhx_month_body, .dhx_now .dhx_month_head{*/
-    /*background: #CECECF;*/
-/*}*/
+.dhx_now .dhx_month_body, .dhx_now .dhx_month_head{
+    background: #EAEAEA;
+}
 
 @media (max-width: 500px) {
     .dhx_cal_event_line {
