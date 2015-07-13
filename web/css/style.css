@@ -189,4 +189,5 @@ html, body{
 }
 .roomsMenu .room.selectedRoom{
     font-weight: bold;
+    text-decoration: underline;
 }
