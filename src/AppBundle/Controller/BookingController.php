@@ -63,6 +63,8 @@ class BookingController extends Controller
 
             ->add('save', 'submit', array('label' => "Verzenden",'attr' => array("class" => "form-control")))
             ->getForm();
+        $rooms = $this->getDoctrine()->getManager()->getRepository("AppBundle:Room")->findAll();
+        $this->text['rooms'] = $rooms;
         return $this->render('default/book.html.twig',array(
                 'formBooking' => $formBooking->createView(),
                 'texts' => $this->text,

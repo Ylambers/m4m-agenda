@@ -26,6 +26,7 @@
 .dhx_cal_event_line {
     height: 20px;
     z-index: 1;
+    -webkit-transition: height 500ms;
     transition: height 500ms;
 }
 .dhx_cal_event_line:hover{
@@ -35,6 +36,9 @@
 .dhx_cal_tab, .dhx_cal_today_button{
     display: none;
 }
+.dhx_cal_prev_button{
+    left: 14px;
+}
 
 @media (max-width: 500px) {
     .dhx_cal_event_line {
@@ -42,7 +46,7 @@
     }
     .dhx_cal_event_line strong{
         font-size: 10px;
-        font-weight: 0;
+        font-weight: normal;
         border-bottom: solid 1px #FFF;
     }
 }

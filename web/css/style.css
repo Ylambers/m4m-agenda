@@ -7,7 +7,7 @@ html, body{
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 .container-input{
@@ -168,4 +168,20 @@ html, body{
 .menu_bttn:hover, .menu_bttn_change:hover{
     color: #3FA2D8;
     transition: 0ms;
+}
+.roomsMenu{
+    position: absolute;
+    width: 100%;
+    top: 80px;
+    text-align: center;
+}
+.roomsMenu .room{
+    color: #FFF;
+    padding: 5px;
+    cursor: pointer;
+    transition: 500ms;
+}
+.roomsMenu .room:hover{
+    transition: 0ms;
+    color: #3FA2D8;
 }

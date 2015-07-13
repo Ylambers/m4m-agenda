@@ -57,9 +57,22 @@ Array.prototype.clean = function(deleteValue) {
     }
     return this;
 };
-function schedulerUpdate(){
+var rooms = document.getElementsByClassName("room");
+for(var i=0;i < rooms.length;i++){
+    rooms[i].onclick = function(e){
+        if(e.target.dataset.id != "all"){
+            schedulerUpdate("/false/"+ e.target.dataset.id);
+        }else{
+
+            schedulerUpdate();
+        }
+    };
+}
+
+function schedulerUpdate(room){
+    url = "/app/reservations"+ (room == undefined ? "" : room);
     $.ajax({
-        url: "/app/reservations",
+        url: url,
         cache: false,
         dataType: 'json'
     }).done(function(data){
