@@ -6,6 +6,7 @@
         <div class="header-img"></div>
     </a>
      <div onclick="window.open('/logout', '_top')" class="menu_bttn"><i class="fa fa-sign-out" style="-ms-transform: rotate(180deg); -webkit-transform: rotate(180deg); transform: rotate(180deg);"> </i> Loguit</div>
+     <div onclick="window.open('/admin/archive/', '_top')" class="menu_bttn"><i class="fa fa-archive"></i> Archive</div>
 </div>
 
 <div class="container-box">
@@ -13,7 +14,7 @@
     <div class="container-scheduler">
 
         <div class="items">
-            <h2>Pas een afspraak aan</h2> | <a href="/admin/archive/">Archive</a>
+            <h2>Pas een afspraak aan</h2>
             {% for schedulers in scheduler %}
                 <ul>
                     <li>
