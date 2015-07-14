@@ -136,6 +136,14 @@ h1, h2, h3,h4 ,h5{
 
 
 .archive{
+    width: 50%;
+    margin: auto;
+    text-align: left;
+    height: 90%;
+    overflow: auto;
+}
 
+.archive li{
+    list-style: none;
 }
 
