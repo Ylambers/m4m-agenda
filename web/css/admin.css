@@ -134,27 +134,8 @@ h1, h2, h3,h4 ,h5{
     transition: 1000ms;
 }
 
-@media(max-width: 805px) {
 
+.archive{
 
-    .container-box h2{
-        font-size: 17px;
-    }
-
-    .container-addRoom, .container-room, .container-scheduler{
-        width: 32%;
-    }
 }
-@media screen and (max-width: 550px) , screen and (max-height: 500px) {
 
-    .login-form {
-        top: 0;
-        left: 0;
-        transform: translate(0, 0);
-        -ms-transform: translate(0, 0); /* IE 9 */
-        -webkit-transform: translate(0, 0); /* Safari */
-        width: 100%;
-        min-height: 100%;
-        height: 100%;
-    }
-}

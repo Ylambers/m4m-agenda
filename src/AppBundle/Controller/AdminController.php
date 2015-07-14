@@ -134,10 +134,22 @@ class adminController extends Controller
                 $em->remove($reservation);
                 $em->flush();
 
-               $this->text['Verwijderd'];
             }
-        return $this->render('default/admin.html.twig',array(
-            'deleted' => $this->text
-        ));
+        return new response();
+//        return $this->render('default/admin.html.twig',array(
+//            'deleted' => $this->text
+//        ));
+    }
+
+    /**
+     * @Route("/admin/archive/", name="Archive")
+     */
+    public function archive(){
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Geen toegang tot deze pagina');
+
+        $em = $this->getDoctrine()->getManager();
+        $archive = $em->getRepository('AppBundle:ApplicantArchive')->findAll();
+
+        return $this->render('default/Archive.html.twig', array( 'archive' => $archive ));
     }
 }

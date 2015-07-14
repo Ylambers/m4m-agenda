@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-input">
+    <a href="/">
+        <div class="header-img"></div>
+    </a>
+    <div onclick="window.open('/logout', '_top')" class="menu_bttn"><i class="fa fa-sign-out" style="-ms-transform: rotate(180deg); -webkit-transform: rotate(180deg); transform: rotate(180deg);"> </i> Loguit</div>
+</div>
+
+<div class="archive">
+    {% for archives in archive %}
+        <ul>
+            <li>
+                <label>Id:  </label>   {{ archives.id }}
+            </li>
+            <li>
+                <label>Naam: </label>   {{ archives.name }}
+            </li>
+            <li>
+                <label>Achternaam: </label>   {{ archives.lastName }}
+            </li>
+            <li>
+                <label>Datum: </label>    {{ archives.date|date('Y-m-d') }}
+            </li>
+            <li>
+                <label>Begin tijd: </label>    {{ archives.timeStart|date('H:i') }}
+            </li>
+            <li>
+                <label>Eind tijd: </label>    {{ archives.timeEnd|date('H:i') }}
+            </li>
+
+            <li>
+                <label>Token: </label>    {{ archives.token }}
+            </li>
+            {#<li>#}
+            {#<a href="/admin/{{ schedulers.id }}">Aanpassen</a> |  <a href="/admin/delete/{{ schedulers.id }}">Archiveren</a>#}
+            {#</li>#}
+            <br />
+        </ul>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+{% endblock %}

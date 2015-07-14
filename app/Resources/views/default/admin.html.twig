@@ -13,7 +13,7 @@
     <div class="container-scheduler">
 
         <div class="items">
-            <h2>Pas een afspraak aan</h2>
+            <h2>Pas een afspraak aan</h2> | <a href="/admin/archive/">Archive</a>
             {% for schedulers in scheduler %}
                 <ul>
                     <li>
@@ -39,9 +39,10 @@
                         <label>Token: </label>    {{ schedulers.token }}
                     </li>
                     <li>
-                        <a href="/admin/{{ schedulers.id }}">Aanpassen</a> |  <a href="/admin/delete/{{ schedulers.id }}">Verwijderen</a>
+                        <a href="/admin/{{ schedulers.id }}">Aanpassen</a> |  <a href="/admin/delete/{{ schedulers.id }}">Archiveren</a>
                     </li>
                     <br />
+
                 </ul>
             {% endfor %}
         </div>
@@ -64,10 +65,6 @@
         {{ form_start(formRooms) }}
         {{ form_widget(formRooms) }}
         {{ form_end(formRooms) }}
-
-        {#{% for deleteroom in deleteRoom %}#}
-            {#{{ deleteRoom }}#}
-        {#{% endfor %}#}
     </div>
 
     {#<div id="responseText" class="alert alert-danger" role="alert">#}
@@ -77,6 +74,8 @@
     {#</div>#}
 
 </div>
+
+
 {% endblock %}
 
 
